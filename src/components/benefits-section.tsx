@@ -1,72 +1,13 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  Trophy,
-  Users,
-  Lightbulb,
-  Network,
-  Award,
-  Sparkles,
-  ArrowRight,
-} from "lucide-react";
+import { Trophy, Sparkles, ArrowRight } from "lucide-react";
+import { benefits } from "@/lib/display-constants";
+import { cn } from "@/lib/utils";
 
 export function BenefitsSection() {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-
-  const benefits = [
-    {
-      icon: Trophy,
-      title: "Substantial Prize Pool",
-      description:
-        "Compete for over 1,000,000 VND in prizes, including cash awards, tech equipment, and startup funding opportunities",
-      color: "from-yellow-400 via-orange-500 to-red-500",
-      bgColor: "from-yellow-500/10 to-orange-500/10",
-      value: "1M+ VND",
-      category: "REWARDS",
-    },
-    {
-      icon: Network,
-      title: "Global Networking",
-      description:
-        "Connect with industry leaders, potential co-founders, and mentors from top tech companies worldwide",
-      color: "from-blue-400 via-cyan-500 to-teal-500",
-      bgColor: "from-blue-500/10 to-cyan-500/10",
-      value: "500+ Leaders",
-      category: "NETWORK",
-    },
-    {
-      icon: Lightbulb,
-      title: "Skill Development",
-      description:
-        "Access exclusive workshops, masterclasses, and mentorship sessions to enhance your technical and entrepreneurial skills",
-      color: "from-purple-400 via-pink-500 to-rose-500",
-      bgColor: "from-purple-500/10 to-pink-500/10",
-      value: "20+ Sessions",
-      category: "GROWTH",
-    },
-    {
-      icon: Users,
-      title: "Career Opportunities",
-      description:
-        "Get noticed by leading tech recruiters and gain direct access to job opportunities at partner companies",
-      color: "from-green-400 via-emerald-500 to-teal-500",
-      bgColor: "from-green-500/10 to-emerald-500/10",
-      value: "100+ Companies",
-      category: "CAREERS",
-    },
-    {
-      icon: Award,
-      title: "Industry Recognition",
-      description:
-        "Showcase your innovations on a global stage and build a portfolio that stands out to employers and investors",
-      color: "from-indigo-400 via-purple-500 to-pink-500",
-      bgColor: "from-indigo-500/10 to-purple-500/10",
-      value: "Global Stage",
-      category: "RECOGNITION",
-    },
-  ];
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 200);
@@ -91,16 +32,14 @@ export function BenefitsSection() {
         onMouseLeave={() => setHoveredCard(null)}
       >
         <Card
-          className={`
+          className={cn(
+            `
           relative overflow-hidden border-0 bg-slate-900/40 backdrop-blur-xl 
           transition-all duration-500 h-full min-h-[320px]
-          hover:scale-105 hover:-translate-y-2 hover:shadow-2xl
-          ${
-            isHovered
-              ? `shadow-2xl shadow-${benefit.color.split("-")[1]}-500/25`
-              : ""
-          }
-        `}
+          hover:scale-105 hover:-translate-y-2 hover:shadow-2xl`,
+            isHovered &&
+              `shadow-2xl shadow-${benefit.color.split("-")[1]}-500/25`
+          )}
         >
           {/* Animated gradient background */}
           <div
@@ -313,10 +252,14 @@ export function BenefitsSection() {
         {/* Benefits Grid */}
         <div className="space-y-8 max-w-7xl mx-auto">
           <div className="grid lg:grid-cols-3 gap-6">
-          {benefits.slice(0,3).map((benefit, index) => renderBenefitCard(benefit, index))}
+            {benefits
+              .slice(0, 3)
+              .map((benefit, index) => renderBenefitCard(benefit, index))}
           </div>
           <div className="grid lg:grid-cols-2 gap-6">
-          {benefits.slice(3).map((benefit, index) => renderBenefitCard(benefit, index + 3))}
+            {benefits
+              .slice(3)
+              .map((benefit, index) => renderBenefitCard(benefit, index + 3))}
           </div>
         </div>
 

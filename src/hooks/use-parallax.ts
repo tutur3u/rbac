@@ -12,7 +12,7 @@ export function useParallax(speed = 0.5) {
     const updateParallax = () => {
       if (elementRef.current) {
         const rect = elementRef.current.getBoundingClientRect()
-        const scrolled = window.pageYOffset
+        const scrolled = window.scrollY
         const rate = scrolled * -speed
 
         // Only update if element is in viewport for performance

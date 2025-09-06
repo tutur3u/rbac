@@ -1,17 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Building2, Sparkles } from "lucide-react";
 import {
-  Building2,
-  Users,
-  Globe,
-  Award,
-  Calendar,
-  MapPin,
-  Zap,
-  ArrowRight,
-  Sparkles,
-} from "lucide-react";
+  organizerAchievements,
+  organizerStats,
+} from "@/lib/organizer-constants";
 
 export function OrganizerSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -26,44 +20,6 @@ export function OrganizerSection() {
     }, 200);
     return () => clearTimeout(timer);
   }, []);
-
-  const stats = [
-    {
-      icon: Calendar,
-      label: "Founded",
-      value: "2009",
-      description: "Years of Innovation",
-      color: "from-blue-400 to-cyan-400",
-    },
-    {
-      icon: MapPin,
-      label: "Headquarters",
-      value: "RMIT Vietnam",
-      description: "Global Tech Hub",
-      color: "from-purple-400 to-pink-400",
-    },
-    {
-      icon: Globe,
-      label: "Partners Reach",
-      value: "50+",
-      description: "Partners Worldwide",
-      color: "from-green-400 to-emerald-400",
-    },
-    {
-      icon: Users,
-      label: "Team Size",
-      value: "200+",
-      description: "Tech Experts",
-      color: "from-orange-400 to-red-400",
-    },
-  ];
-
-  const achievements = [
-    { number: "15+", label: "Years Experience", icon: Award },
-    { number: "10K+", label: "Careers Launched", icon: Users },
-    { number: "500+", label: "Competitions Hosted", icon: Globe },
-    { number: "100+", label: "Industry Partners", icon: Building2 },
-  ];
 
   return (
     <section className="py-24 relative overflow-hidden bg-primary">
@@ -178,7 +134,11 @@ export function OrganizerSection() {
                     {/* Logo background animation */}
                     <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover/logo:opacity-100 transition-opacity duration-500" />
 
-                  <img src="/club-logo.png" alt="FutureTech Logo" className="w-32 h-32 object-contain relative z-10" />
+                    <img
+                      src="/club-logo.png"
+                      alt="RMIT Vietnam Analytics Club Logo"
+                      className="w-32 h-32 object-contain relative z-10"
+                    />
 
                     {/* Floating sparkles around logo */}
                     <div className="absolute inset-0 pointer-events-none">
@@ -217,19 +177,19 @@ export function OrganizerSection() {
                       RMIT Vietnam Analytics Club
                     </h3>
                     <p className="text-lg text-slate-300 leading-relaxed">
-                      RMIT Vietnam Analytics Club is a leading global organization
-                      dedicated to fostering technological advancement and
-                      innovation. With over 15 years of experience in organizing
-                      world-class competitions, we have successfully launched
-                      careers of thousands of tech professionals and facilitated
-                      the creation of groundbreaking solutions that have
-                      transformed industries.
+                      RMIT Vietnam Analytics Club is a leading global
+                      organization dedicated to fostering technological
+                      advancement and innovation. With over 15 years of
+                      experience in organizing world-class competitions, we have
+                      successfully launched careers of thousands of tech
+                      professionals and facilitated the creation of
+                      groundbreaking solutions that have transformed industries.
                     </p>
                   </div>
 
                   {/* Stats Grid */}
                   <div className="grid grid-cols-2 gap-6">
-                    {stats.map((stat, index) => {
+                    {organizerStats.map((stat, index) => {
                       const IconComponent = stat.icon;
                       return (
                         <div
@@ -285,7 +245,7 @@ export function OrganizerSection() {
           }`}
         >
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-            {achievements.map((achievement, index) => {
+            {organizerAchievements.map((achievement, index) => {
               const IconComponent = achievement.icon;
               return (
                 <div

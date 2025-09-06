@@ -1,54 +1,12 @@
 "use client";
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle, Zap, Users, Clock, Shield, Code } from "lucide-react";
+import { CheckCircle } from "lucide-react";
+import { criteria } from "@/lib/display-constants";
 
 export function EligibilitySection() {
   const [isVisible, setIsVisible] = useState(false);
   const [activeCard, setActiveCard] = useState<number | null>(null);
-
-  const criteria = [
-    {
-      title: "Technical Expertise",
-      description:
-        "Demonstrated proficiency in programming, software development, or related technical fields",
-      icon: Code,
-      color: "from-blue-900 to-cyan-800",
-      delay: "0ms",
-    },
-    {
-      title: "Innovation Mindset",
-      description:
-        "Passion for creating novel solutions and thinking outside conventional boundaries",
-      icon: Zap,
-      color: "from-purple-900 to-pink-600/20",
-      delay: "100ms",
-    },
-    {
-      title: "Team Collaboration",
-      description:
-        "Ability to work effectively in diverse, cross-functional teams of 2-5 members",
-      icon: Users,
-      color: "from-green-900 to-emerald-600/20",
-      delay: "200ms",
-    },
-    {
-      title: "Project Commitment",
-      description:
-        "Availability to dedicate 20+ hours per week during the 8-week competition period",
-      icon: Clock,
-      color: "from-orange-800 to-yellow-600/20",
-      delay: "300ms",
-    },
-    {
-      title: "Age Requirement",
-      description:
-        "Participants must be 18+ years old or have guardian consent for minors",
-      icon: Shield,
-      color: "from-red-500/30 to-rose-600/20",
-      delay: "400ms",
-    },
-  ];
 
   useEffect(() => {
     const timer = setTimeout(() => setIsVisible(true), 100);
@@ -181,7 +139,9 @@ export function EligibilitySection() {
             <p
               className={`
               text-muted-foreground leading-relaxed transition-all duration-500
-              group-hover:text-white/90 group-active:text-white/90 ${isLarge ? "lg:text-lg" : "text-base"}
+              group-hover:text-white/90 group-active:text-white/90 ${
+                isLarge ? "lg:text-lg" : "text-base"
+              }
             `}
             >
               {criterion.description}
@@ -223,7 +183,7 @@ export function EligibilitySection() {
   return (
     <section
       className="py-20 relative overflow-hidden bg-gradient-to-br 
-    from-primary vid-secondary to-primary/60"
+    from-primary via-secondary to-primary/60"
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -273,10 +233,7 @@ export function EligibilitySection() {
           </div>
           <p className="text-xl text-slate-300 max-w-3xl mx-auto text-pretty leading-relaxed">
             Hover the card to see the
-            <span className="text-accent-foreground font-semibold">
-              {" "}
-              magic
-            </span>
+            <span className="text-accent-foreground font-semibold"> magic</span>
           </p>
         </div>
 

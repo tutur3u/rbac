@@ -19,18 +19,10 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Menu, ChevronDown } from "lucide-react";
+import { seasons } from "@/lib/nav-constants";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
-
-  const seasons = [
-    { name: "Season 1", href: "/seasons/1" },
-    { name: "Season 2", href: "/seasons/2" },
-    { name: "Season 3", href: "/seasons/3" },
-    { name: "Season 4", href: "/seasons/4" },
-    { name: "Season 5", href: "/seasons/5" },
-    { name: "Season 6", href: "/seasons/6" },
-  ];
 
   return (
     <nav
