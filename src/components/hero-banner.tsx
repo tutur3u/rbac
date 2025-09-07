@@ -17,11 +17,14 @@ export function HeroBanner() {
       <div
         className={cn(
           "absolute inset-0 opacity-40 bg-cover bg-bottom md:bg-center w-full h-full",
-          `bg-[url('/backgrounds/rbac-hero-mobile.png')] md:bg-[url('/backgrounds/rbac.png')]`
+          `bg-[url('/backgrounds/rbac-hero-mobile.png')] md:bg-[url('/backgrounds/rbac.png')]`,
         )}
       />
 
-      <div ref={bgRef} className="absolute inset-0 matrix-bg opacity-20 md:opacity-100" />
+      <div
+        ref={bgRef}
+        className="absolute inset-0 matrix-bg opacity-20 md:opacity-100"
+      />
       <div className="absolute inset-0 tech-grid opacity-30" />
 
       <div

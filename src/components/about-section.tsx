@@ -13,7 +13,6 @@ export function AboutSection() {
       ref={sectionRef}
       className="py-20 bg-gradient-to-br from-slate-900 via-primary to-secondary relative overflow-hidden"
     >
-
       <img
         src="/logo.png"
         alt="Logo"
@@ -34,13 +33,8 @@ export function AboutSection() {
         }}
       />
 
-      <div
-        ref={bgRef}
-        className="absolute inset-0 tech-grid opacity-60"
-      ></div>
-      <div
-        className="absolute top-10 right-10 w-32 h-32 bg-secondary-foreground/60 rounded-full blur-3xl float-animation"
-      ></div>
+      <div ref={bgRef} className="absolute inset-0 tech-grid opacity-60"></div>
+      <div className="absolute top-10 right-10 w-32 h-32 bg-secondary-foreground/60 rounded-full blur-3xl float-animation"></div>
       <div
         className="absolute bottom-10 left-10 w-40 h-40 bg-sidebar-accent/50 rounded-full blur-3xl float-animation"
         style={{

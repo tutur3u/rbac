@@ -90,7 +90,7 @@ export default function FlipCountdown({
       boundaryRef.current = window.setTimeout(() => {
         const secsLeft = Math.max(
           0,
-          Math.floor((deadlineMs - Date.now()) / 1000)
+          Math.floor((deadlineMs - Date.now()) / 1000),
         );
         const nextDHMS = secsToDHMS(secsLeft);
         setTarget(nextDHMS);
@@ -106,7 +106,7 @@ export default function FlipCountdown({
     // prime
     const secsLeftNow = Math.max(
       0,
-      Math.floor((deadlineMs - Date.now()) / 1000)
+      Math.floor((deadlineMs - Date.now()) / 1000),
     );
     const startDHMS = secsToDHMS(secsLeftNow);
     setCurrent(startDHMS);

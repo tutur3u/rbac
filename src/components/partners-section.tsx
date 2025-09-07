@@ -35,7 +35,6 @@ export function PartnersSection() {
       <div
         className="absolute inset-0 opacity-15 bg-cover bg-center w-full h-full
         bg-[url('/backgrounds/plain-light-bg.png')]"
-
       ></div>
 
       <div

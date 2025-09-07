@@ -8,7 +8,6 @@ import { Navbar } from "@/components/navbar";
 import { OrganizerSection } from "@/components/organizer-section";
 import { PartnersSection } from "@/components/partners-section";
 
-
 export default function HomePage() {
   return (
     <main className="min-h-screen">
@@ -22,5 +21,5 @@ export default function HomePage() {
       <OrganizerSection />
       <ActivitiesSection />
     </main>
-  )
+  );
 }

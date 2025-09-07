@@ -16,7 +16,7 @@ export function EligibilitySection() {
   const renderCard = (
     criterion: (typeof criteria)[number],
     index: number,
-    isFirstRow = false
+    isFirstRow = false,
   ) => {
     const IconComponent = criterion.icon;
     const isLarge = !isFirstRow;
@@ -250,7 +250,7 @@ export function EligibilitySection() {
             {criteria
               .slice(3, 5)
               .map((criterion, index) =>
-                renderCard(criterion, index + 3, false)
+                renderCard(criterion, index + 3, false),
               )}
           </div>
         </div>

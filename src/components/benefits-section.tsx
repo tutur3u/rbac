@@ -16,7 +16,7 @@ export function BenefitsSection() {
 
   const renderBenefitCard = (
     benefit: (typeof benefits)[number],
-    index: number
+    index: number,
   ) => {
     const IconComponent = benefit.icon;
     const isHovered = hoveredCard === index;
@@ -38,7 +38,7 @@ export function BenefitsSection() {
           transition-all duration-500 h-full min-h-[320px]
           hover:scale-105 hover:-translate-y-2 hover:shadow-2xl`,
             isHovered &&
-              `shadow-2xl shadow-${benefit.color.split("-")[1]}-500/25`
+              `shadow-2xl shadow-${benefit.color.split("-")[1]}-500/25`,
           )}
         >
           {/* Animated gradient background */}

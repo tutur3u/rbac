@@ -4,7 +4,7 @@ function splitDigits(n: number, width: number): number[] {
   if (!Number.isFinite(n) || n < 0) n = 0;
   const s = Math.floor(n).toString().padStart(width, "0");
   // '0' → 48; convert chars to numbers 0..9
-  return Array.from(s, ch => ch.charCodeAt(0) - 48);
+  return Array.from(s, (ch) => ch.charCodeAt(0) - 48);
 }
 export default function FlipThreeDigits({
   current,
@@ -23,8 +23,8 @@ export default function FlipThreeDigits({
   const [t100, t10, t1] = splitDigits(target, 3);
 
   const turn100 = globalTurn && c100 !== t100;
-  const turn10  = globalTurn && c10  !== t10;
-  const turn1   = globalTurn && c1   !== t1;
+  const turn10 = globalTurn && c10 !== t10;
+  const turn1 = globalTurn && c1 !== t1;
 
   // Reuse your FlipTwoDigits' inner FlipDigit by rendering two + one,
   // or create a <FlipDigit> and render 3 of them. Assuming you have <FlipDigit>:
@@ -39,8 +39,8 @@ export default function FlipThreeDigits({
       {/* Recommended: expose <FlipDigit>. Here is an inline minimal FlipDigit copy */}
 
       <FlipDigit current={c100} target={t100} turn={turn100} animMs={animMs} />
-      <FlipDigit current={c10}  target={t10}  turn={turn10}  animMs={animMs} />
-      <FlipDigit current={c1}   target={t1}   turn={turn1}   animMs={animMs} />
+      <FlipDigit current={c10} target={t10} turn={turn10} animMs={animMs} />
+      <FlipDigit current={c1} target={t1} turn={turn1} animMs={animMs} />
     </div>
   );
 }

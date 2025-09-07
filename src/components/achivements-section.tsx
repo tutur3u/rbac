@@ -21,10 +21,7 @@ export function AchievementsSection() {
 
       {/* <div className="bg-primary/30 backdrop-filter-lg"></div> */}
 
-      <div
-        ref={bgRef}
-        className="absolute inset-0 matrix-bg opacity-30"
-      ></div>
+      <div ref={bgRef} className="absolute inset-0 matrix-bg opacity-30"></div>
       <div className="absolute inset-0 tech-grid opacity-20"></div>
 
       <div

@@ -17,15 +17,11 @@ export default function FlipDigit({
     <div className={"flip-book w-10 sm:w-14 md:w-16 h-full"}>
       <div className="absolute right-0 top-0 flex flex-col gap-0 w-full h-full">
         <div className="flip-card-content flip-card-content-top ">
-          <div
-            className="flip-card-content-border-top"
-          />
+          <div className="flip-card-content-border-top" />
           <p>{topStaticDigit}</p>
         </div>
         <div className="flip-card-content flip-card-content-bottom">
-          <div
-            className="flip-card-content-border-bottom"
-          />
+          <div className="flip-card-content-border-bottom" />
           <p>{bottomStaticDigit}</p>
         </div>
       </div>
