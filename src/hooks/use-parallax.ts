@@ -21,7 +21,6 @@ export function useParallax(speed = 0.5) {
         }
       }
       ticking = false
-      console.log("Test commit")
     }
 
     const handleScroll = () => {

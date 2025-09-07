@@ -59,10 +59,10 @@ export function OrganizerSection() {
             <h2 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent leading-tight">
               Competition
               <br />
-              <span className="relative">
-                Organizer
+              <div className="relative">
+                <span className="text-background z-1">Organizer</span>
                 <div className="absolute -inset-2 bg-gradient-to-r from-cyan-500/30 to-purple-500/30 blur-2xl rounded-lg animate-pulse" />
-              </span>
+              </div>
             </h2>
           </div>
 
@@ -101,31 +101,7 @@ export function OrganizerSection() {
               <div className="lg:w-2/5 bg-gradient-to-br from-cyan-900/30 to-blue-900/30 p-12 flex flex-col items-center justify-center relative">
                 {/* Circuit pattern overlay */}
                 <div className="absolute inset-0 opacity-10">
-                  <svg
-                    className="w-full h-full"
-                    viewBox="0 0 100 100"
-                    preserveAspectRatio="none"
-                  >
-                    <defs>
-                      <pattern
-                        id="circuit-org"
-                        x="0"
-                        y="0"
-                        width="20"
-                        height="20"
-                        patternUnits="userSpaceOnUse"
-                      >
-                        <path
-                          d="M0 10h20M10 0v20"
-                          stroke="currentColor"
-                          strokeWidth="0.5"
-                          fill="none"
-                        />
-                        <circle cx="10" cy="10" r="1" fill="currentColor" />
-                      </pattern>
-                    </defs>
-                    <rect width="100%" height="100%" fill="url(#circuit-org)" />
-                  </svg>
+                  
                 </div>
 
                 {/* Logo */}

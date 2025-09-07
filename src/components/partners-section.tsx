@@ -1,31 +1,30 @@
 "use client";
 
 import { useParallax, useIntersectionObserver } from "@/hooks/use-parallax";
+const partners = [
+  "/partners/aiesec.png",
+  "/partners/basevn.png",
+  "/partners/chotot.png",
+  "/partners/cjfoods.png",
+  "/partners/deloitte.png",
+  "/partners/enviet.png",
+  "/partners/ftms-global.png",
+  "/partners/kpmg.png",
+  "/partners/masan.png",
+  "/partners/mazars.png",
+  "/partners/pmax.png",
+  "/partners/sapp.png",
+  "/partners/shb.png",
+  "/partners/shopee.png",
+  "/partners/suntory.png",
+  "/partners/tomorrow-markers.png",
+  "/partners/unilever.png",
+  "/partners/yahon.png",
+];
 
 export function PartnersSection() {
   const { elementRef: bgRef, offset: bgOffset } = useParallax(0.2);
   const { elementRef: sectionRef, isVisible } = useIntersectionObserver(0.1);
-
-  const partners = [
-    "/partners/aiesec.png",
-    "/partners/basevn.png",
-    "/partners/chotot.png",
-    "/partners/cjfoods.png",
-    "/partners/deloitte.png",
-    "/partners/enviet.png",
-    "/partners/ftms-global.png",
-    "/partners/kpmg.png",
-    "/partners/masan.png",
-    "/partners/mazars.png",
-    "/partners/pmax.png",
-    "/partners/sapp.png",
-    "/partners/shb.png",
-    "/partners/shopee.png",
-    "/partners/suntory.png",
-    "/partners/tomorrow-markers.png",
-    "/partners/unilever.png",
-    "/partners/yahon.png",
-  ];
 
   return (
     <section
@@ -35,7 +34,6 @@ export function PartnersSection() {
       <div
         className="absolute inset-0 opacity-15 bg-cover bg-center w-full h-full
         bg-[url('/backgrounds/plain-light-bg.png')]"
-
       ></div>
 
       <div
