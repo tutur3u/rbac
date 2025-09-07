@@ -73,13 +73,13 @@ export function HeroBanner() {
           className="text-5xl md:text-7xl font-bold text-white glow-effect
         flex flex-col items-start"
         >
-          <p className="text-xl md:text-3xl font-bold italic text-white">
+          <p className="text-center md:text-left w-full text-xl md:text-3xl font-bold italic text-white">
             RMIT BUSINESS
           </p>
-          <p className="bg-gradient-to-r primary-gradient bg-clip-text text-transparent">
+          <p className="text-center md:text-left w-full bg-gradient-to-r primary-gradient bg-clip-text text-transparent">
             Analytics Champion
           </p>
-          <p className="text-white">Season 6</p>
+          <p className="text-center md:text-left w-full text-white">Season 6</p>
         </div>
 
         <p

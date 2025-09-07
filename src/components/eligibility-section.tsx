@@ -3,9 +3,19 @@ import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle } from "lucide-react";
 import { criteria } from "@/lib/display-constants";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { cn } from "@/lib/utils";
 
 export function EligibilitySection() {
   const [isVisible, setIsVisible] = useState(false);
+  const isMobile = useIsMobile();
   const [activeCard, setActiveCard] = useState<number | null>(null);
 
   useEffect(() => {
@@ -24,22 +34,29 @@ export function EligibilitySection() {
     return (
       <div
         key={index}
-        className={`relative group cursor-pointer transition-all duration-700 ${
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
-        } ${isLarge ? "lg:col-span-1" : ""}`}
+        className={cn(
+          `relative group cursor-pointer transition duration-700 h-full`,
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20",
+          {
+            isLarge: "lg:col-span-1",
+          }
+        )}
         style={{ animationDelay: criterion.delay }}
         onMouseEnter={() => setActiveCard(index)}
         onMouseLeave={() => setActiveCard(null)}
       >
         <Card
-          className={`
-          relative overflow-hidden border-0 bg-gradient-to-br from-slate-900/50 to-slate-800/30 
-          backdrop-blur-xl transition-all duration-500 h-full
-          hover:scale-105 hover:rotate-1 hover:shadow-2xl
-          active:scale-105 active:rotate-1 active:shadow-2xl
-          ${activeCard === index ? "shadow-2xl shadow-primary/25" : ""}
-          ${isLarge ? "lg:min-h-[200px]" : "min-h-[180px]"}
-        `}
+          className={cn(
+            `relative overflow-hidden border-0 bg-gradient-to-br from-slate-900/50 to-slate-800/30 
+            backdrop-blur-xl transition-all duration-500 h-full
+            hover:scale-105 hover:rotate-1 hover:shadow-2xl
+            active:scale-105 active:rotate-1 active:shadow-2xl`,
+            {
+              "shadow-2xl shadow-primary/25": activeCard === index,
+              "lg:min-h-[200px]": isLarge,
+              "min-h-[180px]": !isLarge,
+            }
+          )}
         >
           {/* Animated background gradient */}
           <div
@@ -53,7 +70,7 @@ export function EligibilitySection() {
           <div
             className={`
             absolute inset-0 rounded-lg bg-gradient-to-br ${criterion.color} 
-            opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-500 -z-10
+            opacity-0 group-hover:opacity-10 group-active:opacity-10 transition-opacity duration-500 -z-10
             blur-xl scale-105
           `}
           />
@@ -116,7 +133,7 @@ export function EligibilitySection() {
               <div className="flex-1">
                 <CardTitle
                   className={`
-                  text-xl font-bold bg-gradient-to-r ${criterion.color} 
+                  text-xl font-bold bg-gradient-to-r ${criterion.textColor} 
                   bg-clip-text text-transparent group-hover:text-white group-active:text-white
                   transition-all duration-500 ${isLarge ? "lg:text-2xl" : ""}
                 `}
@@ -128,7 +145,7 @@ export function EligibilitySection() {
                 <div
                   className={`
                   h-0.5 bg-gradient-to-r ${criterion.color} mt-2 
-                  w-0 group-hover:w-full group-active:w-full transition-all duration-700
+                  w-0 group-hover:w-full group-active:w-full transition duration-700
                 `}
                 />
               </div>
@@ -137,12 +154,14 @@ export function EligibilitySection() {
 
           <CardContent className="relative z-10 pt-0">
             <p
-              className={`
-              text-muted-foreground leading-relaxed transition-all duration-500
-              group-hover:text-white/90 group-active:text-white/90 ${
-                isLarge ? "lg:text-lg" : "text-base"
-              }
-            `}
+              className={cn(
+                "text-primary-foreground leading-relaxed transition-all duration-500",
+                "group-hover:text-background/90 group-active:text-background/90",
+                {
+                  "lg:text-lg": isLarge,
+                  "text-base": !isLarge,
+                }
+              )}
             >
               {criterion.description}
             </p>
@@ -237,23 +256,36 @@ export function EligibilitySection() {
           </p>
         </div>
 
-        <div className="max-w-7xl mx-auto space-y-8">
-          {/* First Row - 3 Items */}
-          <div className="grid lg:grid-cols-3 gap-6">
-            {criteria
-              .slice(0, 3)
-              .map((criterion, index) => renderCard(criterion, index, true))}
-          </div>
+        {isMobile ? (
+          <Carousel className="w-full relative px-10">
+            <CarouselPrevious className="absolute left-0 z-10 text-background w-12 h-12" />
+            <CarouselContent className="w-full px-2 py-5">
+              {criteria.map((criterion, index) => (
+                <CarouselItem key={index} className="w-full">
+                  {renderCard(criterion, index, false)}
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselNext className="absolute right-0 z-10 text-background w-12 h-12" />
+          </Carousel>
+        ) : (
+          <div className="max-w-7xl mx-auto space-y-8">
+            <div className="grid lg:grid-cols-3 gap-6">
+              {criteria
+                .slice(0, 3)
+                .map((criterion, index) => renderCard(criterion, index, true))}
+            </div>
 
-          {/* Second Row - 2 Items */}
-          <div className="grid lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {criteria
-              .slice(3, 5)
-              .map((criterion, index) =>
-                renderCard(criterion, index + 3, false),
-              )}
+            {/* Second Row - 2 Items */}
+            <div className="grid lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
+              {criteria
+                .slice(3, 5)
+                .map((criterion, index) =>
+                  renderCard(criterion, index + 3, false)
+                )}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );

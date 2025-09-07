@@ -4,9 +4,18 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Trophy, Sparkles, ArrowRight } from "lucide-react";
 import { benefits } from "@/lib/display-constants";
 import { cn } from "@/lib/utils";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export function BenefitsSection() {
   const [isVisible, setIsVisible] = useState(false);
+  const isMobile = useIsMobile();
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
 
   useEffect(() => {
@@ -24,9 +33,10 @@ export function BenefitsSection() {
     return (
       <div
         key={index}
-        className={`relative group cursor-pointer transition-all duration-700 ${
+        className={cn(
+          `relative group cursor-pointer transition duration-700 h-full`,
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
-        }`}
+        )}
         style={{ animationDelay: `${index * 150}ms` }}
         onMouseEnter={() => setHoveredCard(index)}
         onMouseLeave={() => setHoveredCard(null)}
@@ -250,18 +260,32 @@ export function BenefitsSection() {
         </div>
 
         {/* Benefits Grid */}
-        <div className="space-y-8 max-w-7xl mx-auto">
-          <div className="grid lg:grid-cols-3 gap-6">
-            {benefits
-              .slice(0, 3)
-              .map((benefit, index) => renderBenefitCard(benefit, index))}
+        {isMobile ? (
+          <Carousel className="w-full relative flex gap-2 px-10">
+            <CarouselPrevious className="absolute left-0 z-10 text-background w-12 h-12" />
+            <CarouselContent className="w-full px-2 py-5">
+              {benefits.map((benefit, index) => (
+                <CarouselItem key={index} className="w-full">
+                  {renderBenefitCard(benefit, index)}
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselNext className="absolute right-0 z-10 text-background w-12 h-12" />
+          </Carousel>
+        ) : (
+          <div className="space-y-8 max-w-7xl mx-auto">
+            <div className="grid lg:grid-cols-3 gap-6">
+              {benefits
+                .slice(0, 3)
+                .map((benefit, index) => renderBenefitCard(benefit, index))}
+            </div>
+            <div className="grid lg:grid-cols-2 gap-6">
+              {benefits
+                .slice(3)
+                .map((benefit, index) => renderBenefitCard(benefit, index + 3))}
+            </div>
           </div>
-          <div className="grid lg:grid-cols-2 gap-6">
-            {benefits
-              .slice(3)
-              .map((benefit, index) => renderBenefitCard(benefit, index + 3))}
-          </div>
-        </div>
+        )}
 
         {/* Bottom CTA */}
         <div

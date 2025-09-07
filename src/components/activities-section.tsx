@@ -1,63 +1,83 @@
 export function ActivitiesSection() {
   const activities = [
     {
-      image: "/tech-hackathon-participants-coding.jpg",
       caption:
-        "Global Hackathon 2024 - Over 5,000 participants from 40 countries collaborated on innovative solutions",
+        "Business Analytics Workshop: Data Visualization – Paint Dashboards 2022",
+      isHighlighted: true,
     },
     {
-      image: "/ai-workshop-mentorship-session.jpg",
       caption:
-        "AI Workshop Series - Industry experts mentoring next-generation developers in machine learning",
+        "Panel Discussion: Layoff to Lift-off - Upskill to Survive the Crisis 2024",
+      isHighlighted: true,
     },
     {
-      image: "/startup-pitch-competition-stage.jpg",
       caption:
-        "Startup Pitch Competition - Emerging companies presenting breakthrough technologies to investors",
+        "[Panel Discussion] From Data to Decisions: Your Career Path in Analytics",
+      isHighlighted: true,
     },
     {
-      image: "/tech-conference-networking-event.jpg",
       caption:
-        "Annual Tech Summit - Bringing together thought leaders and innovators for knowledge sharing",
+        "Together with RMIT Fintech Club, organize a seminar on Digital Payments and Data Analysis",
     },
     {
-      image: "/robotics-competition-arena.jpg",
       caption:
-        "Robotics Challenge 2024 - Students showcasing autonomous systems and robotic innovations",
+        "With RMIT Careers, Alumni & Industry Relations, organize a series of Orientation and Development seminars",
     },
     {
-      image: "/virtual-reality-demo-booth.jpg",
-      caption:
-        "VR/AR Showcase - Demonstrating immersive technologies and their real-world applications",
+      caption: "Explore the Work Culture at PwC, One of the Big4",
+    },
+    {
+      image:
+        "/activities/SHOPEE x ANALYTICS - FROM DATA TO DECISIONS - YOUR CAREER PATH IN ANALYTICS.jpg",
+      caption: "Listening to insights shared by professionals from Shopee.",
+    },
+    {
+      caption: "The atmosphere of the 'Layoff to Lift-off' sharing session",
+    },
+    {
+      caption: "Listen - Experience - Be Inspired with Experts from",
     },
   ];
 
   return (
-    <section className="py-20 bg-background">
-      <div className="container mx-auto px-4">
+    <section className="relative py-20 bg-gradient-to-b from-slate-950 via-blue-950 to-slate-900 overflow-hidden">
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.1),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(147,51,234,0.1),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_48%,rgba(59,130,246,0.05)_49%,rgba(59,130,246,0.05)_51%,transparent_52%)] bg-[length:30px_30px]" />
+      </div>
+
+      <div className="relative z-10 container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-400 to-blue-300 bg-clip-text text-transparent">
             Our Previous Activities
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto text-pretty">
-            Explore our track record of successful events and competitions that
-            have shaped the tech landscape
+          <p className="text-xl text-blue-200 max-w-3xl mx-auto text-pretty">
+            Discover our legacy of cybersecurity excellence and RBAC innovation
+            through cutting-edge competitions and workshops
           </p>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {activities.map((activity, index) => (
             <div key={index} className="group">
-              <div className="bg-card rounded-xl overflow-hidden border-2 hover:border-primary/50 transition-all duration-300 hover:shadow-lg">
-                <div className="aspect-video overflow-hidden">
+              <div className="relative bg-gradient-to-br from-blue-900/20 to-purple-900/20 backdrop-blur-sm rounded-xl overflow-hidden border border-blue-500/20 hover:border-blue-400/50 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20">
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                <div className="relative aspect-video overflow-hidden">
                   <img
-                    src={activity.image || "/placeholder.svg"}
-                    alt={`Activity ${index + 1}`}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    src={
+                      activity.image ||
+                      "/placeholder.svg?height=300&width=500&query=cybersecurity workshop"
+                    }
+                    alt={`RBAC Activity ${index + 1}`}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
+                  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
-                <div className="p-6">
-                  <p className="text-muted-foreground leading-relaxed text-sm">
+
+                <div className="relative p-6">
+                  <p className="text-blue-200 leading-relaxed text-sm group-hover:text-white transition-colors duration-300">
                     {activity.caption}
                   </p>
                 </div>

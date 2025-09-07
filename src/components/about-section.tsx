@@ -62,13 +62,17 @@ export function AboutSection() {
         </div>
 
         <div
-          className={`grid md:grid-cols-3 gap-8 transition-all duration-1000 delay-300 ${
+          className={cn(
+            `grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-100`,
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-          }`}
+          )}
         >
-          <Card className="border-2 border-blue-200/50 dark:border-blue-800/50 hover:border-blue-400/70 dark:hover:border-blue-600/70 transition-all duration-500 group bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm glow-effect hover:scale-105">
+          <Card
+            className="md:col-span-2 lg:col-span-1 border-2 border-sidebar-accent/50 hover:border-sidebar-accent-foreground/70 
+          transition duration-100 group bg-primary/80 backdrop-blur-sm glow-effect hover:scale-105"
+          >
             <CardHeader className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-500">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-100">
                 <svg
                   className="w-8 h-8 text-white"
                   fill="none"
@@ -97,9 +101,9 @@ export function AboutSection() {
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-purple-200/50 dark:border-purple-800/50 hover:border-purple-400/70 dark:hover:border-purple-600/70 transition-all duration-500 group bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm glow-effect hover:scale-105">
+          <Card className="border-2 border-secondary/50 hover:border-secondary-foreground/70 transition-all duration-100 group bg-primary/80 backdrop-blur-sm glow-effect hover:scale-105">
             <CardHeader className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-500">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-100">
                 <svg
                   className="w-8 h-8 text-white"
                   fill="none"
@@ -134,9 +138,9 @@ export function AboutSection() {
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-cyan-200/50 dark:border-cyan-800/50 hover:border-cyan-400/70 dark:hover:border-cyan-600/70 transition-all duration-500 group bg-white/80 dark:bg-slate-900/80 backdrop-blur-sm glow-effect hover:scale-105">
+          <Card className="border-2 border-cyan-800/50 hover:border-cyan-600/70 transition-all duration-100 group bg-slate-900/80 backdrop-blur-sm glow-effect hover:scale-105">
             <CardHeader className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-500">
+              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-100">
                 <svg
                   className="w-8 h-8 text-white"
                   fill="none"

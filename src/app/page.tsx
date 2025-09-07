@@ -1,5 +1,5 @@
 import { AboutSection } from "@/components/about-section";
-import { AchievementsSection } from "@/components/achivements-section";
+import { AchievementsSection } from "@/components/achievements-section";
 import { ActivitiesSection } from "@/components/activities-section";
 import { BenefitsSection } from "@/components/benefits-section";
 import { EligibilitySection } from "@/components/eligibility-section";

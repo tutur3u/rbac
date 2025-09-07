@@ -171,7 +171,8 @@ export const criteria = [
     description:
       "Demonstrated proficiency in programming, software development, or related technical fields",
     icon: Code,
-    color: "from-blue-900 to-cyan-800",
+    color: "from-sidebar-accent to-cyan-800",
+    textColor: "from-sidebar-accent-foreground to-cyan-400",
     delay: "0ms",
   },
   {
@@ -179,7 +180,8 @@ export const criteria = [
     description:
       "Passion for creating novel solutions and thinking outside conventional boundaries",
     icon: Zap,
-    color: "from-purple-900 to-pink-600/20",
+    color: "from-secondary to-pink-600/20",
+    textColor: "from-secondary-foreground to-pink-400",
     delay: "100ms",
   },
   {
@@ -187,7 +189,8 @@ export const criteria = [
     description:
       "Ability to work effectively in diverse, cross-functional teams of 2-5 members",
     icon: Users,
-    color: "from-green-900 to-emerald-600/20",
+    color: "from-emerald-600 to-emerald-900",
+    textColor: "from-green-600 to-emerald-300",
     delay: "200ms",
   },
   {
@@ -195,7 +198,8 @@ export const criteria = [
     description:
       "Availability to dedicate 20+ hours per week during the 8-week competition period",
     icon: Clock,
-    color: "from-orange-800 to-yellow-600/20",
+    color: "from-orange-600 to-yellow-500",
+    textColor: "from-orange-400 to-yellow-300",
     delay: "300ms",
   },
   {
@@ -203,7 +207,8 @@ export const criteria = [
     description:
       "Participants must be 18+ years old or have guardian consent for minors",
     icon: Shield,
-    color: "from-red-500/30 to-rose-600/20",
+    color: "from-red-700 to-rose-400",
+    textColor: "from-rose-400 to-rose-200",
     delay: "400ms",
   },
 ];

@@ -1,9 +1,18 @@
 "use client";
 
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import { useIsMobile } from "@/hooks/use-mobile";
 import { useParallax, useIntersectionObserver } from "@/hooks/use-parallax";
 import { achievements } from "@/lib/display-constants";
 
 export function AchievementsSection() {
+  const isMobile = useIsMobile();
   const { elementRef: bgRef, offset: bgOffset } = useParallax(0.3);
   const { elementRef: shapesRef, offset: shapesOffset } = useParallax(0.4);
   const { elementRef: sectionRef, isVisible } = useIntersectionObserver(0.1);
@@ -57,30 +66,55 @@ export function AchievementsSection() {
           </p>
         </div>
 
-        <div
-          className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 transition-all duration-1000 delay-300 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
-          }`}
-        >
-          {achievements.map((achievement, index) => (
-            <div key={index} className="text-center group">
-              <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-slate-700/50 hover:border-blue-400/50 transition-all duration-500 hover:shadow-2xl glow-effect group-hover:scale-110 transform">
-                <div
-                  className={`w-16 h-16 mx-auto mb-6 bg-gradient-to-br ${achievement.gradient} rounded-2xl flex items-center justify-center text-white group-hover:rotate-12 transition-all duration-500 pulse-glow`}
-                >
-                  {achievement.icon}
-                </div>
-                <div className="text-4xl md:text-5xl font-bold text-white mb-3 group-hover:text-blue-300 transition-colors">
-                  {achievement.number}
-                </div>
-                <div className="text-blue-200 font-medium text-sm leading-tight">
-                  {achievement.label}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        {isMobile ? (
+          <Carousel className="w-full relative px-10">
+            <CarouselPrevious className="absolute left-0 z-10 text-background w-12 h-12" />
+            <CarouselContent className="w-full px-2 py-5">
+              {achievements.map((achievement, index) => (
+                <CarouselItem key={index}>
+                  <AchivementCard achievement={achievement} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselNext className="absolute right-0 z-10 text-background w-12 h-12" />
+          </Carousel>
+        ) : (
+          <div
+            className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 transition-all duration-1000 delay-300 ${
+              isVisible
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-12"
+            }`}
+          >
+            {achievements.map((achievement, index) => (
+              <AchivementCard key={index} achievement={achievement} />
+            ))}
+          </div>
+        )}
       </div>
     </section>
+  );
+}
+function AchivementCard({
+  achievement,
+}: {
+  achievement: (typeof achievements)[number];
+}) {
+  return (
+    <div className="text-center group">
+      <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-slate-700/50 hover:border-blue-400/50 transition-all duration-500 hover:shadow-2xl glow-effect group-hover:scale-110 transform">
+        <div
+          className={`w-16 h-16 mx-auto mb-6 bg-gradient-to-br ${achievement.gradient} rounded-2xl flex items-center justify-center text-white group-hover:rotate-12 transition-all duration-500 pulse-glow`}
+        >
+          {achievement.icon}
+        </div>
+        <div className="text-4xl md:text-5xl font-bold text-white mb-3 group-hover:text-blue-300 transition-colors">
+          {achievement.number}
+        </div>
+        <div className="text-blue-200 font-medium text-sm leading-tight">
+          {achievement.label}
+        </div>
+      </div>
+    </div>
   );
 }
