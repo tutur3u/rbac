@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export function ActivitiesSection() {
   const activities = [
     {
@@ -60,18 +62,20 @@ export function ActivitiesSection() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {activities.map((activity, index) => (
-            <div key={index} className="group">
+            <div key={`activity-${index + 1}`} className="group">
               <div className="relative bg-gradient-to-br from-blue-900/20 to-purple-900/20 backdrop-blur-sm rounded-xl overflow-hidden border border-blue-500/20 hover:border-blue-400/50 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20">
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 <div className="relative aspect-video overflow-hidden">
-                  <img
+                  <Image
                     src={
                       activity.image ||
                       "/placeholder.svg?height=300&width=500&query=cybersecurity workshop"
                     }
                     alt={`RBAC Activity ${index + 1}`}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    height={300}
+                    width={500}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useParallax, useIntersectionObserver } from "@/hooks/use-parallax";
+import Image from "next/image";
 const partners = [
   "/partners/aiesec.png",
   "/partners/basevn.png",
@@ -72,13 +73,15 @@ export function PartnersSection() {
 
         <div className="columns-2 md:columns-3 lg:columns-4 gap-6 space-y-6">
           {partners.map((partner, index) => (
-            <img
-              key={index}
+            <Image
+              key={`partner-${index + 1}`}
               src={partner}
               className={`break-inside-avoid bg-background/10 backdrop-blur-sm rounded-xl p-4 border border-white/10
                      hover:bg-white/10 transition-all duration-300 hover:scale-105 
                      w-full`}
               alt={`Partner ${index + 1}`}
+              height={100}
+              width={100}
             />
           ))}
         </div>

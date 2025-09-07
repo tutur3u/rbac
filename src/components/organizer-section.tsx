@@ -6,6 +6,7 @@ import {
   organizerAchievements,
   organizerStats,
 } from "@/lib/organizer-constants";
+import Image from "next/image";
 
 export function OrganizerSection() {
   const [isVisible, setIsVisible] = useState(false);
@@ -108,17 +109,19 @@ export function OrganizerSection() {
                     {/* Logo background animation */}
                     <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent opacity-0 group-hover/logo:opacity-100 transition-opacity duration-500" />
 
-                    <img
+                    <Image
                       src="/club-logo.png"
                       alt="RMIT Vietnam Analytics Club Logo"
                       className="w-32 h-32 object-contain relative z-10"
+                      height={128}
+                      width={128}
                     />
 
                     {/* Floating sparkles around logo */}
                     <div className="absolute inset-0 pointer-events-none">
                       {[...Array(6)].map((_, i) => (
                         <Sparkles
-                          key={i}
+                          key={`sparkle-${i + 1}`}
                           className={`absolute w-4 h-4 text-white opacity-0 group-hover/logo:opacity-80 transition-all duration-1000 animate-pulse`}
                           style={{
                             left: `${10 + i * 15}%`,
@@ -166,8 +169,9 @@ export function OrganizerSection() {
                     {organizerStats.map((stat, index) => {
                       const IconComponent = stat.icon;
                       return (
+                        // biome-ignore lint/a11y/noStaticElementInteractions: <>
                         <div
-                          key={index}
+                          key={`stat-${index + 1}`}
                           className="group/stat cursor-pointer"
                           onMouseEnter={() => setHoveredStat(index)}
                           onMouseLeave={() => setHoveredStat(null)}
@@ -223,7 +227,7 @@ export function OrganizerSection() {
               const IconComponent = achievement.icon;
               return (
                 <div
-                  key={index}
+                  key={`achievement-${index + 1}`}
                   className="group bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6 text-center hover:scale-105 hover:border-cyan-400/50 transition-all duration-300 cursor-pointer"
                 >
                   <div className="w-12 h-12 bg-gradient-to-r from-secondary to-sidebar-accent rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">

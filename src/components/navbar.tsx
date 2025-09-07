@@ -20,6 +20,7 @@ import {
 } from "@/components/ui/sheet";
 import { Menu, ChevronDown } from "lucide-react";
 import { seasons } from "@/lib/nav-constants";
+import Image from "next/image";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,7 +33,13 @@ export function Navbar() {
       <div className=" w-full flex justify-between px-4 h-16">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
-          <img src="/logo.png" alt="Logo" className="w-8 h-8" />
+          <Image
+            src="/logo.png"
+            alt="Logo"
+            className="w-8 h-8"
+            height={32}
+            width={32}
+          />
           <span className="block md:hidden lg:block font-bold text-xl bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
             RBAC
           </span>
@@ -191,7 +198,7 @@ export function Navbar() {
                 <Link href="/contact" onClick={() => setIsOpen(false)}>
                   <Button
                     variant="ghost"
-                    className="w-full text-background hover:text-primary-foreground hover:bg-secondary/30 hover:bg-blue-500/10 justify-start"
+                    className="w-full text-background hover:text-primary-foreground hover:bg-secondary/30 justify-start"
                   >
                     Contact Us
                   </Button>

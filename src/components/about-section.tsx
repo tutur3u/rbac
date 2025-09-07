@@ -1,8 +1,10 @@
+/** biome-ignore-all lint/a11y/noSvgWithoutTitle: <> */
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useParallax, useIntersectionObserver } from "@/hooks/use-parallax";
 import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 export function AboutSection() {
   const { elementRef: bgRef, offset: bgOffset } = useParallax(0.2);
@@ -13,7 +15,7 @@ export function AboutSection() {
       ref={sectionRef}
       className="py-20 bg-gradient-to-br from-slate-900 via-primary to-secondary relative overflow-hidden"
     >
-      <img
+      <Image
         src="/logo.png"
         alt="Logo"
         className="absolute top-20 left-10 object-contain w-24 opacity-20
@@ -21,8 +23,10 @@ export function AboutSection() {
         style={{
           transform: `translateY(${bgOffset * 0.3}px)`,
         }}
+        height={32}
+        width={32}
       />
-      <img
+      <Image
         src="/logo.png"
         alt="Logo"
         className="absolute bottom-5 right-5 object-contain w-40 opacity-20
@@ -31,6 +35,8 @@ export function AboutSection() {
         style={{
           transform: `translateY(${bgOffset * 0.3}px)`,
         }}
+        height={32}
+        width={32}
       />
 
       <div ref={bgRef} className="absolute inset-0 tech-grid opacity-60"></div>
