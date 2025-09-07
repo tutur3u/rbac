@@ -1,0 +1,89 @@
+@font-face {
+    font-family: 'Lexend';
+    src: url('./fonts/Lexend-Black.woff2') format('woff2'),
+        url('./fonts/Lexend-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lexend';
+    src: url('./fonts/Lexend-ExtraLight.woff2') format('woff2'),
+        url('./fonts/Lexend-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lexend';
+    src: url('./fonts/Lexend-Light.woff2') format('woff2'),
+        url('./fonts/Lexend-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lexend';
+    src: url('./fonts/Lexend-Thin.woff2') format('woff2'),
+        url('./fonts/Lexend-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lexend';
+    src: url('./fonts/Lexend-Bold.woff2') format('woff2'),
+        url('./fonts/Lexend-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lexend';
+    src: url('./fonts/Lexend-ExtraBold.woff2') format('woff2'),
+        url('./fonts/Lexend-ExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lexend';
+    src: url('./fonts/Lexend-Regular.woff2') format('woff2'),
+        url('./fonts/Lexend-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lexend';
+    src: url('./fonts/Lexend-SemiBold.woff2') format('woff2'),
+        url('./fonts/Lexend-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Lexend';
+    src: url('./fonts/Lexend-Medium.woff2') format('woff2'),
+        url('./fonts/Lexend-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'UTM Eremitage';
+    src: url('./fonts/UTMEremitage.woff2') format('woff2'),
+        url('./fonts/UTMEremitage.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
