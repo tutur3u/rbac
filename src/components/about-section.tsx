@@ -64,7 +64,9 @@ export function AboutSection() {
         <div
           className={cn(
             `grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-100`,
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-12"
+            isVisible
+              ? "opacity-100 translate-y-0"
+              : "opacity-0 translate-y-12",
           )}
         >
           <Card

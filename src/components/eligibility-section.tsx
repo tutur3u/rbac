@@ -39,7 +39,7 @@ export function EligibilitySection() {
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20",
           {
             isLarge: "lg:col-span-1",
-          }
+          },
         )}
         style={{ animationDelay: criterion.delay }}
         onMouseEnter={() => setActiveCard(index)}
@@ -55,7 +55,7 @@ export function EligibilitySection() {
               "shadow-2xl shadow-primary/25": activeCard === index,
               "lg:min-h-[200px]": isLarge,
               "min-h-[180px]": !isLarge,
-            }
+            },
           )}
         >
           {/* Animated background gradient */}
@@ -160,7 +160,7 @@ export function EligibilitySection() {
                 {
                   "lg:text-lg": isLarge,
                   "text-base": !isLarge,
-                }
+                },
               )}
             >
               {criterion.description}
@@ -281,7 +281,7 @@ export function EligibilitySection() {
               {criteria
                 .slice(3, 5)
                 .map((criterion, index) =>
-                  renderCard(criterion, index + 3, false)
+                  renderCard(criterion, index + 3, false),
                 )}
             </div>
           </div>

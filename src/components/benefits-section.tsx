@@ -35,7 +35,7 @@ export function BenefitsSection() {
         key={index}
         className={cn(
           `relative group cursor-pointer transition duration-700 h-full`,
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20",
         )}
         style={{ animationDelay: `${index * 150}ms` }}
         onMouseEnter={() => setHoveredCard(index)}

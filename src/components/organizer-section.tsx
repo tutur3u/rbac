@@ -100,9 +100,7 @@ export function OrganizerSection() {
               {/* Logo Section */}
               <div className="lg:w-2/5 bg-gradient-to-br from-cyan-900/30 to-blue-900/30 p-12 flex flex-col items-center justify-center relative">
                 {/* Circuit pattern overlay */}
-                <div className="absolute inset-0 opacity-10">
-                  
-                </div>
+                <div className="absolute inset-0 opacity-10"></div>
 
                 {/* Logo */}
                 <div className="relative group/logo">
