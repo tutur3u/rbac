@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import {
@@ -24,15 +24,30 @@ import Image from "next/image";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 0);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <nav
-      className="fixed top-0 left-0 right-0 z-50 bg-primary/80 backdrop-blur-xl 
-    border-b border-primary-foreground/20"
+      aria-label="Primary"
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-300 ${
+        isScrolled
+          ? "bg-primary/80 backdrop-blur-xl border-b border-primary-foreground/20 shadow-sm"
+          : "bg-transparent border-b border-transparent"
+      }`}
     >
-      <div className=" w-full flex justify-between px-4 h-16">
+      <div className="w-full max-w-7xl mx-auto flex items-center justify-between px-4 h-16">
         {/* Logo */}
-        <Link href="/" className="flex items-center space-x-2">
+        <Link href="/" aria-label="Home" className="flex items-center space-x-2">
           <Image
             src="/logo.png"
             alt="Logo"
@@ -128,6 +143,7 @@ export function Navbar() {
             <Button
               variant="ghost"
               size="icon"
+              aria-label={isOpen ? "Close menu" : "Open menu"}
               className="text-background hover:bg-secondary/30"
             >
               <Menu className="h-6 w-6" />
@@ -135,7 +151,7 @@ export function Navbar() {
           </SheetTrigger>
           <SheetContent
             side="right"
-            className="w-80 bg-slate-950/95 backdrop-blur-xl border-l border-blue-500/20"
+            className="w-80 bg-slate-950/95 backdrop-blur-xl border-l border-blue-500/20 p-4 md:p-6"
           >
             <SheetHeader>
               <SheetTitle className="text-left">
@@ -153,7 +169,7 @@ export function Navbar() {
             <div className="flex flex-col space-y-4 mt-8">
               <Link
                 href="/about"
-                className="text-background hover:text-primary-foreground hover:bg-secondary/30 transition-colors font-medium py-2"
+                className="text-background hover:text-primary-foreground hover:bg-secondary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60 rounded-md transition-colors font-medium py-2 px-2"
                 onClick={() => setIsOpen(false)}
               >
                 About Us
@@ -161,7 +177,7 @@ export function Navbar() {
 
               <Link
                 href="/seasons/6"
-                className="text-background hover:text-primary-foreground hover:bg-secondary/30 transition-colors font-medium py-2"
+                className="text-background hover:text-primary-foreground hover:bg-secondary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60 rounded-md transition-colors font-medium py-2 px-2"
                 onClick={() => setIsOpen(false)}
               >
                 RBAC Season 6
@@ -177,7 +193,7 @@ export function Navbar() {
                     <Link
                       key={season.name}
                       href={season.href}
-                      className="block text-sm text-slate-400 hover:text-primary-foreground hover:bg-secondary/30 transition-colors py-1"
+                      className="block text-sm text-slate-400 hover:text-primary-foreground hover:bg-secondary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60 rounded-md transition-colors py-1 px-2"
                       onClick={() => setIsOpen(false)}
                     >
                       {season.name}
@@ -188,7 +204,7 @@ export function Navbar() {
 
               <Link
                 href="/faqs"
-                className="text-background hover:text-primary-foreground hover:bg-secondary/30 transition-colors font-medium py-2"
+                className="text-background hover:text-primary-foreground hover:bg-secondary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60 rounded-md transition-colors font-medium py-2 px-2"
                 onClick={() => setIsOpen(false)}
               >
                 FAQs
@@ -198,13 +214,13 @@ export function Navbar() {
                 <Link href="/contact" onClick={() => setIsOpen(false)}>
                   <Button
                     variant="ghost"
-                    className="w-full text-background hover:text-primary-foreground hover:bg-secondary/30 justify-start"
+                    className="w-full text-background hover:text-primary-foreground hover:bg-secondary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60 justify-start"
                   >
                     Contact Us
                   </Button>
                 </Link>
                 <Link href="/join" onClick={() => setIsOpen(false)}>
-                  <Button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300">
+                  <Button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60 transition-all duration-300">
                     Join Now
                   </Button>
                 </Link>
