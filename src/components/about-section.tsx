@@ -2,19 +2,15 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { useParallax, useIntersectionObserver } from "@/hooks/use-parallax";
+import { useParallax } from "@/hooks/use-parallax";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 export function AboutSection() {
   const { elementRef: bgRef, offset: bgOffset } = useParallax(0.2);
-  const { elementRef: sectionRef, isVisible } = useIntersectionObserver(0.1);
 
   return (
-    <section
-      ref={sectionRef}
-      className="py-20 bg-gradient-to-br from-slate-900 via-primary to-secondary relative overflow-hidden"
-    >
+    <section className="py-20 bg-gradient-to-br from-slate-900 via-primary to-secondary relative overflow-hidden">
       <Image
         src="/logo.png"
         alt="Logo"
@@ -41,21 +37,10 @@ export function AboutSection() {
 
       <div ref={bgRef} className="absolute inset-0 tech-grid opacity-60"></div>
       <div className="absolute top-10 right-10 w-32 h-32 bg-secondary-foreground/60 rounded-full blur-3xl float-animation"></div>
-      <div
-        className="absolute bottom-10 left-10 w-40 h-40 bg-sidebar-accent/50 rounded-full blur-3xl float-animation"
-        style={{
-          animationDelay: "2s",
-          transform: `translateY(${bgOffset * 0.6}px)`,
-        }}
-      ></div>
+      <div className="absolute bottom-10 left-10 w-40 h-40 bg-sidebar-accent/50 rounded-full blur-3xl float-animation"></div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div
-          className={cn(`text-center mb-16 transition-all duration-1000`, {
-            "opacity-100 translate-y-0": isVisible,
-            "opacity-0 translate-y-8": !isVisible,
-          })}
-        >
+        <div className={cn(`text-center mb-16 opacity-100 translate-y-0`)}>
           <h2 className="text-5xl md:text-6xl font-bold mb-6">
             <span className="bg-gradient-to-r primary-gradient bg-clip-text text-transparent">
               ABOUT US
@@ -69,18 +54,18 @@ export function AboutSection() {
 
         <div
           className={cn(
-            `grid md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-100`,
-            isVisible
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-12",
+            `grid md:grid-cols-2 lg:grid-cols-3 gap-8 opacity-100 translate-y-0`
           )}
         >
           <Card
-            className="md:col-span-2 lg:col-span-1 border-2 border-sidebar-accent/50 hover:border-sidebar-accent-foreground/70 
-          transition duration-100 group bg-primary/80 backdrop-blur-sm glow-effect hover:scale-105"
+            className="md:col-span-2 lg:col-span-1 
+            border-2 border-sidebar-accent/50 hover:border-sidebar-accent-foreground/70 
+          transition group bg-primary/80 backdrop-blur-sm"
           >
             <CardHeader className="text-center">
-              <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-100">
+              <div className="w-16 h-16 mx-auto mb-4 
+              bg-gradient-to-br from-blue-500 to-cyan-500 rounded-2xl 
+              flex items-center justify-center group-hover:rotate-12 transition-transform">
                 <svg
                   className="w-8 h-8 text-white"
                   fill="none"
@@ -100,7 +85,7 @@ export function AboutSection() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed text-center md:Text-left">
                 We are a global community of innovators, technologists, and
                 visionaries dedicated to pushing the boundaries of what's
                 possible. Our platform connects brilliant minds from around the
@@ -109,7 +94,8 @@ export function AboutSection() {
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-secondary/50 hover:border-secondary-foreground/70 transition-all duration-100 group bg-primary/80 backdrop-blur-sm glow-effect hover:scale-105">
+          <Card className="border-2 border-secondary/50 hover:border-secondary-foreground/70 transition 
+          group bg-primary/80 backdrop-blur-sm">
             <CardHeader className="text-center">
               <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-100">
                 <svg
@@ -137,7 +123,7 @@ export function AboutSection() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed text-center md:Text-left">
                 To create a world where technology serves humanity's greatest
                 challenges. We envision a future where innovative solutions
                 emerge from collaborative efforts, transforming industries and
@@ -146,7 +132,8 @@ export function AboutSection() {
             </CardContent>
           </Card>
 
-          <Card className="border-2 border-cyan-800/50 hover:border-cyan-600/70 transition-all duration-100 group bg-slate-900/80 backdrop-blur-sm glow-effect hover:scale-105">
+          <Card className="border-2 border-cyan-800/50 hover:border-cyan-600/70 transition
+           group bg-slate-900/80 backdrop-blur-sm">
             <CardHeader className="text-center">
               <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-2xl flex items-center justify-center group-hover:rotate-12 transition-transform duration-100">
                 <svg
@@ -168,7 +155,7 @@ export function AboutSection() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-muted-foreground leading-relaxed">
+              <p className="text-muted-foreground leading-relaxed text-center md:Text-left">
                 To foster innovation through competitive collaboration,
                 providing a platform where the brightest minds can showcase
                 their talents, learn from peers, and develop solutions that

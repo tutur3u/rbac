@@ -25,7 +25,7 @@ export function BenefitsSection() {
 
   const renderBenefitCard = (
     benefit: (typeof benefits)[number],
-    index: number,
+    index: number
   ) => {
     const IconComponent = benefit.icon;
     const isHovered = hoveredCard === index;
@@ -33,22 +33,18 @@ export function BenefitsSection() {
     return (
       <div
         key={index}
-        className={cn(
-          `relative group cursor-pointer transition duration-700 h-full`,
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20",
-        )}
+        className={cn(`relative group cursor-pointer transition h-full`)}
         style={{ animationDelay: `${index * 150}ms` }}
         onMouseEnter={() => setHoveredCard(index)}
         onMouseLeave={() => setHoveredCard(null)}
       >
         <Card
           className={cn(
-            `
-          relative overflow-hidden border-0 bg-slate-900/40 backdrop-blur-xl 
-          transition-all duration-500 h-full min-h-[320px]
+            `relative overflow-hidden border-0 bg-slate-900/40 backdrop-blur-xl 
+          transition h-full min-h-[320px]
           hover:scale-105 hover:-translate-y-2 hover:shadow-2xl`,
             isHovered &&
-              `shadow-2xl shadow-${benefit.color.split("-")[1]}-500/25`,
+              `shadow-2xl shadow-${benefit.color.split("-")[1]}-500/25`
           )}
         >
           {/* Animated gradient background */}
@@ -167,18 +163,6 @@ export function BenefitsSection() {
               {benefit.description}
             </p>
 
-            {/* Call to action */}
-            <div
-              className={`
-              flex items-center gap-2 text-sm font-medium opacity-0 
-              group-hover:opacity-100 transition-all duration-500 delay-200
-              text-gradient bg-gradient-to-r ${benefit.color} bg-clip-text text-transparent
-              group-hover:text-white
-            `}
-            >
-              <span>Learn more</span>
-              <ArrowRight className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" />
-            </div>
           </CardContent>
 
           {/* Hover particles */}
@@ -261,7 +245,7 @@ export function BenefitsSection() {
 
         {/* Benefits Grid */}
         {isMobile ? (
-          <Carousel className="w-full relative flex gap-2 px-10">
+          <Carousel className="w-full relative flex gap-2 px-5 sm:px-10">
             <CarouselPrevious className="absolute left-0 z-10 text-background w-12 h-12" />
             <CarouselContent className="w-full px-2 py-5">
               {benefits.map((benefit, index) => (

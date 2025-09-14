@@ -1,0 +1,352 @@
+{
+  "assets": [
+    {
+      "name": "RBAC 2025 Key Visual",
+      "file_path": "/rbac_2025_key_visual_elements/key_visual.png"
+    },
+    {
+      "name": "RBAC 2025 Timeline",
+      "file_path": "/events/timeline.png"
+    },
+    {
+      "name": "RBAC 2025 Cover Final",
+      "file_path": "/rbac_2025_key_visual_elements/cover_final.psd"
+    },
+    {
+      "name": "RBAC 2025 Tutorial Video",
+      "file_path": "/rbac_2025_key_visual_elements/huong_dan_thay_text.mp4"
+    },
+    {
+      "name": "RBAC Logo Blue",
+      "file_path": "/rbac_2025_key_visual_elements/rbac_xanh.png"
+    },
+    {
+      "name": "RBAC Logo Purple",
+      "file_path": "/rbac_2025_key_visual_elements/rbac_tim.png"
+    },
+    {
+      "name": "Rubik Cube Blue",
+      "file_path": "/rbac_2025_key_visual_elements/rubik_xanh.png"
+    },
+    {
+      "name": "Number 6 Purple",
+      "file_path": "/rbac_2025_key_visual_elements/6_tim.png"
+    },
+    {
+      "name": "Number 6 Blue Purple",
+      "file_path": "/rbac_2025_key_visual_elements/6_rubik_xanh_tim.png"
+    },
+    {
+      "name": "Number 6 Blue",
+      "file_path": "/rbac_2025_key_visual_elements/6_xanh.png"
+    },
+    {
+      "name": "Rubik Cube Single Blue",
+      "file_path": "/rbac_2025_key_visual_elements/rubik_don_xanh.png"
+    },
+    {
+      "name": "Rubik Cube Single Purple",
+      "file_path": "/rbac_2025_key_visual_elements/rubik_don_tim.png"
+    },
+    {
+      "name": "Rubik Cube RBA",
+      "file_path": "/rbac_2025_key_visual_elements/rubik_rba.png"
+    },
+    {
+      "name": "Rubik Cube RBAC Blue Purple",
+      "file_path": "/rbac_2025_key_visual_elements/rubik_rbac_xanh_tim.png"
+    },
+    {
+      "name": "Rubik Cube RBAC Blue",
+      "file_path": "/rbac_2025_key_visual_elements/rubik_rbac_xanh.png"
+    },
+    {
+      "name": "Rubik Cube Rearranged",
+      "file_path": "/rbac_2025_key_visual_elements/rubik_xep_lai.png"
+    },
+    {
+      "name": "Element 1",
+      "file_path": "/rbac_2025_key_visual_elements/elemen1.jpg"
+    },
+    {
+      "name": "Element 2",
+      "file_path": "/rbac_2025_key_visual_elements/elemen2.jpg"
+    },
+    {
+      "name": "Element 3",
+      "file_path": "/rbac_2025_key_visual_elements/elemen3.jpg"
+    },
+    {
+      "name": "Element 4",
+      "file_path": "/rbac_2025_key_visual_elements/elemen4.jpg"
+    },
+    {
+      "name": "Element 5",
+      "file_path": "/rbac_2025_key_visual_elements/elemen5.png"
+    },
+    {
+      "name": "Element 6",
+      "file_path": "/rbac_2025_key_visual_elements/elemen6.png"
+    },
+    {
+      "name": "Element 7",
+      "file_path": "/rbac_2025_key_visual_elements/elemen7.png"
+    },
+    {
+      "name": "Season 5 Judge 1 - Mr Giang",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_judges_mentors/judges/1_mr_giang.png"
+    },
+    {
+      "name": "Season 5 Judge 2 - Linh Bui",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_judges_mentors/judges/2_linh_bui.png"
+    },
+    {
+      "name": "Season 5 Judge 3 - Mr Quang",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_judges_mentors/judges/3_mr_quang.png"
+    },
+    {
+      "name": "Season 5 Judge 4 - Ms Ha",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_judges_mentors/judges/4_ms_ha.png"
+    },
+    {
+      "name": "Season 5 Judge 5 - Mr Khoi",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_judges_mentors/judges/5_mr_khoi.png"
+    },
+    {
+      "name": "Season 5 Judge 6 - Brain Le",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_judges_mentors/judges/6_brain_le.png"
+    },
+    {
+      "name": "Season 5 Judge 7 - Ng Lam",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_judges_mentors/judges/7_ng_lam.png"
+    },
+    {
+      "name": "Season 5 Judge 8 - Tam Truong",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_judges_mentors/judges/8_tam_truong.png"
+    },
+    {
+      "name": "Season 5 Judge 9 - Duc Le",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_judges_mentors/judges/9_duc_le.png"
+    },
+    {
+      "name": "Season 5 Judge 10 - Linh Nguyen",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_judges_mentors/judges/10_linh_nguyen.png"
+    },
+    {
+      "name": "Season 5 Mentor 1 - Viet Lo",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_judges_mentors/mentors/1_viet_lo.png"
+    },
+    {
+      "name": "Season 5 Mentor 2 - Tuan Mai",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_judges_mentors/mentors/2_tuan_mai.png"
+    },
+    {
+      "name": "Season 5 Mentor 3 - Duc Le",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_judges_mentors/mentors/3_duc_le.png"
+    },
+    {
+      "name": "Season 5 Mentor 4 - Nhan Bui",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_judges_mentors/mentors/4_nhan_bui.png"
+    },
+    {
+      "name": "Season 5 Mentor 5 - Hung Tran",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_judges_mentors/mentors/5_hung_tran.png"
+    },
+    {
+      "name": "Season 5 Sponsor Summary",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/0_day_tong_hop/0_day_tong_hop_logo_s5.png"
+    },
+    {
+      "name": "Season 5 Platinum Sponsor - Masan",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/1_platinum_sponsor/masan.png"
+    },
+    {
+      "name": "Season 5 Streaming Sponsor - Techfilm",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/10_streaming_sponsor/copy_of_logo_techfilm.jpg"
+    },
+    {
+      "name": "Season 5 Platform Sponsor - Base",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/11_platform_sponsor/copy_of_logo_base_01.png"
+    },
+    {
+      "name": "Season 5 Platform Sponsor - Quickom",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/11_platform_sponsor/quickom_2x.png"
+    },
+    {
+      "name": "Season 5 Accommodation Sponsor - QHome",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/12_accommodation_sponsor/copy_of_qhome_logo_01.png"
+    },
+    {
+      "name": "Season 5 Transportation Sponsor - En Viet",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/13_transportation/copy_of_en_viet.png"
+    },
+    {
+      "name": "Season 5 Strategic Sponsor - SHBFC",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/2_strategic_sponsor/logo_shbfc.png"
+    },
+    {
+      "name": "Season 5 Gold Sponsor - Yahon",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/3_gold_sponsor/yahon.jpg"
+    },
+    {
+      "name": "Season 5 Silver Sponsor - Xuan Thu",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/4_silver_sponsor/logo_xuan_thu_ngang.png"
+    },
+    {
+      "name": "Season 5 Silver Sponsor - Shopee",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/4_silver_sponsor/shopee.png"
+    },
+    {
+      "name": "Season 5 Silver Sponsor - Tomorrow Marketer",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/4_silver_sponsor/tomorrow_marketer.png"
+    },
+    {
+      "name": "Season 5 Bronze Sponsor - Cali",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/5_bronze_sponsor/cali_original_logo_red.png"
+    },
+    {
+      "name": "Season 5 Bronze Sponsor - Ede",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/5_bronze_sponsor/ede.jpg"
+    },
+    {
+      "name": "Season 5 Bronze Sponsor - Student Council",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/5_bronze_sponsor/student_council.jpeg"
+    },
+    {
+      "name": "Season 5 Academic Sponsor - TM Data School",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/6_academic_sponsor/1_1_horizontal_tm_data_school.jpg"
+    },
+    {
+      "name": "Season 5 Academic Sponsor - GFT",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/6_academic_sponsor/gft_logo_rgb.jpg"
+    },
+    {
+      "name": "Season 5 Academic Sponsor - Mastering Data",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/6_academic_sponsor/mastering_data.png"
+    },
+    {
+      "name": "Season 5 Scholarship Sponsor - PMAX Academy",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/7_scholarship_sponsor/2_pmax_academy_color_2_4x.png"
+    },
+    {
+      "name": "Season 5 Scholarship Sponsor - Kmin",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/7_scholarship_sponsor/kmin.png"
+    },
+    {
+      "name": "Season 5 Scholarship Sponsor - SAPP",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/7_scholarship_sponsor/sapp_logo_moi_01.png"
+    },
+    {
+      "name": "Season 5 Scholarship Sponsor - Smart Train",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/7_scholarship_sponsor/smart_train.jpg"
+    },
+    {
+      "name": "Season 5 Scholarship Sponsor - Step Vietnam",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/7_scholarship_sponsor/step_vietnam_frame_red_logo.png"
+    },
+    {
+      "name": "Season 5 Companion Sponsor - Chin Su",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/8_companion_sponsor/chin_su_b7f_logo_1.png"
+    },
+    {
+      "name": "Season 5 Companion Sponsor - Lapetal",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/8_companion_sponsor/lapetal.png"
+    },
+    {
+      "name": "Season 5 Companion Sponsor - Nutriboost",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/8_companion_sponsor/nutriboost_logo_01.png"
+    },
+    {
+      "name": "Season 5 Companion Sponsor - Omachi",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/8_companion_sponsor/omachi_1.png"
+    },
+    {
+      "name": "Season 5 Companion Sponsor - PVM",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/8_companion_sponsor/pvm_logo.png"
+    },
+    {
+      "name": "Season 5 Companion Sponsor - Xot Nha Hang",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/8_companion_sponsor/xot_nha_hang_2.png"
+    },
+    {
+      "name": "Season 5 In-Kind Sponsor - AME",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/9_in_kind_sponsor/ame.jpg"
+    },
+    {
+      "name": "Season 5 In-Kind Sponsor - Fide",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/9_in_kind_sponsor/fide.png"
+    },
+    {
+      "name": "Season 5 In-Kind Sponsor - Letgreen",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/9_in_kind_sponsor/letgreen.jpg"
+    },
+    {
+      "name": "Season 5 In-Kind Sponsor - Phuong Trinh",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/9_in_kind_sponsor/phuong_trinh.pdf"
+    },
+    {
+      "name": "Season 5 In-Kind Sponsor - Puffme",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/9_in_kind_sponsor/puffme.jpg"
+    },
+    {
+      "name": "Season 5 In-Kind Sponsor - Rebirth Candle",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/9_in_kind_sponsor/rebirth_candle.jpg"
+    },
+    {
+      "name": "Season 5 In-Kind Sponsor - Silis",
+      "file_path": "/rbac_2025_rbac_seasons/season_5/rbac_s5_sponsors/9_in_kind_sponsor/silis.jpg"
+    },
+    {
+      "name": "Company Tour 2024 - PWC x AC 1",
+      "file_path": "/rbac_2025_website_content_pictures/ac_company_tour/pwc_x_ac_2024/1.png"
+    },
+    {
+      "name": "Company Tour 2024 - PWC x AC 4",
+      "file_path": "/rbac_2025_website_content_pictures/ac_company_tour/pwc_x_ac_2024/4.png"
+    },
+    {
+      "name": "Company Tour 2024 - Samsung x AC Recap",
+      "file_path": "/rbac_2025_website_content_pictures/ac_company_tour/samsung_x_ac_2024/samsung_company_tour_recap.png"
+    },
+    {
+      "name": "Company Tour 2025 - TIKI x AC",
+      "file_path": "/rbac_2025_website_content_pictures/ac_company_tour/tiki_x_ac_2025/img_7366_2.jpg"
+    },
+    {
+      "name": "Panel Discussion 2025 - Shopee x Analytics",
+      "file_path": "/rbac_2025_website_content_pictures/ac_panel_discussion/panel_discussion_2025/shopee_x_analytics_from_data_to_decisions_your_career_path_in_analytics.jpg"
+    },
+    {
+      "name": "Workshop 2023 - Data Analytics Online Payment",
+      "file_path": "/rbac_2025_website_content_pictures/ac_workshop/workshop_2023/data_analytics_in_online_payment_workshop.jpg"
+    },
+    {
+      "name": "Workshop 2023 - SQL Training",
+      "file_path": "/rbac_2025_website_content_pictures/ac_workshop/workshop_2023/sql_training_workshop.jpg"
+    },
+    {
+      "name": "Workshop 2024 - Art of Negotiation",
+      "file_path": "/rbac_2025_website_content_pictures/ac_workshop/workshop_2024/the_art_of_negotiation_workshop.jpg"
+    },
+    {
+      "name": "Workshop 2025 - Job Shop CV LinkedIn 1",
+      "file_path": "/rbac_2025_website_content_pictures/ac_workshop/workshop_2025/job_shop_x_analytics_club_build_your_professional_cv_linkedin_profile_1.heic"
+    },
+    {
+      "name": "Workshop 2025 - Job Shop CV LinkedIn 2",
+      "file_path": "/rbac_2025_website_content_pictures/ac_workshop/workshop_2025/job_shop_x_analytics_club_build_your_professional_cv_linkedin_profile_2.heic"
+    },
+    {
+      "name": "Workshop 2025 - NVIVO Training",
+      "file_path": "/rbac_2025_website_content_pictures/ac_workshop/workshop_2025/nvivo_training.jpg"
+    },
+    {
+      "name": "Workshop 2025 - Photography Workshop 1",
+      "file_path": "/rbac_2025_website_content_pictures/ac_workshop/workshop_2025/photography_workshop_1.jpg"
+    },
+    {
+      "name": "Workshop 2025 - Photography Workshop 2",
+      "file_path": "/rbac_2025_website_content_pictures/ac_workshop/workshop_2025/photography_workshop_2.jpg"
+    }
+  ]
+}
