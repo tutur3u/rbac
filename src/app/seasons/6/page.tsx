@@ -254,6 +254,18 @@ export default function RBACCompetitionPage() {
 
           {/* Featured Prize Carousel */}
           <div className="mb-12 relative">
+            <img
+              src="/logo.png"
+              alt="Rotating Cube"
+              className="absolute -top-3 left-2 w-20 h-20 opacity-50 
+              animate-spin-slow pointer-events-none z-3"
+            />
+            <img
+              src="/components/logo-purple.png"
+              alt="Rotating Cube"
+              className="absolute bottom-3 right-2 w-20 h-20 opacity-50 
+              animate-spin-slow pointer-events-none z-3"
+            />
             <div className="bg-gradient-to-r from-blue-900/70 via-purple-900/70 to-blue-900/70 backdrop-blur-sm rounded-2xl p-8 text-center border border-blue-500/30 shadow-2xl shadow-blue-500/20 animate-fade-in-up animation-delay-300">
               <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mb-6 animate-pulse">
                 <span className="text-3xl font-bold text-white">
@@ -288,13 +300,14 @@ export default function RBACCompetitionPage() {
           </div>
 
           {/* All Prizes Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 lg:items-end ">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 lg:items-end relative">
             {prizes.map((prize, index) => (
               <div
                 key={index}
                 className={cn(
                   `bg-gradient-to-b backdrop-blur-md from-blue-900/70 to-red-800/30 
                   border border-purple-100 md:border-0
+                  relative
                     rounded-xl text-center h-58
                     flex flex-col items-center justify-center
                     transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 animate-slide-in-up`,
@@ -311,6 +324,38 @@ export default function RBACCompetitionPage() {
                 )}
                 style={{ animationDelay: `${600 + index * 150}ms` }}
               >
+                {index == 0 && (
+                  <>
+                  <img
+                    src="/components/rotate-cube.png"
+                    alt="Rotating Cube"
+                    className="absolute -top-2 left-1/2 -translate-x-1/2 w-32 h-32 opacity-60
+                    pointer-events-none z-1 animate-float"
+                  />
+                  <img
+                    src="/components/rubik_bars.png"
+                    alt="Rubik's Bars"
+                    className="absolute -bottom-2 -left-2 w-32 h-32 opacity-30
+                    pointer-events-none"
+                  />
+                </>
+                )}
+                {index == 1 && (
+                  <img
+                    src="/logo.png"
+                    alt="Rotating Cube"
+                    className="absolute top-5 left-5 w-16 h-16 opacity-60
+              pointer-events-none z-3 animate-bounce"
+                  />
+                )}
+                {index == 2 && (
+                  <img
+                    src="/components/logo-purple.png"
+                    alt="Rotating Cube"
+                    className="absolute top-5 left-5 w-16 h-16 opacity-40
+                    pointer-events-none z-3 animate-bounce"
+                  />
+                )}
                 <div
                   className={cn(
                     `inline-flex items-center justify-center w-12 h-12 

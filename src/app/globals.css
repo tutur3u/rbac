@@ -379,9 +379,12 @@
     opacity: 1;
   }
   50% {
-    opacity: 0.8;
+    opacity: 0.3;
   }
 }
 .animate-float {
   animation: float 3s ease-in-out infinite;
+}
+.animate-hologram-flicker {
+  animation: hologram-flicker 2s ease-in-out infinite;
 }

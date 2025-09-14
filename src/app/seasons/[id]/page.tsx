@@ -221,31 +221,35 @@ export default function SeasonDetail() {
                 typeof currentSeason.mentors[0] === "object" ? (
                   // Detailed mentor objects with name, position, image
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {currentSeason.mentors.map((mentor, index) => (
-                      <div
-                        key={index}
-                        className="flex flex-col items-center p-4 bg-slate-700/30 rounded-lg"
-                      >
-                        <div className="w-32 h-32 relative mb-4 rounded-full overflow-hidden">
-                          <Image
-                            src={
-                              `${rootUrl}/${mentor.image}` || "/placeholder.svg"
-                            }
-                            alt={mentor.name}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                        <div className="text-center">
-                          <p className="text-white font-medium text-lg">
-                            {mentor.name}
-                          </p>
-                          <p className="text-blue-100 text-sm mt-2">
-                            {mentor.position}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
+                    {currentSeason.mentors.map((mentor, index) => {
+                      if (typeof mentor != "string")
+                        return (
+                          <div
+                            key={index}
+                            className="flex flex-col items-center p-4 bg-slate-700/30 rounded-lg"
+                          >
+                            <div className="w-32 h-32 relative mb-4 rounded-full overflow-hidden">
+                              <Image
+                                src={
+                                  `${rootUrl}/${mentor.image}` ||
+                                  "/placeholder.svg"
+                                }
+                                alt={mentor.name}
+                                fill
+                                className="object-cover"
+                              />
+                            </div>
+                            <div className="text-center">
+                              <p className="text-white font-medium text-lg">
+                                {mentor.name}
+                              </p>
+                              <p className="text-blue-100 text-sm mt-2">
+                                {mentor.position}
+                              </p>
+                            </div>
+                          </div>
+                        );
+                    })}
                   </div>
                 ) : currentSeason.mentors ? (
                   // Single image for all mentors
@@ -300,31 +304,35 @@ export default function SeasonDetail() {
                 typeof currentSeason.judges[0] === "object" ? (
                   // Detailed judge objects with name, position, image
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {currentSeason.judges.map((judge, index) => (
-                      <div
-                        key={index}
-                        className="flex flex-col items-center p-4 bg-slate-700/30 rounded-lg"
-                      >
-                        <div className="w-32 h-32 relative mb-4 rounded-full overflow-hidden">
-                          <Image
-                            src={
-                              `${rootUrl}/${judge.image}` || "/placeholder.svg"
-                            }
-                            alt={judge.name}
-                            fill
-                            className="object-cover"
-                          />
-                        </div>
-                        <div className="text-center">
-                          <p className="text-white font-medium text-lg">
-                            {judge.name}
-                          </p>
-                          <p className="text-blue-100 text-sm mt-2">
-                            {judge.position}
-                          </p>
-                        </div>
-                      </div>
-                    ))}
+                    {currentSeason.judges.map((judge, index) => {
+                      if (typeof judge != "string")
+                        return (
+                          <div
+                            key={index}
+                            className="flex flex-col items-center p-4 bg-slate-700/30 rounded-lg"
+                          >
+                            <div className="w-32 h-32 relative mb-4 rounded-full overflow-hidden">
+                              <Image
+                                src={
+                                  `${rootUrl}/${judge.image}` ||
+                                  "/placeholder.svg"
+                                }
+                                alt={judge.name ?? "Judge"}
+                                fill
+                                className="object-cover"
+                              />
+                            </div>
+                            <div className="text-center">
+                              <p className="text-white font-medium text-lg">
+                                {judge.name}
+                              </p>
+                              <p className="text-blue-100 text-sm mt-2">
+                                {judge.position}
+                              </p>
+                            </div>
+                          </div>
+                        );
+                    })}
                   </div>
                 ) : currentSeason.judges ? (
                   // Single image for all judges
