@@ -89,7 +89,8 @@ export function OrganizerSection() {
 
         {/* Main Organizer Card */}
         <Card
-          className={`max-w-6xl mx-auto border-0 bg-slate-900/40 backdrop-blur-xl overflow-hidden group hover:scale-[1.02] transition-all duration-700 ${
+          className={`max-w-6xl mx-auto border-0 bg-slate-900/40 backdrop-blur-xl overflow-hidden 
+            group hover:scale-[1.02] transition-all duration-700 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
           }`}
         >
@@ -146,10 +147,10 @@ export function OrganizerSection() {
               </div>
 
               {/* Content Section */}
-              <div className="lg:w-3/5 p-12">
+              <div className="lg:w-3/5 p-4 md:p-6 lg:p-12">
                 <div className="space-y-8">
                   {/* Title and Description */}
-                  <div>
+                  <div className="text-center sm:text-left">
                     <h3 className="text-4xl font-bold mb-6 bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
                       RMIT Vietnam Analytics Club
                     </h3>
@@ -165,7 +166,7 @@ export function OrganizerSection() {
                   </div>
 
                   {/* Stats Grid */}
-                  <div className="grid grid-cols-2 gap-6">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     {organizerStats.map((stat, index) => {
                       const IconComponent = stat.icon;
                       return (
@@ -218,17 +219,17 @@ export function OrganizerSection() {
 
         {/* Achievement Stats */}
         <div
-          className={`mt-20 transition-all duration-1000 delay-500 ${
+          className={`mt-20 transition duration-1000 delay-500 ${
             isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
           }`}
         >
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-6 max-w-5xl mx-auto">
             {organizerAchievements.map((achievement, index) => {
               const IconComponent = achievement.icon;
               return (
                 <div
                   key={`achievement-${index + 1}`}
-                  className="group bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-6 text-center hover:scale-105 hover:border-cyan-400/50 transition-all duration-300 cursor-pointer"
+                  className="group bg-slate-900/60 backdrop-blur-xl border border-slate-700/50 rounded-2xl p-4 md:p-6 text-center hover:scale-105 hover:border-cyan-400/50 transition-all duration-300 cursor-pointer"
                 >
                   <div className="w-12 h-12 bg-gradient-to-r from-secondary to-sidebar-accent rounded-xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
                     <IconComponent className="w-6 h-6 text-background" />

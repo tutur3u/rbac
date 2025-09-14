@@ -8,6 +8,9 @@ import {
   Clock,
   Shield,
   Code,
+  Facebook,
+  Linkedin,
+  Mail,
 } from "lucide-react";
 
 export const achievements = [
@@ -210,5 +213,36 @@ export const criteria = [
     color: "from-red-700 to-rose-400",
     textColor: "from-rose-400 to-rose-200",
     delay: "400ms",
+  },
+];
+
+export const contactInfo = [
+  {
+    icon: <Users />,
+    title: "Fanpage",
+    link: "https://www.facebook.com/RBAChampion",
+    color: "bg-purple-400/15 border-2 border-cyan-300/30",
+    delay: "delay-100",
+  },
+  {
+    icon: <Facebook />,
+    title: "Community",
+    link: "https://www.facebook.com/groups/rbaccommunity",
+    color: "bg-blue-600/20 border-2 border-blue-300/30",
+    delay: "delay-200",
+  },
+  {
+    icon: <Linkedin />,
+    title: "LinkedIn",
+    link: "https://www.linkedin.com/company/rba-champion",
+    color: "bg-blue-400/20 border-2 border-blue-500/30",
+    delay: "delay-300",
+  },
+  {
+    icon: <Mail />,
+    title: "Email",
+    link: "mailto:rbachampion.06@gmail.com",
+    color: "bg-red-400/20 border-2 border-red-300/30",
+    delay: "delay-400",
   },
 ];

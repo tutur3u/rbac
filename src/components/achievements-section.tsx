@@ -57,7 +57,7 @@ export function AchievementsSection() {
         >
           <h2 className="text-5xl md:text-6xl font-bold mb-6 glow-effect">
             <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
-              OUR ACHIEVEMENTS
+              ACHIEVEMENTS
             </span>
           </h2>
           <p className="text-xl text-blue-100 max-w-3xl mx-auto text-pretty leading-relaxed">
@@ -80,7 +80,7 @@ export function AchievementsSection() {
           </Carousel>
         ) : (
           <div
-            className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 transition-all duration-1000 delay-300 ${
+            className={`grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-8 transition duration-1000 delay-300 ${
               isVisible
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-12"
@@ -101,17 +101,19 @@ function AchivementCard({
   achievement: (typeof achievements)[number];
 }) {
   return (
-    <div className="text-center group">
-      <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border-2 border-slate-700/50 hover:border-blue-400/50 transition-all duration-500 hover:shadow-2xl glow-effect group-hover:scale-110 transform">
+    <div className="text-center group h-full">
+      <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl
+      h-full
+       p-8 border-2 border-slate-700/50 hover:border-blue-400/50 transition duration-500 hover:shadow-2xl glow-effect group-hover:scale-110 transform">
         <div
-          className={`w-16 h-16 mx-auto mb-6 bg-gradient-to-br ${achievement.gradient} rounded-2xl flex items-center justify-center text-white group-hover:rotate-12 transition-all duration-500 pulse-glow`}
+          className={`w-16 h-16 mx-auto mb-6 bg-gradient-to-br ${achievement.gradient} rounded-2xl flex items-center justify-center text-white group-hover:rotate-12 transition duration-500 pulse-glow`}
         >
           {achievement.icon}
         </div>
-        <div className="text-4xl md:text-5xl font-bold text-white mb-3 group-hover:text-blue-300 transition-colors">
+        <div className="text-3xl sm:text-2xl md:text-3xl font-bold text-white mb-3 group-hover:text-blue-300 transition-colors">
           {achievement.number}
         </div>
-        <div className="text-blue-200 font-medium text-sm leading-tight">
+        <div className="text-blue-200 grow font-medium text-lg md:text-sm leading-tight">
           {achievement.label}
         </div>
       </div>

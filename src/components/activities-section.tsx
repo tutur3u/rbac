@@ -1,32 +1,63 @@
+import { Trophy } from "lucide-react";
 import Image from "next/image";
 
 export function ActivitiesSection() {
   const activities = [
     {
+      image: "/activities/Company tour to PWC.png",
+      caption: "Company Tour to PwC",
+    },
+    {
+      image:
+        "/activities/2022 - Business Analytics Workshop - Data Exploratory.png",
       caption:
-        "Business Analytics Workshop: Data Visualization – Paint Dashboards 2022",
+        "2022 - Business Analytics Workshop: Data Exploratory - Uncover Insights",
+    },
+    {
+      caption:
+        "2023 - Together with RMIT Fintech Club, organize a seminar on Digital Payments and Data Analysis",
+      image: "/activities/data_analytics_in_online_payment_workshop.jpg",
+    },
+    {
+      image: "/activities/2023 - Workshop Pathway to BIG4.png",
+      caption: "2023 - Workshop Pathway to BIG4",
+    },
+    {
+      image: "/activities/sql_training_workshop.jpg",
+      caption: "2023 - SQL Training Workshop - Master the Language of Data",
+    },
+    {
+      caption: "2024 - The Art of Negotiation Workshop",
+      image: "/activities/the_art_of_negotiation_workshop.jpg",
+    },
+    {
+      image: "/activities/2024_Company_Tour_Samsung_Electronics.png",
+      caption: "2024 - Company Tour - Samsung Electronics",
+    },
+    {
+      image:
+        "/activities/job_shop_x_analytics_club_build_your_professional_cv_linkedin_profile_1.png",
+      caption:
+        "2025 - In collaboration with RMIT Job Shop, conduct a workshop on Building Your Professional CV & LinkedIn Profile",
+    },
+    {
+      image: "/activities/nvivo_training.jpg",
+      caption: "2025 - NVivo Training Workshop",
+
       isHighlighted: true,
     },
     {
-      caption:
-        "Panel Discussion: Layoff to Lift-off - Upskill to Survive the Crisis 2024",
-      isHighlighted: true,
+      image: "/activities/photography_workshop_1.jpg",
+      caption: "2025 - Photography Workshop - Capture the Moment",
     },
     {
-      caption:
-        "[Panel Discussion] From Data to Decisions: Your Career Path in Analytics",
-      isHighlighted: true,
+      image: "/activities/2025 - From data to decision.png",
+      caption: "2025 - From Data to Decision - Your Career Path in Analytics",
     },
     {
+      image: "/activities/RMIT Careers, Alumni & Industry Relations.png",
       caption:
-        "Together with RMIT Fintech Club, organize a seminar on Digital Payments and Data Analysis",
-    },
-    {
-      caption:
-        "With RMIT Careers, Alumni & Industry Relations, organize a series of Orientation and Development seminars",
-    },
-    {
-      caption: "Explore the Work Culture at PwC, One of the Big4",
+        "With RMIT Careers, Alumni & Industry Relations, organize a series of Career Development seminars",
     },
     {
       image:
@@ -34,12 +65,19 @@ export function ActivitiesSection() {
       caption: "Listening to insights shared by professionals from Shopee.",
     },
     {
-      caption: "The atmosphere of the 'Layoff to Lift-off' sharing session",
-    },
-    {
-      caption: "Listen - Experience - Be Inspired with Experts from",
+      caption: "2024 - A warm Tet. A joyful spring.",
+      image: "/activities/2024-tet.png",
+      isHighlighted: true,
     },
   ];
+
+  // Separate highlighted and regular activities
+  const highlightedActivities = activities.filter(
+    (activity) => activity.isHighlighted
+  );
+  const regularActivities = activities.filter(
+    (activity) => !activity.isHighlighted
+  );
 
   return (
     <section className="relative py-20 bg-gradient-to-b from-slate-950 via-blue-950 to-slate-900 overflow-hidden">
@@ -60,34 +98,189 @@ export function ActivitiesSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {activities.map((activity, index) => (
-            <div key={`activity-${index + 1}`} className="group">
-              <div className="relative bg-gradient-to-br from-blue-900/20 to-purple-900/20 backdrop-blur-sm rounded-xl overflow-hidden border border-blue-500/20 hover:border-blue-400/50 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20">
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="mb-20 relative">
+          <div className="absolute -top-12 md:-top-10 left-1/2 transform -translate-x-1/2 
+          w-24 h-24 md:w-32 md:h-32 
+          bg-gradient-to-tl from-yellow-400 to-amber-500
+          rounded-full 
+          flex items-center justify-center shadow-lg shadow-yellow-500/30 z-20">
+            <svg
+              className="w-16 h-16 text-white"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                clipRule="evenodd"
+              />
+            </svg>
+          </div>
 
-                <div className="relative aspect-video overflow-hidden">
+          <div className="bg-gradient-to-br from-amber-900/30 via-amber-800/20 to-yellow-900/30 backdrop-blur-md rounded-2xl p-8 pt-16 border border-amber-500/30 shadow-lg shadow-amber-500/20">
+            <div className="flex flex-col md:flex-row items-center gap-8">
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-3xl font-bold mb-4 bg-gradient-to-r from-amber-300 to-yellow-200 bg-clip-text text-transparent">
+                  RMIT Best Academic and Learning Skills Club
+                </h3>
+                <p className="text-amber-100 mb-6">
+                  We are proud to have been recognized as the Best Club for 7
+                  consecutive years, a testament to our commitment to excellence
+                  and innovation in cybersecurity education.
+                </p>
+                <div className="flex items-center justify-center md:justify-start space-x-2">
+                  <span className="text-amber-200 text-sm font-semibold">
+                    2018-2024
+                  </span>
+                  <span className="text-amber-200">•</span>
+                  <span className="text-amber-200 text-sm font-semibold">
+                    Excellence in Education
+                  </span>
+                  <span className="text-amber-200">•</span>
+                  <span className="text-amber-200 text-sm font-semibold">
+                    Community Impact
+                  </span>
+                </div>
+              </div>
+
+              <div className="flex-1 relative">
+                <div className="aspect-video rounded-xl overflow-hidden border-2 border-amber-500/50 shadow-lg">
                   <Image
-                    src={
-                      activity.image ||
-                      "/placeholder.svg?height=300&width=500&query=cybersecurity workshop"
-                    }
-                    alt={`RBAC Activity ${index + 1}`}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                    src="/activities/best-club.jpg"
+                    alt="7 Years Best Club Award"
+                    className="w-full h-full object-cover"
                     height={300}
                     width={500}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
-
-                <div className="relative p-6">
-                  <p className="text-blue-200 leading-relaxed text-sm group-hover:text-white transition-colors duration-300">
-                    {activity.caption}
-                  </p>
+                <div className="absolute -top-4 -right-4 bg-amber-500 text-slate-900 font-bold px-4 py-2 rounded-full shadow-md">
+                  <Trophy color="yellow" className="inline" /> Award Winner
                 </div>
               </div>
             </div>
-          ))}
+
+            {/* Decorative elements */}
+            <div className="absolute top-4 left-4 text-amber-400 opacity-50">
+              <svg
+                className="w-8 h-8"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+            <div className="absolute bottom-4 right-4 text-amber-400 opacity-50">
+              <svg
+                className="w-8 h-8"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </div>
+          </div>
+
+          {/* Floating elements */}
+          <div className="absolute -top-6 -left-6 w-12 h-12 bg-yellow-400 rounded-full blur-xl opacity-30 animate-pulse"></div>
+          <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-amber-500 rounded-full blur-xl opacity-30 animate-pulse delay-1000"></div>
+        </div>
+
+        {/* Featured Activities Section */}
+        {highlightedActivities.length > 0 && (
+          <div className="mb-20">
+            <div className="text-center mb-12">
+              <h3 className="text-3xl font-bold mb-2 bg-gradient-to-r from-yellow-300 via-orange-300 to-yellow-200 bg-clip-text text-transparent">
+                Featured Activities
+              </h3>
+              <p className="text-blue-300">Highlighted events and workshops</p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+              {highlightedActivities.map((activity, index) => (
+                <div key={`highlighted-${index + 1}`} className="group">
+                  <div className="relative bg-gradient-to-br from-amber-900/20 via-orange-900/20 to-purple-900/20 backdrop-blur-sm rounded-2xl overflow-hidden border border-amber-500/30 hover:border-amber-400/60 transition-all duration-500 hover:shadow-2xl hover:shadow-amber-500/30">
+                    <div className="absolute inset-0 bg-gradient-to-br from-amber-600/10 via-orange-600/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                    <div className="relative aspect-video overflow-hidden">
+                      <Image
+                        src={
+                          activity.image ||
+                          "/placeholder.svg?height=400&width=600&query=featured activity"
+                        }
+                        alt={`Featured Activity: ${activity.caption}`}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                        height={400}
+                        width={600}
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="absolute top-4 right-4 bg-amber-500 text-slate-900 text-xs font-bold px-3 py-1 rounded-full">
+                        Featured
+                      </div>
+                    </div>
+
+                    <div className="relative p-6">
+                      <p className="text-amber-100 leading-relaxed text-sm group-hover:text-white transition-colors duration-300">
+                        {activity.caption}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Regular Activities Section */}
+        <div>
+          <div className="text-center mb-12">
+            <h3 className="text-3xl font-bold mb-2 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+              Our Activities
+            </h3>
+            <p className="text-blue-300">
+              Explore all our events and workshops
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {regularActivities.map((activity, index) => (
+              <div key={`activity-${index + 1}`} className="group">
+                <div className="relative bg-gradient-to-br from-blue-900/20 to-purple-900/20 backdrop-blur-sm rounded-xl overflow-hidden border border-blue-500/20 hover:border-blue-400/50 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20">
+                  <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                  <div className="relative aspect-video overflow-hidden">
+                    <Image
+                      src={
+                        activity.image ||
+                        "/placeholder.svg?height=300&width=500&query=activity"
+                      }
+                      alt={`Activity: ${activity.caption}`}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+                      height={300}
+                      width={500}
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  </div>
+
+                  <div className="relative p-6">
+                    <p className="text-blue-200 leading-relaxed text-sm group-hover:text-white transition-colors duration-300">
+                      {activity.caption}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>

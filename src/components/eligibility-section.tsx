@@ -26,7 +26,7 @@ export function EligibilitySection() {
   const renderCard = (
     criterion: (typeof criteria)[number],
     index: number,
-    isFirstRow = false,
+    isFirstRow = false
   ) => {
     const IconComponent = criterion.icon;
     const isLarge = !isFirstRow;
@@ -39,7 +39,7 @@ export function EligibilitySection() {
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20",
           {
             isLarge: "lg:col-span-1",
-          },
+          }
         )}
         style={{ animationDelay: criterion.delay }}
         onMouseEnter={() => setActiveCard(index)}
@@ -48,14 +48,14 @@ export function EligibilitySection() {
         <Card
           className={cn(
             `relative overflow-hidden border-0 bg-gradient-to-br from-slate-900/50 to-slate-800/30 
-            backdrop-blur-xl transition-all duration-500 h-full
+            backdrop-blur-xl transition h-full gap-2 md:gap-4
             hover:scale-105 hover:rotate-1 hover:shadow-2xl
             active:scale-105 active:rotate-1 active:shadow-2xl`,
             {
               "shadow-2xl shadow-primary/25": activeCard === index,
               "lg:min-h-[200px]": isLarge,
               "min-h-[180px]": !isLarge,
-            },
+            }
           )}
         >
           {/* Animated background gradient */}
@@ -109,14 +109,17 @@ export function EligibilitySection() {
           </div>
 
           <CardHeader className="relative z-10 pb-3">
-            <div className="flex items-center gap-4">
+            <div className="flex items-center flex-col md:flex-row gap-4">
               <div
-                className={`
-                relative p-3 rounded-xl bg-gradient-to-br ${criterion.color} 
-                shadow-lg group-hover:shadow-xl transition-all duration-500
+                className={cn(
+                  `
+                relative p-3 rounded-xl bg-gradient-to-br
+                shadow-lg group-hover:shadow-xl transition
                 group-hover:scale-110 group-hover:rotate-12
                 group-active:scale-110 group-active:rotate-12 group-active:shadow-xl
-              `}
+              `,
+                  criterion.color
+                )}
               >
                 <IconComponent className="w-6 h-6 text-white" />
 
@@ -155,19 +158,21 @@ export function EligibilitySection() {
           <CardContent className="relative z-10 pt-0">
             <p
               className={cn(
-                "text-primary-foreground leading-relaxed transition-all duration-500",
+                "text-center md:text-left text-primary-foreground leading-relaxed transition",
                 "group-hover:text-background/90 group-active:text-background/90",
                 {
                   "lg:text-lg": isLarge,
                   "text-base": !isLarge,
-                },
+                }
               )}
             >
               {criterion.description}
             </p>
 
             {/* Success indicator */}
-            <div className="flex items-center gap-2 mt-4 opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-all duration-500 delay-200">
+            <div className="flex items-center gap-2 justify-center md:justify-start
+            mt-4 opacity-0 group-hover:opacity-100 group-active:opacity-100 
+            transition delay-200">
               <CheckCircle className={`w-4 h-4 text-green-400`} />
               <span className="text-sm text-green-400 font-medium">
                 Requirement Clear
@@ -281,7 +286,7 @@ export function EligibilitySection() {
               {criteria
                 .slice(3, 5)
                 .map((criterion, index) =>
-                  renderCard(criterion, index + 3, false),
+                  renderCard(criterion, index + 3, false)
                 )}
             </div>
           </div>

@@ -66,7 +66,7 @@ export function HeroBanner() {
         ref={contentRef}
         className="relative z-10 h-full
          px-4 pt-20 pb-3 md:py-20 
-         flex flex-col items-start justify-center gap-4 sm:gap-8
+         flex flex-col items-center md:items-start justify-center gap-4 sm:gap-8
          min-h-screen text-center"
       >
         <div
@@ -83,8 +83,8 @@ export function HeroBanner() {
         </div>
 
         <p
-          className="text-lg md:text-xl text-blue-100 max-w-2xl text-pretty text-left 
-        leading-relaxed indent-4"
+          className="text-lg md:text-xl text-blue-100 max-w-2xl text-pretty 
+        leading-relaxed text-center md:text-left"
         >
           Join the most innovative technology competition of the year. Shape the
           future with cutting-edge solutions and breakthrough innovations that
