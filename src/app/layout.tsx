@@ -35,7 +35,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-primary`}
       >
         <a
           href="#main-content"
@@ -55,35 +55,36 @@ export default function RootLayout({
 }
 
 const Footer = () => (
-  <div className="px-5 md:px-10 lg:px-20 py-10 lg:py-20 bg-primary/80">
+  <div className="px-5 md:px-10 lg:px-20 py-10 lg:py-20 bg-gradient-to-br from-slate-950 to-muted/10
+  border-t border-secondary">
     {/* Contact Section */}
     <section className="mb-20">
       <h2 className="text-3xl font-bold text-white mb-8 text-center">
         Contact Us
       </h2>
 
-      <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-8 border border-slate-700/50">
+      <div className="bg-gradient-to-br from-muted/10 to-primary backdrop-blur-sm rounded-xl p-8 border border-secondary/50">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="text-center md:text-left">
             <h3 className="text-xl font-semibold text-white mb-4">
               Project Leader
             </h3>
-            <p className="text-blue-200">Nguyen Thi Phuong Dai</p>
-            <p className="text-blue-200">Email: s3914588@rmit.edu.vn</p>
-            <p className="text-blue-200">Phone: 0914 784 228</p>
+            <p className="text-primary-foreground">Nguyen Thi Phuong Dai</p>
+            <p className="text-primary-foreground">Email: s3914588@rmit.edu.vn</p>
+            <p className="text-primary-foreground">Phone: 0914 784 228</p>
           </div>
 
           <div className="text-center md:text-left">
             <h3 className="text-xl font-semibold text-white mb-4">
               External Relations Leader
             </h3>
-            <p className="text-blue-200">Kieu Hoang Minh Nhat</p>
-            <p className="text-blue-200">Email: s4052258@rmit.edu.vn</p>
-            <p className="text-blue-200">Phone: 0901 875 879</p>
+            <p className="text-primary-foreground">Kieu Hoang Minh Nhat</p>
+            <p className="text-primary-foreground">Email: s4052258@rmit.edu.vn</p>
+            <p className="text-primary-foreground">Phone: 0901 875 879</p>
           </div>
         </div>
 
-        <div className="mt-8 pt-8 border-t border-slate-700">
+        <div className="mt-8 pt-8 border-t border-secondary/40">
           <h3 className="text-xl font-semibold text-white mb-4 text-center">
             Follow Us
           </h3>
@@ -97,7 +98,7 @@ const Footer = () => (
                   target="_blank"
                   rel="noopener noreferrer"
                   className={cn(
-                    "text-blue-200 hover:text-white transition-colors p-3 rounded-full",
+                    "text-primary-foreground hover:text-white transition-colors p-3 rounded-full",
                     contact.color
                   )}
                 >
@@ -110,15 +111,16 @@ const Footer = () => (
       </div>
     </section>
 
-    <div className="mb-16 bg-gradient-to-br from-slate-900 via-blue-900/50 to-purple-900/50 p-8 rounded-xl border border-blue-500/30 shadow-2xl shadow-blue-500/20">
+    <div className="mb-16 bg-gradient-to-br from-primary via-accent-secondary/10 to-purple-900/50 p-8 rounded-xl 
+    border border-accent-secondary/30 shadow-lg shadow-muted/20">
       <section className="text-center mb-12">
-        <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 mb-8 tracking-widest uppercase">
+        <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent-secondary to-secondary-foreground mb-8 tracking-widest uppercase">
           Organizers
         </h3>
         <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12">
           {/* RMIT SCP Logo */}
           <div className="w-full md:w-auto group relative bg-gradient-to-br from-blue-500/10 to-purple-600/10 p-5 rounded-xl border border-blue-400/30 hover:border-cyan-400/50 transition-all duration-500 hover:shadow-lg hover:shadow-cyan-500/20">
-            <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl blur opacity-20 group-hover:opacity-30 transition duration-500"></div>
+            <div className="absolute -inset-1 bg-gradient-to-r from-muted to-secondary rounded-xl blur opacity-20 group-hover:opacity-30 transition duration-500"></div>
             <div className="relative">
               <img
                 src="/components/rmit-scp-logo.png"
@@ -130,7 +132,7 @@ const Footer = () => (
 
           {/* Analytics Club Logo */}
           <div className="w-full md:w-auto group relative bg-gradient-to-br from-purple-500/10 to-pink-500/10 p-5 rounded-xl border border-purple-400/30 hover:border-pink-400/50 transition-all duration-500 hover:shadow-lg hover:shadow-pink-500/20">
-            <div className="absolute -inset-1 bg-gradient-to-r from-purple-300 to-pink-300 rounded-xl blur opacity-20 group-hover:opacity-30 transition duration-500"></div>
+            <div className="absolute -inset-1 bg-gradient-to-r from-secondary-foreground to-pink-200 rounded-xl blur opacity-20 group-hover:opacity-30 transition duration-500"></div>
             <div className="relative">
               <img
                 src="/club-logo.png"
@@ -156,7 +158,7 @@ const Footer = () => (
 
       <section className="text-center">
         <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400 mb-8 tracking-widest uppercase">
-          Official Sponsor
+          Web Sponsor
         </h3>
         <div className="flex justify-center">
           <div className="group relative bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-red-500/10 
@@ -186,25 +188,25 @@ const Footer = () => (
               RMIT Analytics Club
             </span>
           </div>
-          <p className="text-blue-200 mt-2">Organizer of RBAC Season 6</p>
+          <p className="text-primary-foreground mt-2">Organizer of RBAC Season 6</p>
         </div>
 
         <div className="flex space-x-6">
           <a
             href="#"
-            className="text-blue-200 hover:text-white transition-colors"
+            className="text-primary-foreground hover:text-white transition-colors"
           >
             Privacy Policy
           </a>
           <a
             href="#"
-            className="text-blue-200 hover:text-white transition-colors"
+            className="text-primary-foreground hover:text-white transition-colors"
           >
             Terms & Conditions
           </a>
           <a
             href="#"
-            className="text-blue-200 hover:text-white transition-colors"
+            className="text-primary-foreground hover:text-white transition-colors"
           >
             FAQ
           </a>

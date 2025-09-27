@@ -101,11 +101,11 @@ export function ActivitiesSection() {
         <div className="mb-20 relative">
           <div className="absolute -top-12 md:-top-10 left-1/2 transform -translate-x-1/2 
           w-24 h-24 md:w-32 md:h-32 
-          bg-gradient-to-tl from-yellow-400 to-amber-500
+          bg-gradient-to-tl from-yellow-400 via-amber-500  to-amber-700
           rounded-full 
           flex items-center justify-center shadow-lg shadow-yellow-500/30 z-20">
             <svg
-              className="w-16 h-16 text-white"
+              className="w-16 h-16 text-primary-foreground"
               fill="currentColor"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
