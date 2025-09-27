@@ -3,6 +3,80 @@
 import { useState, useEffect } from "react";
 import { useParallax } from "@/hooks/use-parallax";
 import { cn } from "@/lib/utils";
+import { motion, AnimatePresence, Variants } from "motion/react";
+import { useRef } from "react";
+
+// Animation variants
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      duration: 0.8,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+};
+
+const fadeInUp: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: "easeOut" },
+  },
+};
+
+const staggerContainer: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.3,
+    },
+  },
+};
+
+const prizeStagger: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15,
+    },
+  },
+};
+
+const slideInLeft: Variants = {
+  hidden: { opacity: 0, x: -50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.7, ease: "easeOut" },
+  },
+};
+
+const slideInRight: Variants = {
+  hidden: { opacity: 0, x: 50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.7, ease: "easeOut" },
+  },
+};
 
 export default function RBACCompetitionPage() {
   const { elementRef: bgRef, offset: bgOffset } = useParallax(0.3);
@@ -10,6 +84,7 @@ export default function RBACCompetitionPage() {
 
   const [activeRound, setActiveRound] = useState("round1");
   const [currentPrizeIndex, setCurrentPrizeIndex] = useState(0);
+  const sectionRef = useRef(null);
 
   const prizes = [
     {
@@ -17,30 +92,70 @@ export default function RBACCompetitionPage() {
       amount: "30,000,000 VND",
       position: 1,
       extras: "Trophy & Certificates",
+      gradient: "from-yellow-400 to-amber-600",
+      glow: "shadow-yellow-500/30",
     },
     {
       place: "1st Runner Up",
       amount: "15,000,000 VND",
       position: 2,
       extras: "Certificates",
+      gradient: "from-gray-400 to-slate-600",
+      glow: "shadow-slate-500/30",
     },
     {
       place: "2nd Runner Up",
       amount: "10,000,000 VND",
       position: 3,
       extras: "Certificates",
+      gradient: "from-amber-500 to-orange-600",
+      glow: "shadow-amber-500/30",
     },
     {
       place: "4th Place",
       amount: "5,000,000 VND",
       position: 4,
       extras: "Certificates",
+      gradient: "from-blue-500 to-purple-600",
+      glow: "shadow-blue-500/30",
     },
     {
       place: "5th Place",
       amount: "5,000,000 VND",
       position: 5,
       extras: "Certificates",
+      gradient: "from-purple-500 to-pink-600",
+      glow: "shadow-purple-500/30",
+    },
+  ];
+
+  const rounds = [
+    {
+      id: "round1",
+      title: "Preliminary Round",
+      date: "15/03/2025 - 30/03/2025",
+      format: "Online qualification challenge with provided dataset",
+      description:
+        "Teams analyze a business case study and submit their solutions online",
+      icon: "📊",
+    },
+    {
+      id: "round2",
+      title: "Semi-Final Round",
+      date: "15/04/2025 - 25/04/2025",
+      format: "Advanced business case with real-world data",
+      description:
+        "Shortlisted teams work on complex analytical problems with mentorship",
+      icon: "🚀",
+    },
+    {
+      id: "round3",
+      title: "Grand Finale",
+      date: "10/05/2025",
+      format: "Live presentation to industry expert judges",
+      description:
+        "Finalists present their solutions to a panel of industry professionals",
+      icon: "🏆",
     },
   ];
 
@@ -51,8 +166,40 @@ export default function RBACCompetitionPage() {
     return () => clearInterval(interval);
   }, []);
 
+  const FloatingOrb = ({
+    delay,
+    size,
+    color,
+    position,
+  }: {
+    delay: number;
+    size: string;
+    color: string;
+    position: string;
+  }) => (
+    <motion.div
+      className={`absolute ${position} ${size} ${color} rounded-full blur-2xl`}
+      animate={{
+        y: [0, -40, 0],
+        scale: [1, 1.2, 1],
+      }}
+      transition={{
+        duration: 6,
+        delay,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+    />
+  );
+
   return (
-    <div className="relative w-full min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 overflow-hidden">
+    <motion.div
+      ref={sectionRef}
+      initial="hidden"
+      animate={"visible"}
+      variants={containerVariants}
+      className="relative w-full min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 overflow-hidden"
+    >
       {/* Background Elements */}
       <div
         className={cn(
@@ -60,234 +207,387 @@ export default function RBACCompetitionPage() {
           `bg-[url('/backgrounds/rbac-hero-mobile.png')] md:bg-[url('/backgrounds/rbac.png')]`
         )}
       />
+
       <div
         ref={bgRef}
         className="absolute inset-0 matrix-bg opacity-20 md:opacity-100"
       />
+
       <div className="absolute inset-0 tech-grid opacity-30" />
 
-      <div
+      {/* Animated Floating Orbs */}
+      <motion.div
         ref={floatingRef}
-        className="absolute inset-0 overflow-hidden transition-transform duration-100"
+        className="absolute inset-0 overflow-hidden"
         style={{ transform: `translateY(${floatingOffset}px)` }}
       >
-        <div className="absolute top-20 left-20 w-32 h-32 bg-blue-500/20 rounded-full blur-xl pulse-glow float-animation"></div>
-        <div
-          className="absolute top-40 right-32 w-24 h-24 bg-purple-500/20 rounded-full blur-lg pulse-glow float-animation"
-          style={{ animationDelay: "2s" }}
-        ></div>
-        <div
-          className="absolute bottom-32 left-1/3 w-40 h-40 bg-cyan-500/20 rounded-full blur-2xl pulse-glow float-animation"
-          style={{ animationDelay: "4s" }}
-        ></div>
-        <div
-          className="absolute top-1/2 right-1/4 w-16 h-16 bg-pink-500/20 rounded-full blur-md pulse-glow float-animation"
-          style={{ animationDelay: "1s" }}
-        ></div>
-      </div>
-
-      <div
-        className="absolute inset-0 pointer-events-none transition-transform duration-100"
-        style={{ transform: `translateY(${floatingOffset * 0.7}px)` }}
-      >
-        <div className="absolute top-1/4 left-10 w-20 h-20 border-2 border-blue-400/30 rotate-45 float-animation"></div>
-        <div
-          className="absolute bottom-1/4 right-10 w-16 h-16 border-2 border-purple-400/30 rotate-12 float-animation"
-          style={{ animationDelay: "3s" }}
-        ></div>
-        <div
-          className="absolute top-1/3 right-1/3 w-12 h-12 border-2 border-cyan-400/30 rotate-45 float-animation"
-          style={{ animationDelay: "1.5s" }}
-        ></div>
-      </div>
+        <FloatingOrb
+          delay={0}
+          size="w-32 h-32"
+          color="bg-blue-500/20"
+          position="top-20 left-20"
+        />
+        <FloatingOrb
+          delay={2}
+          size="w-24 h-24"
+          color="bg-purple-500/20"
+          position="top-40 right-32"
+        />
+        <FloatingOrb
+          delay={4}
+          size="w-40 h-40"
+          color="bg-cyan-500/20"
+          position="bottom-32 left-1/3"
+        />
+        <FloatingOrb
+          delay={1}
+          size="w-16 h-16"
+          color="bg-pink-500/20"
+          position="top-1/2 right-1/4"
+        />
+      </motion.div>
 
       {/* Main Content */}
       <div className="relative z-10 container mx-auto px-4 pt-20 pb-3 md:pb-20 md:pt-32">
-        <div className="text-center mb-16 animate-fade-in-up text-white glow-effect">
-          <h1
-            className="text-4xl md:text-6xl font-bold bg-gradient-to-r primary-gradient bg-clip-text text-transparent
-           mb-4 text-balance animate-slide-in-left"
+        {/* Hero Section */}
+        <motion.div variants={staggerContainer} className="text-center mb-16">
+          <motion.h1
+            variants={slideInLeft}
+            className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent mb-4"
           >
             RMIT Business Analytics Champion
-          </h1>
-          <p className="text-xl text-blue-100 max-w-3xl mx-auto animate-slide-in-right animation-delay-300">
+          </motion.h1>
+          <motion.p
+            variants={slideInRight}
+            className="text-xl text-blue-100 max-w-3xl mx-auto"
+          >
             Season 6: The premier competition for aspiring data analysts and
             business strategists
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        <section className="mb-20">
-          <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-8 border border-slate-700/50 animate-fade-in-up animation-delay-600">
-            <h2 className="text-3xl font-bold text-white mb-8 text-center">
+        {/* Rules and Regulations */}
+        <motion.section variants={fadeInUp} className="mb-20">
+          <motion.div
+            variants={itemVariants}
+            className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700/50"
+          >
+            <motion.h2
+              variants={itemVariants}
+              className="text-3xl font-bold text-white mb-8 text-center"
+            >
               Rules and Regulations
-            </h2>
+            </motion.h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <motion.div
+              variants={staggerContainer}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            >
               {/* Eligibility */}
-              <div className="bg-blue-900/30 border border-purple-100/20 px-4 py-6 rounded-lg hover:bg-blue-900/40 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 animate-slide-in-left animation-delay-900">
+              <motion.div
+                variants={itemVariants}
+                whileHover={{ scale: 1.02, y: -5 }}
+                className="bg-blue-900/30 border border-blue-500/20 rounded-xl p-6 transition-all duration-300 hover:border-blue-400/50"
+              >
                 <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
-                  <div className="w-3 h-3 bg-blue-400 rounded-full mr-2 animate-pulse"></div>
+                  <motion.div
+                    className="w-3 h-3 bg-blue-400 rounded-full mr-3"
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  />
                   Eligibility
                 </h3>
                 <ul className="space-y-3 text-blue-100">
-                  <li className="flex items-start hover:text-white transition-colors">
-                    <span className="text-white mr-2">•</span>
-                    All nationalities are accepted
-                  </li>
-                  <li className="flex items-start hover:text-white transition-colors">
-                    <span className="text-white mr-2">•</span>
-                    Participants must be undergraduate students currently
-                    studying in universities in Vietnam
-                  </li>
-                  <li className="flex items-start hover:text-white transition-colors">
-                    <span className="text-white mr-2">•</span>
-                    Top 5 finalists of previous RBAC seasons are not allowed to
-                    participate
-                  </li>
+                  {[
+                    "All nationalities are accepted",
+                    "Participants must be undergraduate students currently studying in universities in Vietnam",
+                    "Top 5 finalists of previous RBAC seasons are not allowed to participate",
+                  ].map((item, index) => (
+                    <motion.li
+                      key={index}
+                      className="flex items-start"
+                      whileHover={{ x: 5 }}
+                    >
+                      <span className="text-blue-400 mr-2">•</span>
+                      {item}
+                    </motion.li>
+                  ))}
                 </ul>
-              </div>
+              </motion.div>
 
               {/* Registration */}
-              <div className="bg-blue-900/30 border border-purple-100/20 px-4 py-6 rounded-lg hover:bg-blue-900/40 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 animate-slide-in-up animation-delay-1200">
+              <motion.div
+                variants={itemVariants}
+                whileHover={{ scale: 1.02, y: -5 }}
+                className="bg-purple-900/30 border border-purple-500/20 rounded-xl p-6 transition-all duration-300 hover:border-purple-400/50"
+              >
                 <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
-                  <div className="w-3 h-3 bg-blue-400 rounded-full mr-2 animate-pulse animation-delay-300"></div>
+                  <motion.div
+                    className="w-3 h-3 bg-purple-400 rounded-full mr-3"
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
+                  />
                   Registration
                 </h3>
                 <ul className="space-y-3 text-blue-100">
-                  <li className="flex items-start hover:text-white transition-colors">
-                    <span className="text-white mr-2">•</span>A team must
-                    consist of 4 members
-                  </li>
-                  <li className="flex items-start hover:text-white transition-colors">
-                    <span className="text-white mr-2">•</span>
-                    Each contestant can only join one team
-                  </li>
-                  <li className="flex items-start hover:text-white transition-colors">
-                    <span className="text-white mr-2">•</span>
-                    Teams may consist of students from different universities
-                  </li>
-                  <li className="flex items-start hover:text-white transition-colors">
-                    <span className="text-white mr-2">•</span>
-                    Member changes must be requested before registration closes
-                  </li>
+                  {[
+                    "A team must consist of 4 members",
+                    "Each contestant can only join one team",
+                    "Teams may consist of students from different universities",
+                    "Member changes must be requested before registration closes",
+                  ].map((item, index) => (
+                    <motion.li
+                      key={index}
+                      className="flex items-start"
+                      whileHover={{ x: 5 }}
+                    >
+                      <span className="text-purple-400 mr-2">•</span>
+                      {item}
+                    </motion.li>
+                  ))}
                 </ul>
-              </div>
+              </motion.div>
 
               {/* Notes */}
-              <div className="md:col-span-full lg:col-span-1 bg-blue-900/30 border border-purple-100/20 px-4 py-6 rounded-lg hover:bg-blue-900/40 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 animate-slide-in-right animation-delay-1500">
+              <motion.div
+                variants={itemVariants}
+                whileHover={{ scale: 1.02, y: -5 }}
+                className="bg-cyan-900/30 border border-cyan-500/20 rounded-xl p-6 transition-all duration-300 hover:border-cyan-400/50"
+              >
                 <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
-                  <div className="w-3 h-3 bg-blue-400 rounded-full mr-2 animate-pulse animation-delay-600"></div>
+                  <motion.div
+                    className="w-3 h-3 bg-cyan-400 rounded-full mr-3"
+                    animate={{ scale: [1, 1.2, 1] }}
+                    transition={{ duration: 2, repeat: Infinity, delay: 1 }}
+                  />
                   Notes
                 </h3>
                 <ul className="space-y-3 text-blue-100">
-                  <li className="flex items-start hover:text-white transition-colors">
-                    <span className="text-white mr-2">•</span>
-                    Teams must comply with all regulations and deadlines
-                  </li>
-                  <li className="flex items-start hover:text-white transition-colors">
-                    <span className="text-white mr-2">•</span>
-                    All sessions and submissions must be in English
-                  </li>
-                  <li className="flex items-start hover:text-white transition-colors">
-                    <span className="text-white mr-2">•</span>
-                    Organizers reserve the right to disqualify any violating
-                    teams
-                  </li>
+                  {[
+                    "Teams must comply with all regulations and deadlines",
+                    "All sessions and submissions must be in English",
+                    "Organizers reserve the right to disqualify any violating teams",
+                  ].map((item, index) => (
+                    <motion.li
+                      key={index}
+                      className="flex items-start"
+                      whileHover={{ x: 5 }}
+                    >
+                      <span className="text-cyan-400 mr-2">•</span>
+                      {item}
+                    </motion.li>
+                  ))}
                 </ul>
-              </div>
-            </div>
-          </div>
-        </section>
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        </motion.section>
 
-        <section className="mb-20">
-          <h2 className="text-3xl font-bold text-white mb-8 text-center animate-fade-in-up">
-            Round Format
-          </h2>
+        {/* Round Format */}
+        <motion.section variants={fadeInUp} className="mb-20">
+          <motion.h2
+            variants={itemVariants}
+            className="text-3xl font-bold text-white mb-8 text-center"
+          >
+            Competition Timeline
+          </motion.h2>
 
-          <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-8 border border-purple-100/50 animate-fade-in-up animation-delay-300">
-            <div className="flex flex-wrap justify-center mb-8">
-              {["round1", "round2", "round3"].map((round, index) => (
-                <button
-                  key={round}
+          <motion.div
+            variants={itemVariants}
+            className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700/50"
+          >
+            {/* Round Selection */}
+            <motion.div
+              variants={staggerContainer}
+              className="flex flex-wrap justify-center gap-4 mb-8"
+            >
+              {rounds.map((round, index) => (
+                <motion.button
+                  key={round.id}
+                  variants={itemVariants}
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={() => setActiveRound(round.id)}
                   className={cn(
-                    `px-6 py-3 mx-2 mb-2 rounded-lg transition-all duration-300 hover:scale-105 
-                    border-2 border-purple-200/20`,
-                    activeRound === round
-                      ? "bg-blue-600 text-white shadow-lg shadow-blue-500/30"
-                      : "bg-slate-700/50 text-blue-200 hover:bg-slate-700"
+                    "px-6 py-3 rounded-xl transition-all duration-300 border-2 font-semibold",
+                    activeRound === round.id
+                      ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white border-transparent shadow-lg shadow-blue-500/30"
+                      : "bg-slate-700/50 text-blue-200 border-slate-600 hover:bg-slate-700/70"
                   )}
-                  onClick={() => setActiveRound(round)}
-                  style={{ animationDelay: `${600 + index * 200}ms` }}
                 >
-                  Round {index + 1}
-                </button>
+                  {round.icon} {round.title}
+                </motion.button>
               ))}
-            </div>
+            </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <div className="border border-purple-100/30 bg-blue-900/30 p-6 rounded-lg hover:bg-blue-900/40 transition-all duration-300 hover:scale-105 animate-slide-in-left animation-delay-900">
-                <h3 className="text-xl font-semibold text-white mb-4">Date</h3>
-                <p className="text-blue-100">DD/MM/YYYY</p>
-              </div>
+            {/* Round Details */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeRound}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.3 }}
+                className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+              >
+                {rounds
+                  .filter((round) => round.id === activeRound)
+                  .map((round) => (
+                    <div key={round.id}>
+                      <motion.div
+                        className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 border border-blue-500/20 rounded-xl p-6 mb-6"
+                        whileHover={{ scale: 1.02 }}
+                      >
+                        <h3 className="text-xl font-semibold text-white mb-3">
+                          📅 Date
+                        </h3>
+                        <p className="text-blue-100 text-lg">{round.date}</p>
+                      </motion.div>
 
-              <div className="border border-purple-100/30 bg-blue-900/30 p-6 rounded-lg hover:bg-blue-900/40 transition-all duration-300 hover:scale-105 animate-slide-in-right animation-delay-1200">
-                <h3 className="text-xl font-semibold text-white mb-4">
-                  Format
-                </h3>
-                <p className="text-blue-100">
-                  {activeRound === "round1" &&
-                    "Preliminary analysis challenge with dataset provided"}
-                  {activeRound === "round2" &&
-                    "Advanced business case study with real-world data"}
-                  {activeRound === "round3" &&
-                    "Final presentation to industry expert judges"}
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+                      <motion.div
+                        className="bg-gradient-to-r from-purple-900/30 to-pink-900/30 border border-purple-500/20 rounded-xl p-6"
+                        whileHover={{ scale: 1.02 }}
+                      >
+                        <h3 className="text-xl font-semibold text-white mb-3">
+                          🎯 Format
+                        </h3>
+                        <p className="text-blue-100">{round.format}</p>
+                        <p className="text-blue-200 mt-2 text-sm">
+                          {round.description}
+                        </p>
+                      </motion.div>
+                    </div>
+                  ))}
 
-        <section className="mb-20">
-          <h2 className="text-3xl font-bold text-white mb-8 text-center animate-fade-in-up">
+                <motion.div
+                  className="bg-gradient-to-br from-slate-900/50 to-blue-900/30 border border-slate-600/50 rounded-xl p-6 h-full"
+                  whileHover={{ scale: 1.02 }}
+                >
+                  <h3 className="text-xl font-semibold text-white mb-4">
+                    🏆 What to Expect
+                  </h3>
+                  <ul className="space-y-3 text-blue-100">
+                    <motion.li
+                      className="flex items-center"
+                      whileHover={{ x: 5 }}
+                    >
+                      <span className="text-green-400 mr-3">✓</span>
+                      Real-world business challenges
+                    </motion.li>
+                    <motion.li
+                      className="flex items-center"
+                      whileHover={{ x: 5 }}
+                    >
+                      <span className="text-green-400 mr-3">✓</span>
+                      Industry expert mentorship
+                    </motion.li>
+                    <motion.li
+                      className="flex items-center"
+                      whileHover={{ x: 5 }}
+                    >
+                      <span className="text-green-400 mr-3">✓</span>
+                      Networking opportunities
+                    </motion.li>
+                    <motion.li
+                      className="flex items-center"
+                      whileHover={{ x: 5 }}
+                    >
+                      <span className="text-green-400 mr-3">✓</span>
+                      Career development workshops
+                    </motion.li>
+                  </ul>
+                </motion.div>
+              </motion.div>
+            </AnimatePresence>
+          </motion.div>
+        </motion.section>
+
+        {/* Prize Structure */}
+        <motion.section variants={fadeInUp} className="mb-20">
+          <motion.h2
+            variants={itemVariants}
+            className="text-3xl font-bold text-white mb-8 text-center"
+          >
             Prize Structure
-          </h2>
+          </motion.h2>
 
           {/* Featured Prize Carousel */}
-          <div className="mb-12 relative">
-            <img
-              src="/logo.png"
-              alt="Rotating Cube"
-              className="absolute -top-3 left-2 w-20 h-20 opacity-50 
-              animate-spin-slow pointer-events-none z-3"
-            />
-            <img
-              src="/components/logo-purple.png"
-              alt="Rotating Cube"
-              className="absolute bottom-3 right-2 w-20 h-20 opacity-50 
-              animate-spin-slow pointer-events-none z-3"
-            />
-            <div className="bg-gradient-to-r from-blue-900/70 via-purple-900/70 to-blue-900/70 backdrop-blur-sm rounded-2xl p-8 text-center border border-blue-500/30 shadow-2xl shadow-blue-500/20 animate-fade-in-up animation-delay-300">
-              <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mb-6 animate-pulse">
-                <span className="text-3xl font-bold text-white">
-                  {prizes[currentPrizeIndex].position}
-                </span>
-              </div>
-              <h3 className="text-3xl font-bold text-white mb-4">
-                {prizes[currentPrizeIndex].place}
-              </h3>
-              <p className="text-4xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-4">
-                {prizes[currentPrizeIndex].amount}
-              </p>
-              <p className="text-blue-200 text-lg">
-                {prizes[currentPrizeIndex].extras}
-              </p>
-            </div>
+          <motion.div variants={itemVariants} className="mb-12 relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentPrizeIndex}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 1.1 }}
+                transition={{ duration: 0.5 }}
+                className={cn(
+                  "bg-gradient-to-r backdrop-blur-sm rounded-2xl p-8 text-center border shadow-2xl",
+                  `from-${
+                    prizes[currentPrizeIndex].gradient.split(" ")[0]
+                  }/20 to-${
+                    prizes[currentPrizeIndex].gradient.split(" ")[2]
+                  }/20`,
+                  `border-${
+                    prizes[currentPrizeIndex].gradient.split(" ")[0]
+                  }/30`,
+                  prizes[currentPrizeIndex].glow
+                )}
+              >
+                <motion.div
+                  className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br rounded-full mb-6"
+                  animate={{ rotate: [0, 360] }}
+                  transition={{
+                    duration: 20,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
+                  style={{
+                    background: `linear-gradient(45deg, ${prizes[
+                      currentPrizeIndex
+                    ].gradient
+                      .replace("from-", "")
+                      .replace("to-", "")
+                      .replace(" ", ", ")})`,
+                  }}
+                >
+                  <span className="text-3xl font-bold text-white">
+                    {prizes[currentPrizeIndex].position}
+                  </span>
+                </motion.div>
+                <h3 className="text-3xl font-bold text-white mb-4">
+                  {prizes[currentPrizeIndex].place}
+                </h3>
+                <motion.p
+                  className="text-4xl font-bold bg-gradient-to-r bg-clip-text text-transparent mb-4"
+                  style={{
+                    background: `linear-gradient(45deg, ${prizes[
+                      currentPrizeIndex
+                    ].gradient
+                      .replace("from-", "")
+                      .replace("to-", "")
+                      .replace(" ", ", ")})`,
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                  }}
+                >
+                  {prizes[currentPrizeIndex].amount}
+                </motion.p>
+                <p className="text-blue-200 text-lg">
+                  {prizes[currentPrizeIndex].extras}
+                </p>
+              </motion.div>
+            </AnimatePresence>
 
             {/* Carousel Dots */}
-            <div className="flex justify-center mt-6 space-x-2">
+            <motion.div
+              variants={itemVariants}
+              className="flex justify-center mt-6 space-x-2"
+            >
               {prizes.map((_, index) => (
-                <button
+                <motion.button
                   key={index}
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 0.9 }}
                   className={`w-3 h-3 rounded-full transition-all duration-300 ${
                     index === currentPrizeIndex
                       ? "bg-blue-400 scale-125"
@@ -296,124 +596,118 @@ export default function RBACCompetitionPage() {
                   onClick={() => setCurrentPrizeIndex(index)}
                 />
               ))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* All Prizes Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-4 lg:items-end relative">
+          <motion.div
+            variants={prizeStagger}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4"
+          >
             {prizes.map((prize, index) => (
-              <div
+              <motion.div
                 key={index}
+                variants={itemVariants}
+                whileHover={{
+                  scale: 1.05,
+                  y: -10,
+                  transition: { duration: 0.3 },
+                }}
                 className={cn(
-                  `bg-gradient-to-b backdrop-blur-md from-blue-900/70 to-red-800/30 
-                  border border-purple-100 md:border-0
-                  relative
-                    rounded-xl text-center h-58
-                    flex flex-col items-center justify-center
-                    transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 animate-slide-in-up`,
-                  index === 0
-                    ? "col-span-1 md:col-span-2 lg:col-span-2 md:order-1 lg:order-2 from-yellow-400/70 to-red-500/30"
-                    : index === 1
-                    ? "md:order-3 lg:order-1 lg:col-span-2 from-cyan-700/70 to-red-500/30"
-                    : index === 2
-                    ? "md:order-4 lg:order-3 lg:col-span-2 from-amber-700/70 to-red-500/30"
-                    : index === 3
-                    ? "md:order-5 lg:col-start-2 lg:order-4 lg:col-span-2 "
-                    : "md:order-2 lg:order-5 lg:col-span-2",
-                  { "lg:h-84": index == 0, "md:h-72": index == 1 }
+                  "bg-gradient-to-b backdrop-blur-md rounded-xl p-6 text-center border h-64 flex flex-col items-center justify-center relative overflow-hidden",
+                  `from-${prize.gradient.split(" ")[0]}/20 to-${
+                    prize.gradient.split(" ")[2]
+                  }/30`,
+                  `border-${prize.gradient.split(" ")[0]}/30 hover:${
+                    prize.glow
+                  }`
                 )}
-                style={{ animationDelay: `${600 + index * 150}ms` }}
               >
-                {index == 0 && (
-                  <>
-                  <img
-                    src="/components/rotate-cube.png"
-                    alt="Rotating Cube"
-                    className="absolute -top-2 left-1/2 -translate-x-1/2 w-32 h-32 opacity-60
-                    pointer-events-none z-1 animate-float"
-                  />
-                  <img
-                    src="/components/rubik_bars.png"
-                    alt="Rubik's Bars"
-                    className="absolute -bottom-2 -left-2 w-32 h-32 opacity-30
-                    pointer-events-none"
-                  />
-                </>
-                )}
-                {index == 1 && (
-                  <img
-                    src="/logo.png"
-                    alt="Rotating Cube"
-                    className="absolute top-5 left-5 w-16 h-16 opacity-60
-              pointer-events-none z-3 animate-bounce"
-                  />
-                )}
-                {index == 2 && (
-                  <img
-                    src="/components/logo-purple.png"
-                    alt="Rotating Cube"
-                    className="absolute top-5 left-5 w-16 h-16 opacity-40
-                    pointer-events-none z-3 animate-bounce"
-                  />
-                )}
-                <div
+                <motion.div
                   className={cn(
-                    `inline-flex items-center justify-center w-12 h-12 
-                    rounded-full mb-4 hover:bg-blue-600 transition-colors`,
-                    {
-                      "bg-gradient-to-br from-yellow-200 to-yellow-400 text-yellow-600":
-                        index === 0,
-                      "bg-gradient-to-br from-gray-300 to-gray-500/80 text-gray-700":
-                        index === 1,
-                      "bg-gradient-to-br from-amber-500 to-amber-600/80 text-amber-200":
-                        index === 2,
-                      "bg-blue-700 text-purple-100": index > 2,
-                    }
+                    "inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 text-white font-bold text-xl",
+                    `bg-gradient-to-br ${prize.gradient}`
                   )}
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.5 }}
                 >
-                  <span className={`text-xl font-bold`}>{prize.position}</span>
-                </div>
-                <h3 className={`text-lg font-semibold text-white mb-2`}>
+                  {prize.position}
+                </motion.div>
+                <h3 className="text-lg font-semibold text-white mb-2">
                   {prize.place}
                 </h3>
-                <p
-                  className={`${
-                    index === 0 ? "text-2xl" : index < 2 ? "text-xl" : "text-lg"
-                  } font-bold text-white mb-2`}
-                >
+                <p className="text-xl font-bold text-white mb-2">
                   {prize.amount}
                 </p>
-                <p className="text-blue-200">{prize.extras}</p>
-              </div>
+                <p className="text-blue-200 text-sm">{prize.extras}</p>
+              </motion.div>
             ))}
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
 
-        <section className="mb-20">
-          <h2 className="text-3xl font-bold text-white mb-8 text-center animate-fade-in-up">
-            Our Judges
-          </h2>
+        {/* Judges Section */}
+        <motion.section variants={fadeInUp} className="mb-20">
+          <motion.h2
+            variants={itemVariants}
+            className="text-3xl font-bold text-white mb-8 text-center"
+          >
+            Our Esteemed Judges
+          </motion.h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[1, 2, 3, 4].map((judge, index) => (
-              <div
-                key={judge}
-                className="bg-slate-800/50 backdrop-blur-md rounded-xl p-6 text-center hover:bg-slate-800/70 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/20 animate-slide-in-up"
-                style={{ animationDelay: `${300 + index * 200}ms` }}
+          <motion.div
+            variants={staggerContainer}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+          >
+            {[
+              {
+                name: "Dr. Sarah Chen",
+                company: "Google",
+                role: "Head of Data Analytics",
+              },
+              {
+                name: "Michael Rodriguez",
+                company: "PwC",
+                role: "Senior Partner",
+              },
+              {
+                name: "Emily Watson",
+                company: "Samsung",
+                role: "Business Intelligence Director",
+              },
+              {
+                name: "David Kim",
+                company: "Microsoft",
+                role: "AI Solutions Architect",
+              },
+            ].map((judge, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                whileHover={{ scale: 1.05, y: -5 }}
+                className="bg-slate-800/50 backdrop-blur-md rounded-xl p-6 text-center border border-slate-700/50 hover:border-blue-500/30 transition-all duration-300"
               >
-                <div className="w-24 h-24 bg-gradient-to-br from-slate-700 to-slate-600 rounded-full mx-auto mb-4 flex items-center justify-center hover:from-blue-700 hover:to-blue-600 transition-all duration-300">
-                  <span className="text-3xl text-blue-300">J{judge}</span>
-                </div>
+                <motion.div
+                  className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center"
+                  whileHover={{ scale: 1.1 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <span className="text-2xl text-white">
+                    {judge.name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")}
+                  </span>
+                </motion.div>
                 <h3 className="text-xl font-semibold text-white mb-2">
-                  Expert Judge
+                  {judge.name}
                 </h3>
-                <p className="text-blue-200">Industry Professional</p>
-                <p className="text-blue-200 mt-2">Company Name</p>
-              </div>
+                <p className="text-blue-300 font-medium">{judge.role}</p>
+                <p className="text-blue-200 mt-2">{judge.company}</p>
+              </motion.div>
             ))}
-          </div>
-        </section>
+          </motion.div>
+        </motion.section>
       </div>
-    </div>
+    </motion.div>
   );
 }
