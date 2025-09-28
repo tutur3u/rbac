@@ -187,7 +187,7 @@ export function Navbar() {
                 RBAC Season 6
               </Link>
 
-              <div className="space-y-2">
+              <div className="space-y-2 px-2">
                 <div className="text-background font-medium py-2 flex items-center">
                   RBAC Seasons
                   <ChevronDown className="ml-2 h-4 w-4" />

@@ -267,7 +267,7 @@ export function EligibilitySection() {
 
   return (
     <motion.section
-      className="py-20 relative overflow-hidden bg-gradient-to-br from-primary via-secondary to-primary/60"
+      className="py-20 relative overflow-hidden bg-gradient-to-br from-primary via-secondary/30 to-muted/20"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
