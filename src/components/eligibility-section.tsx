@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { CheckCircle } from "lucide-react";
 import { criteria } from "@/lib/display-constants";
@@ -12,16 +12,78 @@ import {
 } from "@/components/ui/carousel";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
+import { motion, Variants } from "motion/react";
+
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      duration: 0.8,
+    },
+  },
+} as Variants;
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut",
+    },
+  },
+} as Variants;
+
+const cardVariants = {
+  hidden: { opacity: 0, scale: 0.9, y: 30 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+  hover: {
+    scale: 1.05,
+    y: -8,
+    rotate: 1,
+    transition: {
+      duration: 0.3,
+      ease: "easeInOut",
+    },
+  },
+} as Variants;
+
+const iconVariants = {
+  hidden: { opacity: 0, scale: 0, rotate: -180 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    rotate: 0,
+    transition: {
+      duration: 0.8,
+      ease: "backOut",
+    },
+  },
+  hover: {
+    scale: 1.2,
+    rotate: 12,
+    transition: {
+      duration: 0.3,
+      ease: "easeInOut",
+    },
+  },
+} as Variants;
 
 export function EligibilitySection() {
-  const [isVisible, setIsVisible] = useState(false);
-  const isMobile = useIsMobile();
   const [activeCard, setActiveCard] = useState<number | null>(null);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 100);
-    return () => clearTimeout(timer);
-  }, []);
+  const isMobile = useIsMobile();
 
   const renderCard = (
     criterion: (typeof criteria)[number],
@@ -36,10 +98,7 @@ export function EligibilitySection() {
         key={index}
         className={cn(
           `relative group cursor-pointer transition duration-700 h-full`,
-          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20",
-          {
-            isLarge: "lg:col-span-1",
-          }
+          { isLarge: "lg:col-span-1" }
         )}
         style={{ animationDelay: criterion.delay }}
         onMouseEnter={() => setActiveCard(index)}
@@ -170,9 +229,11 @@ export function EligibilitySection() {
             </p>
 
             {/* Success indicator */}
-            <div className="flex items-center gap-2 justify-center md:justify-start
+            <div
+              className="flex items-center gap-2 justify-center md:justify-start
             mt-4 opacity-0 group-hover:opacity-100 group-active:opacity-100 
-            transition delay-200">
+            transition delay-200"
+            >
               <CheckCircle className={`w-4 h-4 text-green-400`} />
               <span className="text-sm text-green-400 font-medium">
                 Requirement Clear
@@ -205,93 +266,130 @@ export function EligibilitySection() {
   };
 
   return (
-    <section
-      className="py-20 relative overflow-hidden bg-gradient-to-br 
-    from-primary via-secondary to-primary/60"
+    <motion.section
+      className="py-20 relative overflow-hidden bg-gradient-to-br from-primary via-secondary to-primary/60"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={containerVariants}
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-secondary-foreground/40 rounded-full blur-3xl animate-pulse" />
-        <div
-          className="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary/30 rounded-full blur-3xl animate-pulse"
-          style={{ animationDelay: "1s" }}
+        <motion.div
+          className="absolute -top-40 -right-40 w-80 h-80 bg-secondary-foreground/40 rounded-full blur-3xl"
+          animate={{
+            opacity: [0.3, 0.6, 0.3],
+            scale: [1, 1.1, 1],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
         />
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-sidebar-accent/25 rounded-full blur-3xl animate-pulse"
-          style={{ animationDelay: "2s" }}
+        <motion.div
+          className="absolute -bottom-40 -left-40 w-80 h-80 bg-secondary/30 rounded-full blur-3xl"
+          animate={{
+            opacity: [0.2, 0.5, 0.2],
+            scale: [1, 1.2, 1],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1,
+          }}
         />
-        <div className="absolute inset-0 tech-grid opacity-60"></div>
+        <div className="absolute inset-0 tech-grid opacity-60" />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
-        <div
-          className={`text-center mb-16 transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
-        >
-          <div className="inline-block">
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent leading-tight">
-              Who Can Join Our
-              <br />
-              <div className="relative">
-                <span className="text-background z-1">Competition</span>
-                <div
-                  className="absolute -inset-1 
-                bg-gradient-to-r from-blue-500 to-secondary opacity-20 blur-lg rounded-lg animate-pulse"
-                />
-              </div>
-            </h2>
-          </div>
+        {/* Header */}
+        <motion.div className="text-center mb-16" variants={itemVariants}>
+          <motion.h2
+            className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
+            whileHover={{ scale: 1.05 }}
+            transition={{ duration: 0.3 }}
+          >
+            <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
+              Who Should Join Our
+            </span>
+            <br />
+            <motion.span
+              className="text-background relative"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.3 }}
+            >
+              Competition
+              <motion.div
+                className="absolute -inset-1 bg-gradient-to-r from-blue-500 to-secondary opacity-20 blur-lg rounded-lg"
+                animate={{
+                  opacity: [0.1, 0.3, 0.1],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+            </motion.span>
+          </motion.h2>
 
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto text-pretty leading-relaxed">
-            Meet these futuristic criteria to participate in our
+          <motion.p
+            className="text-xl text-slate-300 max-w-3xl mx-auto text-pretty leading-relaxed mb-4"
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.3 }}
+          >
+            Meet these criteria to participate in our{" "}
             <span className="text-accent-foreground font-semibold">
-              {" "}
               innovative tech challenge
             </span>
-          </p>
+          </motion.p>
 
           {/* Decorative line */}
-          <div className="mt-8 flex justify-center">
+          <motion.div
+            className="mt-8 flex justify-center"
+            whileHover={{ scaleX: 1.2 }}
+            transition={{ duration: 0.3 }}
+          >
             <div className="w-24 h-1 bg-gradient-to-r from-transparent via-secondary-foreground to-transparent rounded-full" />
-          </div>
-          <p className="text-xl text-slate-300 max-w-3xl mx-auto text-pretty leading-relaxed">
-            Hover the card to see the
-            <span className="text-accent-foreground font-semibold"> magic</span>
-          </p>
-        </div>
+          </motion.div>
 
+          <motion.p
+            className="text-xl text-slate-300 max-w-3xl mx-auto text-pretty leading-relaxed mt-4"
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.3 }}
+          >
+            Hover the cards to see the{" "}
+            <span className="text-accent-foreground font-semibold">magic</span>
+          </motion.p>
+        </motion.div>
+
+        {/* Cards Layout - Updated for 4 cards */}
         {isMobile ? (
           <Carousel className="w-full relative px-10">
             <CarouselPrevious className="absolute left-0 z-10 text-background w-12 h-12" />
-            <CarouselContent className="w-full px-2 py-5">
+            <CarouselContent>
               {criteria.map((criterion, index) => (
-                <CarouselItem key={index} className="w-full">
-                  {renderCard(criterion, index, false)}
+                <CarouselItem key={index}>
+                  {renderCard(criterion, index)}
                 </CarouselItem>
               ))}
             </CarouselContent>
             <CarouselNext className="absolute right-0 z-10 text-background w-12 h-12" />
           </Carousel>
         ) : (
-          <div className="max-w-7xl mx-auto space-y-8">
-            <div className="grid lg:grid-cols-3 gap-6">
-              {criteria
-                .slice(0, 3)
-                .map((criterion, index) => renderCard(criterion, index, true))}
-            </div>
-
-            {/* Second Row - 2 Items */}
-            <div className="grid lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
-              {criteria
-                .slice(3, 5)
-                .map((criterion, index) =>
-                  renderCard(criterion, index + 3, false)
-                )}
-            </div>
-          </div>
+          <motion.div
+            className="grid md:grid-cols-2 gap-4 max-w-6xl mx-auto"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+          >
+            {criteria.map((criterion, index) => renderCard(criterion, index))}
+          </motion.div>
         )}
       </div>
-    </section>
+    </motion.section>
   );
 }

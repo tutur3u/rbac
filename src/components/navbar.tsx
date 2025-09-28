@@ -19,7 +19,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Menu, ChevronDown } from "lucide-react";
-import { seasons } from "@/lib/nav-constants";
+import { FORM_LINK, seasons } from "@/lib/nav-constants";
 import Image from "next/image";
 
 export function Navbar() {
@@ -47,15 +47,19 @@ export function Navbar() {
     >
       <div className="w-full max-w-7xl mx-auto flex items-center justify-between px-4 h-16">
         {/* Logo */}
-        <Link href="/" aria-label="Home" className="flex items-center space-x-2">
+        <Link
+          href="/"
+          aria-label="Home"
+          className="flex items-center space-x-2"
+        >
           <Image
-            src="/logo.png"
+            src="/logo-main.png"
             alt="Logo"
-            className="w-8 h-8"
-            height={32}
-            width={32}
+            className="hover:animate-spin hover:duration-2000"
+            height={72}
+            width={72}
           />
-          <span className="block md:hidden lg:block font-bold text-xl bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+          <span className="block md:hidden lg:block font-bold text-xl text-white">
             RBAC
           </span>
         </Link>
@@ -130,7 +134,7 @@ export function Navbar() {
               Contact Us
             </Button>
           </Link>
-          <Link href="/join">
+          <Link href={FORM_LINK} target="_blank" rel="noopener noreferrer">
             <Button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold px-6 shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 transition-all duration-300">
               Join Now
             </Button>

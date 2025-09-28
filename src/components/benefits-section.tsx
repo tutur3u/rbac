@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Trophy, Sparkles, ArrowRight } from "lucide-react";
 import { benefits } from "@/lib/display-constants";
@@ -12,16 +12,116 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { motion, Variants } from "motion/react";
+import Link from "next/link";
+import { FORM_LINK } from "@/lib/nav-constants";
+import { floatAnimation } from "@/lib/motion-variants";
+
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      duration: 0.8,
+    },
+  },
+} as Variants;
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: "easeOut",
+    },
+  },
+} as Variants;
+
+const cardVariants = {
+  hidden: { opacity: 0, scale: 0.9, y: 30 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+  hover: {
+    scale: 1.05,
+    y: -8,
+    transition: {
+      duration: 0.3,
+      ease: "easeInOut",
+    },
+  },
+} as Variants;
+
+const iconVariants = {
+  hidden: { opacity: 0, scale: 0, rotate: -180 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    rotate: 0,
+    transition: {
+      duration: 0.8,
+      ease: "backOut",
+    },
+  },
+  hover: {
+    scale: 1.2,
+    rotate: 12,
+    transition: {
+      duration: 0.3,
+      ease: "easeInOut",
+    },
+  },
+} as Variants;
+
+const backgroundGlowVariants = {
+  animate: {
+    opacity: [0.1, 0.3, 0.1],
+    scale: [1, 1.1, 1],
+    transition: {
+      duration: 4,
+      repeat: Infinity,
+      ease: "easeInOut",
+    },
+  },
+} as Variants;
+
+const sparkleVariants = {
+  hover: {
+    opacity: [0, 0.6, 0],
+    scale: [0.5, 1.2, 0.5],
+    rotate: [0, 180, 360],
+    transition: {
+      duration: 1.5,
+      ease: "easeOut",
+    },
+  },
+} as Variants;
+
+const particleVariants = {
+  hover: {
+    opacity: [0, 0.6, 0],
+    y: [0, -20, 0],
+    x: [0, 10, 0],
+    transition: {
+      duration: 2,
+      ease: "easeInOut",
+    },
+  },
+} as Variants;
 
 export function BenefitsSection() {
-  const [isVisible, setIsVisible] = useState(false);
-  const isMobile = useIsMobile();
   const [hoveredCard, setHoveredCard] = useState<number | null>(null);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setIsVisible(true), 200);
-    return () => clearTimeout(timer);
-  }, []);
+  const isMobile = useIsMobile();
 
   const renderBenefitCard = (
     benefit: (typeof benefits)[number],
@@ -162,7 +262,6 @@ export function BenefitsSection() {
             <p className="text-slate-300 leading-relaxed group-hover:text-white/90 transition-colors duration-300 mb-4">
               {benefit.description}
             </p>
-
           </CardContent>
 
           {/* Hover particles */}
@@ -190,39 +289,98 @@ export function BenefitsSection() {
   };
 
   return (
-    <section className="py-24 relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950">
+    <motion.section
+      className="py-24 relative overflow-hidden bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={containerVariants}
+    >
       {/* Animated background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 -left-40 w-96 h-96 bg-gradient-to-r from-purple-500/10 to-pink-500/10 rounded-full blur-3xl animate-pulse" />
-        <div
-          className="absolute bottom-1/4 -right-40 w-96 h-96 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-full blur-3xl animate-pulse"
-          style={{ animationDelay: "2s" }}
+        <motion.div
+          className="absolute top-10 left-4 w-96 h-96 bg-gradient-to-r from-purple-500/30 to-pink-500/70 rounded-full blur-3xl"
+          variants={backgroundGlowVariants}
+          animate="animate"
         />
-        <div
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-yellow-500/5 to-orange-500/5 rounded-full blur-3xl animate-pulse"
-          style={{ animationDelay: "4s" }}
+        <motion.div
+          className="absolute bottom-1/4 right-10 w-96 h-96 bg-gradient-to-r from-blue-500/60 to-cyan-500/40 rounded-full blur-3xl"
+          variants={backgroundGlowVariants}
+          animate="animate"
+          transition={{ delay: 2 }}
+        />
+        <motion.div
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-r from-yellow-500/40 to-orange-500/30 rounded-full blur-3xl"
+          variants={backgroundGlowVariants}
+          animate="animate"
+          transition={{ delay: 4 }}
+        />
+      </div>
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(59,130,246,0.1),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(147,51,234,0.1),transparent_50%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_48%,rgba(59,130,246,0.05)_49%,rgba(59,130,246,0.05)_51%,transparent_52%)] bg-[length:30px_30px]" />
+      </div>
+      <div className="absolute inset-0 pointer-events-none transition-transform duration-100">
+        <motion.div
+          className="absolute top-4 left-10 w-20 h-20 border-2 border-blue-400/30 rotate-30"
+          variants={floatAnimation}
+          initial="initial"
+          animate="animate"
+        />
+        <motion.div
+          className="absolute bottom-20 right-10 w-16 h-16 border-2 border-purple-400/30 rotate-12"
+          variants={floatAnimation}
+          initial="initial"
+          animate="animate"
+          transition={{ delay: 3 }}
+        />
+        <motion.div
+          className="absolute top-1/4 left-1/3 w-12 h-12 border-2 border-cyan-400/30 rotate-45"
+          variants={floatAnimation}
+          initial="initial"
+          animate="animate"
+          transition={{ delay: 1.5 }}
         />
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <div
-          className={`text-center mb-20 transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
-        >
-          <div className="inline-block relative">
+        <motion.div className="text-center mb-20" variants={itemVariants}>
+          <motion.div
+            className="inline-block relative"
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.3 }}
+          >
             <h2 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-400 bg-clip-text text-transparent leading-tight">
               Why Should
               <br />
-              <div className="relative">
+              <motion.div
+                className="relative"
+                whileHover={{ scale: 1.05 }}
+                transition={{ duration: 0.3 }}
+              >
                 <span className="text-background z-1">You Join</span>
-                <div className="absolute -inset-2 bg-gradient-to-r from-sidebar-accent to-secondary-foreground opacity-20 blur-2xl rounded-lg animate-pulse" />
-              </div>
+                <motion.div
+                  className="absolute -inset-2 bg-gradient-to-r from-sidebar-accent to-secondary-foreground opacity-20 blur-2xl rounded-lg"
+                  animate={{
+                    opacity: [0.1, 0.3, 0.1],
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+              </motion.div>
             </h2>
-          </div>
+          </motion.div>
 
-          <p className="text-xl text-slate-300 max-w-4xl mx-auto text-pretty leading-relaxed">
+          <motion.p
+            className="text-xl text-slate-300 max-w-4xl mx-auto text-pretty leading-relaxed"
+            whileHover={{ scale: 1.02 }}
+            transition={{ duration: 0.3 }}
+          >
             Discover the{" "}
             <span className="text-transparent bg-gradient-to-r from-sidebar-accent to-secondary-foreground bg-clip-text font-semibold">
               incredible benefits
@@ -233,15 +391,30 @@ export function BenefitsSection() {
               opportunities
             </span>{" "}
             waiting for you
-          </p>
+          </motion.p>
 
           {/* Decorative elements */}
-          <div className="mt-8 flex justify-center items-center gap-4">
+          <motion.div
+            className="mt-8 flex justify-center items-center gap-4"
+            whileHover={{ scale: 1.1 }}
+            transition={{ duration: 0.3 }}
+          >
             <div className="w-12 h-1 bg-gradient-to-r from-transparent via-cyan-400 to-transparent rounded-full" />
-            <Sparkles className="w-6 h-6 text-cyan-400 animate-pulse" />
+            <motion.div
+              animate={{
+                rotate: [0, 360],
+              }}
+              transition={{
+                duration: 4,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            >
+              <Sparkles className="w-6 h-6 text-cyan-400" />
+            </motion.div>
             <div className="w-12 h-1 bg-gradient-to-r from-transparent via-purple-400 to-transparent rounded-full" />
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* Benefits Grid */}
         {isMobile ? (
@@ -257,35 +430,55 @@ export function BenefitsSection() {
             <CarouselNext className="absolute right-0 z-10 text-background w-12 h-12" />
           </Carousel>
         ) : (
-          <div className="space-y-8 max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-3 gap-6">
+          <motion.div
+            className="space-y-8 max-w-7xl mx-auto"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
+            <motion.div
+              className="grid lg:grid-cols-3 gap-6"
+              variants={containerVariants}
+            >
               {benefits
                 .slice(0, 3)
                 .map((benefit, index) => renderBenefitCard(benefit, index))}
-            </div>
-            <div className="grid lg:grid-cols-2 gap-6">
+            </motion.div>
+            <motion.div
+              className="grid lg:grid-cols-2 gap-6"
+              variants={containerVariants}
+            >
               {benefits
                 .slice(3)
                 .map((benefit, index) => renderBenefitCard(benefit, index + 3))}
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         )}
 
         {/* Bottom CTA */}
-        <div
-          className={`text-center mt-20 transition-all duration-1000 delay-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
-        >
-          <div className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-cyan-400/30 rounded-2xl hover:scale-105 transition-transform duration-300 cursor-pointer group">
-            <Trophy className="w-5 h-5 text-cyan-400 group-hover:rotate-12 transition-transform duration-300" />
-            <span className="text-white font-semibold text-lg">
-              Ready to claim your benefits?
-            </span>
-            <ArrowRight className="w-5 h-5 text-cyan-400 group-hover:translate-x-1 transition-transform duration-300" />
-          </div>
-        </div>
+        <Link href={FORM_LINK} target="_blank" rel="noopener noreferrer">
+          <motion.div className="text-center mt-20" variants={itemVariants}>
+            <motion.div
+              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-cyan-500/20 via-blue-500/20 to-purple-500/20 backdrop-blur-sm border border-cyan-400/30 rounded-2xl cursor-pointer group"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <motion.div
+                whileHover={{ rotate: 12 }}
+                transition={{ duration: 0.3 }}
+              >
+                <Trophy className="w-5 h-5 text-cyan-400" />
+              </motion.div>
+              <span className="text-white font-semibold text-lg">
+                Ready to claim your benefits?
+              </span>
+              <motion.div whileHover={{ x: 5 }} transition={{ duration: 0.3 }}>
+                <ArrowRight className="w-5 h-5 text-cyan-400" />
+              </motion.div>
+            </motion.div>
+          </motion.div>
+        </Link>
       </div>
-    </section>
+    </motion.section>
   );
 }

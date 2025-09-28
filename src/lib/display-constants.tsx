@@ -11,6 +11,7 @@ import {
   Facebook,
   Linkedin,
   Mail,
+  Briefcase,
 } from "lucide-react";
 
 export const achievements = [
@@ -32,7 +33,7 @@ export const achievements = [
         />
       </svg>
     ),
-    gradient: "from-blue-500 to-cyan-500",
+    gradient: "from-secondary-foreground to-secondary",
   },
   {
     number: "17K+",
@@ -52,7 +53,7 @@ export const achievements = [
         />
       </svg>
     ),
-    gradient: "from-purple-500 to-pink-500",
+    gradient: "from-secondary-foreground to-accent-secondary",
   },
   {
     number: "70+",
@@ -72,7 +73,7 @@ export const achievements = [
         />
       </svg>
     ),
-    gradient: "from-green-500 to-emerald-500",
+    gradient: "from-muted/70 to-secondary-foreground",
   },
   {
     number: "40+",
@@ -92,7 +93,7 @@ export const achievements = [
         />
       </svg>
     ),
-    gradient: "from-yellow-500 to-orange-500",
+    gradient: "from-background/70 to-secondary",
   },
   {
     number: "9K+",
@@ -112,27 +113,28 @@ export const achievements = [
         />
       </svg>
     ),
-    gradient: "from-indigo-500 to-purple-500",
+    gradient: "from-secondary to-accent-secondary",
   },
 ];
 export const benefits = [
   {
     icon: Trophy,
-    title: "Substantial Prize Pool",
+    title: "Rewards & Recognition",
     description:
-      "Compete for over 1,000,000 VND in prizes, including cash awards, tech equipment, and startup funding opportunities",
-    color: "from-yellow-400 via-orange-500 to-red-500",
-    bgColor: "from-yellow-500/10 to-orange-500/10",
+      "Stand out with prestigious certificates while gaining scholarships and exclusive rewards from both the Organizing Committee and leading companies in the Business Analytics and Data Analytics field.",
+    // color: "from-yellow-400 via-orange-500 to-red-500",
+    color: "from-secondary-foreground to-secondary",
+    bgColor: "from-secondary to-primary",
     value: "1M+ VND",
     category: "REWARDS",
   },
   {
     icon: Network,
-    title: "Global Networking",
+    title: "Real-World Experience",
     description:
-      "Connect with industry leaders, potential co-founders, and mentors from top tech companies worldwide",
-    color: "from-blue-400 via-cyan-500 to-teal-500",
-    bgColor: "from-blue-500/10 to-cyan-500/10",
+      "Work on practical business cases sponsored by leading corporations, bridging theory with industry application.",
+    color: "from-secondary-foreground via-secondary to-muted",
+    bgColor: "from-muted to-primary",
     value: "500+ Leaders",
     category: "NETWORK",
   },
@@ -140,29 +142,29 @@ export const benefits = [
     icon: Lightbulb,
     title: "Skill Development",
     description:
-      "Access exclusive workshops, masterclasses, and mentorship sessions to enhance your technical and entrepreneurial skills",
-    color: "from-purple-400 via-pink-500 to-rose-500",
-    bgColor: "from-purple-500/10 to-pink-500/10",
+      "Sharpen your data and business analytics capabilities while strengthening critical thinking, teamwork, and presentation skills.",
+    color: "from-pink-400/70 via-secondary-foreground to-secondary",
+    bgColor: "from-purple-600/10 to-primary",
     value: "20+ Sessions",
     category: "GROWTH",
   },
   {
     icon: Users,
-    title: "Career Opportunities",
+    title: "Networking Opportunities",
     description:
-      "Get noticed by leading tech recruiters and gain direct access to job opportunities at partner companies",
-    color: "from-green-400 via-emerald-500 to-teal-500",
-    bgColor: "from-green-500/10 to-emerald-500/10",
+      "Connect with industry professionals, mentors, judges, and like-minded peers across Vietnam.",
+    color: "from-accent-secondary via-secondary-foreground to-secondary",
+    bgColor: "from-accent-secondary via-secondary to-primary",
     value: "100+ Companies",
     category: "CAREERS",
   },
   {
-    icon: Award,
-    title: "Industry Recognition",
+    icon: Briefcase,
+    title: "Career Pathway",
     description:
-      "Showcase your innovations on a global stage and build a portfolio that stands out to employers and investors",
-    color: "from-indigo-400 via-purple-500 to-pink-500",
-    bgColor: "from-indigo-500/10 to-purple-500/10",
+      "Gain internship and career opportunities with top companies looking for data-driven future leaders.",
+    color: "from-secondary via-accent-foreground/80 to-accent-secondary",
+    bgColor: "from-secondary/70 via-secondary/30 to-primary",
     value: "Global Stage",
     category: "RECOGNITION",
   },
@@ -170,64 +172,55 @@ export const benefits = [
 
 export const criteria = [
   {
-    title: "Technical Expertise",
+    title: "Business Students",
     description:
-      "Demonstrated proficiency in programming, software development, or related technical fields",
-    icon: Code,
-    color: "from-sidebar-accent to-cyan-800",
-    textColor: "from-sidebar-accent-foreground to-cyan-400",
+      "Undergraduate students across Vietnam majoring in Business fields such as International Business, Economics & Finance, Business Administration, and related disciplines.",
+    icon: Code, // You might want to change this icon to something like GraduationCap
+    color: "from-muted to-secondary-foreground",
+    textColor: "from-accent-secondary via-secondary-foreground to-secondary-foreground",
     delay: "0ms",
   },
   {
-    title: "Innovation Mindset",
+    title: "Analytics Enthusiasts",
     description:
-      "Passion for creating novel solutions and thinking outside conventional boundaries",
+      "Ambitious students eager to challenge themselves and sharpen their skills in Data and Business Analytics.",
     icon: Zap,
-    color: "from-secondary to-pink-600/20",
-    textColor: "from-secondary-foreground to-pink-400",
+    color: "from-primary/30 to-pink-600/30",
+    textColor: "from-purple-300 to-pink-400",
     delay: "100ms",
   },
   {
-    title: "Team Collaboration",
+    title: "Network Builders",
     description:
-      "Ability to work effectively in diverse, cross-functional teams of 2-5 members",
+      "Individuals looking to expand their network and connect with professionals in the analytics industry.",
     icon: Users,
-    color: "from-emerald-600 to-emerald-900",
-    textColor: "from-green-600 to-emerald-300",
+    color: "from-secondary-foreground to-secondary",
+    textColor: "from-secondary-foreground to-primary-foreground",
     delay: "200ms",
   },
   {
-    title: "Project Commitment",
+    title: "Industry Collaborators",
     description:
-      "Availability to dedicate 20+ hours per week during the 8-week competition period",
-    icon: Clock,
-    color: "from-orange-600 to-yellow-500",
-    textColor: "from-orange-400 to-yellow-300",
+      "Individuals seeking opportunities to collaborate with top companies and corporations.",
+    icon: Clock, // You might want to change this to Building or Briefcase
+    color: "from-muted/20 to-accent-secondary",
+    textColor: "from-accent-secondary to-secondary-foreground",
     delay: "300ms",
-  },
-  {
-    title: "Age Requirement",
-    description:
-      "Participants must be 18+ years old or have guardian consent for minors",
-    icon: Shield,
-    color: "from-red-700 to-rose-400",
-    textColor: "from-rose-400 to-rose-200",
-    delay: "400ms",
   },
 ];
 
 export const contactInfo = [
   {
     icon: <Users />,
-    title: "Fanpage",
-    link: "https://www.facebook.com/RBAChampion",
+    title: "Community",
+    link: "https://www.facebook.com/groups/rbaccommunity",
     color: "bg-purple-400/15 border-2 border-cyan-300/30",
     delay: "delay-100",
   },
   {
     icon: <Facebook />,
-    title: "Community",
-    link: "https://www.facebook.com/groups/rbaccommunity",
+    title: "Fanpage",
+    link: "https://www.facebook.com/RBAChampion",
     color: "bg-blue-600/20 border-2 border-blue-300/30",
     delay: "delay-200",
   },
