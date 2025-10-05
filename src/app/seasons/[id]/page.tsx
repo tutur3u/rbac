@@ -2,9 +2,10 @@
 
 import { useParallax } from "@/hooks/use-parallax";
 import { cn } from "@/lib/utils";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
+import Autoplay from "embla-carousel-autoplay";
 import {
   Card,
   CardContent,
@@ -15,6 +16,13 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { seasonList } from "@/lib/season-constants";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import FinalistList from "@/components/seasons/finalist-list";
 
 export default function SeasonDetail() {
   const { id } = useParams();
@@ -23,39 +31,12 @@ export default function SeasonDetail() {
   const { elementRef: floatingRef, offset: floatingOffset } = useParallax(0.5);
   const { elementRef: contentRef, offset: contentOffset } = useParallax(0.1);
 
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
-
   // Get the current season based on the id parameter
   const seasonId = parseInt(id as string) - 1;
   const currentSeason = seasonList[seasonId] || seasonList[0];
 
   // Generate year based on season id (assuming season 1 was 2021)
   const seasonYear = 2021 + seasonId;
-
-  useEffect(() => {
-    if (!isAutoPlaying) return;
-
-    const interval = setInterval(() => {
-      setCurrentSlide(
-        (prev) => (prev + 1) % currentSeason.highlightJoiner.length
-      );
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, [isAutoPlaying, currentSeason.highlightJoiner.length]);
-
-  const getColorClasses = (index: number) => {
-    const colors = [
-      "bg-blue-500/30 border-blue-400/20 from-blue-400 to-purple-400 hover:border-blue-400/50 group-hover:text-blue-300",
-      "bg-purple-500/30 border-purple-400/20 from-purple-400 to-pink-400 hover:border-purple-400/50 group-hover:text-purple-300",
-      "bg-cyan-500/30 border-cyan-400/20 from-cyan-400 to-blue-400 hover:border-cyan-400/50 group-hover:text-cyan-300",
-      "bg-emerald-500/30 border-emerald-400/20 from-emerald-400 to-teal-400 hover:border-emerald-400/50 group-hover:text-emerald-300",
-      "bg-rose-500/30 border-rose-400/20 from-rose-400 to-orange-400 hover:border-rose-400/50 group-hover:text-rose-300",
-      "bg-indigo-500/30 border-indigo-400/20 from-indigo-400 to-violet-400 hover:border-indigo-400/50 group-hover:text-indigo-300",
-    ];
-    return colors[index % colors.length];
-  };
 
   return (
     <section className="relative w-full min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 overflow-hidden">
@@ -113,6 +94,13 @@ export default function SeasonDetail() {
          flex flex-col items-center justify-center gap-8 sm:gap-12
          min-h-screen text-center"
       >
+        <Image
+          src={`${rootUrl}/ss${id}-timeline.jpg` || "/placeholder.svg"}
+          alt={`RBAC Season ${id} Timeline`}
+          width={3321}
+          height={1262}
+          className="object-contain w-full rounded-md shadow-lg"
+        />
         <div className="text-5xl md:text-7xl font-bold text-white glow-effect">
           <h1 className="bg-gradient-to-r primary-gradient bg-clip-text text-transparent">
             RBAC {seasonYear}
@@ -142,49 +130,41 @@ export default function SeasonDetail() {
         </Card>
 
         {/* Partners Section */}
-        <Card className="w-full max-w-4xl bg-transparent backdrop-blur-sm border-transparent shadow-none">
+        <Card className="w-full max-w-4xl bg-transparent border-transparent shadow-none">
           <CardHeader>
             <CardTitle className="text-2xl font-bold text-white">
               Partners & Sponsors
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="mb-8">
-              <h3 className="text-xl font-semibold text-white mb-4">
-                Strategic Partners
-              </h3>
-              <div className="flex flex-col md:flex-row gap-4 justify-center justify-items-center">
-                {currentSeason.strategicPartners.map((partner, index) => (
-                  <div key={index} className="flex flex-col items-center">
-                    <div className="w-64 h-32 relative mb-4">
-                      <Image
-                        src={`${rootUrl}/${partner}` || "/placeholder.svg"}
-                        alt={`Strategic Partner ${index + 1}`}
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-semibold text-white mb-4">
-                Partners
-              </h3>
-              <div className="flex flex-col md:flex-row gap-4 justify-center justify-items-center">
-                {currentSeason.partners.map((partner, index) => (
-                  <div key={index} className="w-48 h-24 relative">
+          <CardContent
+            className="px-2 py-4 md:py-8 
+          backdrop-blur-sm bg-primary/10
+          rounded-sm border-2 border-pink-300/50"
+          >
+            <div className="flex flex-row flex-wrap gap-4 justify-center items-center justify-items-center">
+              {currentSeason.partners.map((partner, index) => {
+                if (currentSeason.logo.includes("ss5"))
+                  return (
                     <Image
-                      src={`${rootUrl}/${partner}` || "/placeholder.svg"}
+                      key={index}
+                      src={`${rootUrl}/${partner.name}` || "/placeholder.svg"}
+                      width={partner.width}
+                      height={partner.height}
                       alt={`Partner ${index + 1}`}
-                      fill
-                      className="object-contain"
+                      className="object-contain rounded-sm absolute scale-110"
                     />
-                  </div>
-                ))}
-              </div>
+                  );
+                return (
+                  <Image
+                    key={index}
+                    src={`/seasons/logos/${partner.name}` || "/placeholder.svg"}
+                    alt={`Partner ${index + 1}`}
+                    width={partner.width}
+                    height={partner.height}
+                    className="object-contain rounded-sm w-50"
+                  />
+                );
+              })}
             </div>
           </CardContent>
         </Card>
@@ -196,11 +176,11 @@ export default function SeasonDetail() {
                 Mentors
               </CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="grid grid-cols-2 md:grid-cols-3 gap-6">
               {currentSeason.mentors.map((mentor, index) => (
                 <div
                   key={index}
-                  className="flex flex-col items-center p-4 bg-slate-700/30 rounded-lg"
+                  className="flex flex-col items-center p-4 bg-primary/60 rounded-lg"
                 >
                   <div className="w-32 h-32 relative mb-4 rounded-full overflow-hidden">
                     <Image
@@ -265,95 +245,18 @@ export default function SeasonDetail() {
         {/* Highlighted Joiners Carousel */}
         <div className="w-full max-w-6xl mt-8">
           <div className="text-center mb-8">
-            <h2 className="text-4xl font-bold text-white mb-4 glow-effect animate-fade-in">
-              <span className="bg-gradient-to-r primary-gradient bg-clip-text text-transparent">
+            <h2 className="text-5xl font-bold text-white mb-4 glow-effect animate-fade-in">
+              <span
+                className="bg-gradient-to-r text-shadow-sm text-shadow-background/20 
+              primary-gradient bg-clip-text text-transparent"
+              >
                 Top 5 Finalists
               </span>
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto mt-4 rounded-full animate-pulse"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-200 to-secondary-foreground mx-auto mt-4 rounded-full animate-pulse"></div>
           </div>
 
-          <Card className="mb-12 relative bg-transparent border-transparent shadow-none">
-            <CardContent className="p-0">
-              <div
-                className="relative overflow-hidden rounded-2xl"
-                onMouseEnter={() => setIsAutoPlaying(false)}
-                onMouseLeave={() => setIsAutoPlaying(true)}
-              >
-                <div
-                  className="flex transition-transform duration-700 ease-in-out"
-                  style={{ transform: `translateX(-${currentSlide * 100}%)` }}
-                >
-                  {currentSeason.highlightJoiner.map((image, index) => {
-                    const colorClasses = getColorClasses(index);
-                    return (
-                      <div
-                        key={index}
-                        className="flex-shrink-0 p-8 relative w-120"
-                      >
-                        <div className="relative overflow-hidden rounded-xl h-fit">
-                          <Image
-                            src={`${rootUrl}/${image.name}` || "/placeholder.svg"}
-                            alt={`Highlighted participant ${index + 1}`}
-                            width={image.width}
-                            height={image.height}
-                            className="overflow-hidden 
-                            
-                            object-contain transform hover:scale-105 transition-transform duration-500"
-                          />
-                        </div>
-                        <div className="absolute top-8 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                          <Badge
-                            className={`text-white px-2 py-2 text-2xl font-bold ${colorClasses}`}
-                          >
-                            Participant #{index + 1}
-                          </Badge>
-                        </div>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
-                  {currentSeason.highlightJoiner.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentSlide(index)}
-                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                        index === currentSlide
-                          ? "bg-blue-400 scale-125"
-                          : "bg-slate-600 hover:bg-slate-500"
-                      }`}
-                    />
-                  ))}
-                </div>
-
-                <button
-                  onClick={() =>
-                    setCurrentSlide(
-                      (prev) =>
-                        (prev - 1 + currentSeason.highlightJoiner.length) %
-                        currentSeason.highlightJoiner.length
-                    )
-                  }
-                  className="absolute left-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-slate-800/80 backdrop-blur-sm rounded-full border border-slate-600/50 flex items-center justify-center text-white hover:bg-slate-700/80 transition-all duration-300 hover:scale-110"
-                >
-                  ←
-                </button>
-                <button
-                  onClick={() =>
-                    setCurrentSlide(
-                      (prev) =>
-                        (prev + 1) % currentSeason.highlightJoiner.length
-                    )
-                  }
-                  className="absolute right-4 top-1/2 transform -translate-y-1/2 w-12 h-12 bg-slate-800/80 backdrop-blur-sm rounded-full border border-slate-600/50 flex items-center justify-center text-white hover:bg-slate-700/80 transition-all duration-300 hover:scale-110"
-                >
-                  →
-                </button>
-              </div>
-            </CardContent>
-          </Card>
+          <FinalistList currentSeason={currentSeason} rootUrl={rootUrl} />
         </div>
 
         <div className="mt-8 text-center">
