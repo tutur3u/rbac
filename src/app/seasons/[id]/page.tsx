@@ -123,7 +123,7 @@ export default function SeasonDetail() {
         </div>
 
         {/* Season Logo */}
-        <Card className="w-full max-w-4xl bg-slate-800/50 backdrop-blur-sm border-slate-700/50">
+        <Card className="w-full max-w-4xl bg-transparent backdrop-blur-sm border-transparent shadow-none">
           <CardHeader>
             <CardTitle className="text-2xl font-bold text-white">
               Season Logo
@@ -142,7 +142,7 @@ export default function SeasonDetail() {
         </Card>
 
         {/* Partners Section */}
-        <Card className="w-full max-w-4xl bg-slate-800/50 backdrop-blur-sm border-slate-700/50">
+        <Card className="w-full max-w-4xl bg-transparent backdrop-blur-sm border-transparent shadow-none">
           <CardHeader>
             <CardTitle className="text-2xl font-bold text-white">
               Partners & Sponsors
@@ -189,221 +189,91 @@ export default function SeasonDetail() {
           </CardContent>
         </Card>
 
-        {/* Tabs for Mentors & Judges */}
-        <Tabs defaultValue="mentors" className="w-full max-w-4xl">
-          <TabsList className="grid w-full grid-cols-2 bg-slate-800/50 backdrop-blur-sm">
-            <TabsTrigger
-              value="mentors"
-              className="data-[state=active]:bg-slate-700/50"
-            >
-              Mentors
-            </TabsTrigger>
-            <TabsTrigger
-              value="judges"
-              className="data-[state=active]:bg-slate-700/50"
-            >
-              Judges
-            </TabsTrigger>
-          </TabsList>
+        {currentSeason.mentors && currentSeason.mentors.length > 0 && (
+          <Card className="bg-transparent backdrop-blur-sm border-transparent shadow-none">
+            <CardHeader>
+              <CardTitle className="text-2xl font-bold text-white">
+                Mentors
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              {currentSeason.mentors.map((mentor, index) => (
+                <div
+                  key={index}
+                  className="flex flex-col items-center p-4 bg-slate-700/30 rounded-lg"
+                >
+                  <div className="w-32 h-32 relative mb-4 rounded-full overflow-hidden">
+                    <Image
+                      src={`${rootUrl}/${mentor.image}` || "/placeholder.svg"}
+                      alt={mentor.name}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="text-center">
+                    <p className="text-white font-medium text-lg">
+                      {mentor.name}
+                    </p>
+                    <p className="text-blue-100 text-sm mt-2">
+                      {mentor.position}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+        )}
 
-          <TabsContent value="mentors">
-            <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50">
-              <CardHeader>
-                <CardTitle className="text-2xl font-bold text-white">
-                  Mentors
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                {/* Handle different data structures for mentors */}
-                {Array.isArray(currentSeason.mentors) &&
-                currentSeason.mentors.length > 0 &&
-                typeof currentSeason.mentors[0] === "object" ? (
-                  // Detailed mentor objects with name, position, image
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {currentSeason.mentors.map((mentor, index) => {
-                      if (typeof mentor != "string")
-                        return (
-                          <div
-                            key={index}
-                            className="flex flex-col items-center p-4 bg-slate-700/30 rounded-lg"
-                          >
-                            <div className="w-32 h-32 relative mb-4 rounded-full overflow-hidden">
-                              <Image
-                                src={
-                                  `${rootUrl}/${mentor.image}` ||
-                                  "/placeholder.svg"
-                                }
-                                alt={mentor.name}
-                                fill
-                                className="object-cover"
-                              />
-                            </div>
-                            <div className="text-center">
-                              <p className="text-white font-medium text-lg">
-                                {mentor.name}
-                              </p>
-                              <p className="text-blue-100 text-sm mt-2">
-                                {mentor.position}
-                              </p>
-                            </div>
-                          </div>
-                        );
-                    })}
-                  </div>
-                ) : currentSeason.mentors ? (
-                  // Single image for all mentors
-                  <div className="flex justify-center">
-                    <div className="w-full h-64 relative">
+        {currentSeason.judges && currentSeason.judges.length > 0 && (
+          <Card className="bg-transparent backdrop-blur-sm border-transparent shadow-none">
+            <CardHeader>
+              <CardTitle className="text-2xl font-bold text-white">
+                Judges
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              {/* Handle different data structures for judges */}
+              {currentSeason.judges.map((judge, index) => {
+                return (
+                  <div
+                    key={index}
+                    className="flex flex-col items-center p-4 bg-slate-700/30 rounded-lg"
+                  >
+                    <div className="w-32 h-32 relative mb-4 rounded-full overflow-hidden">
                       <Image
-                        src={
-                          `${rootUrl}/${currentSeason.mentors[0]}` ||
-                          "/placeholder.svg"
-                        }
-                        alt="All Mentors"
+                        src={`${rootUrl}/${judge.image}` || "/placeholder.svg"}
+                        alt={judge.name ?? "Judge"}
                         fill
-                        className="object-contain"
+                        className="object-cover"
                       />
                     </div>
-                  </div>
-                ) : currentSeason.mentorJudges ? (
-                  // Combined mentorJudges image
-                  <div className="flex justify-center">
-                    <div className="w-full h-64 relative">
-                      <Image
-                        src={
-                          `${rootUrl}/${currentSeason.mentorJudges[0]}` ||
-                          "/placeholder.svg"
-                        }
-                        alt="Mentors & Judges"
-                        fill
-                        className="object-contain"
-                      />
+                    <div className="text-center">
+                      <p className="text-white font-medium text-lg">
+                        {judge.name}
+                      </p>
+                      <p className="text-blue-100 text-sm mt-2">
+                        {judge.position}
+                      </p>
                     </div>
                   </div>
-                ) : (
-                  <p className="text-white text-center">
-                    No mentors data available
-                  </p>
-                )}
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          <TabsContent value="judges">
-            <Card className="bg-slate-800/50 backdrop-blur-sm border-slate-700/50">
-              <CardHeader>
-                <CardTitle className="text-2xl font-bold text-white">
-                  Judges
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                {/* Handle different data structures for judges */}
-                {Array.isArray(currentSeason.judges) &&
-                currentSeason.judges.length > 0 &&
-                typeof currentSeason.judges[0] === "object" ? (
-                  // Detailed judge objects with name, position, image
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {currentSeason.judges.map((judge, index) => {
-                      if (typeof judge != "string")
-                        return (
-                          <div
-                            key={index}
-                            className="flex flex-col items-center p-4 bg-slate-700/30 rounded-lg"
-                          >
-                            <div className="w-32 h-32 relative mb-4 rounded-full overflow-hidden">
-                              <Image
-                                src={
-                                  `${rootUrl}/${judge.image}` ||
-                                  "/placeholder.svg"
-                                }
-                                alt={judge.name ?? "Judge"}
-                                fill
-                                className="object-cover"
-                              />
-                            </div>
-                            <div className="text-center">
-                              <p className="text-white font-medium text-lg">
-                                {judge.name}
-                              </p>
-                              <p className="text-blue-100 text-sm mt-2">
-                                {judge.position}
-                              </p>
-                            </div>
-                          </div>
-                        );
-                    })}
-                  </div>
-                ) : currentSeason.judges ? (
-                  // Single image for all judges
-                  <div className="flex justify-center">
-                    <div className="w-full h-64 relative">
-                      <Image
-                        src={
-                          `${rootUrl}/${currentSeason.judges[0]}` ||
-                          "/placeholder.svg"
-                        }
-                        alt="All Judges"
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                  </div>
-                ) : currentSeason.mentorJudges ? (
-                  // Combined mentorJudges image
-                  <div className="flex justify-center">
-                    <div className="w-full h-64 relative">
-                      <Image
-                        src={
-                          `${rootUrl}/${currentSeason.mentorJudges[0]}` ||
-                          "/placeholder.svg"
-                        }
-                        alt="Mentors & Judges"
-                        fill
-                        className="object-contain"
-                      />
-                    </div>
-                  </div>
-                ) : (
-                  <p className="text-white text-center">
-                    No judges data available
-                  </p>
-                )}
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
-
-        {/* Winners Section */}
-        <Card className="w-full max-w-4xl bg-slate-800/50 backdrop-blur-sm border-slate-700/50">
-          <CardHeader>
-            <CardTitle className="text-2xl font-bold text-white">
-              Winner
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="flex flex-col items-center">
-            <div className="w-full max-w-md h-64 relative">
-              <Image
-                src={`${rootUrl}/${currentSeason.winner}` || "/placeholder.svg"}
-                alt="Season Winner"
-                fill
-                className="object-contain"
-              />
-            </div>
-          </CardContent>
-        </Card>
+                );
+              })}
+            </CardContent>
+          </Card>
+        )}
 
         {/* Highlighted Joiners Carousel */}
         <div className="w-full max-w-6xl mt-8">
           <div className="text-center mb-8">
             <h2 className="text-4xl font-bold text-white mb-4 glow-effect animate-fade-in">
               <span className="bg-gradient-to-r primary-gradient bg-clip-text text-transparent">
-                Highlighted Participants
+                Top 5 Finalists
               </span>
             </h2>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-400 to-purple-400 mx-auto mt-4 rounded-full animate-pulse"></div>
           </div>
 
-          <Card className="mb-12 relative bg-slate-800/40 backdrop-blur-sm border-slate-700/50">
+          <Card className="mb-12 relative bg-transparent border-transparent shadow-none">
             <CardContent className="p-0">
               <div
                 className="relative overflow-hidden rounded-2xl"
@@ -419,16 +289,18 @@ export default function SeasonDetail() {
                     return (
                       <div
                         key={index}
-                        className="w-full flex-shrink-0 p-8 relative"
+                        className="flex-shrink-0 p-8 relative w-120"
                       >
-                        <div className="relative overflow-hidden rounded-xl h-[66.5vh]">
+                        <div className="relative overflow-hidden rounded-xl h-fit">
                           <Image
-                            src={`${rootUrl}/${image}` || "/placeholder.svg"}
+                            src={`${rootUrl}/${image.name}` || "/placeholder.svg"}
                             alt={`Highlighted participant ${index + 1}`}
-                            fill
-                            className="overflow-hidden object-contain transform hover:scale-105 transition-transform duration-500"
+                            width={image.width}
+                            height={image.height}
+                            className="overflow-hidden 
+                            
+                            object-contain transform hover:scale-105 transition-transform duration-500"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                         </div>
                         <div className="absolute top-8 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                           <Badge
@@ -487,7 +359,7 @@ export default function SeasonDetail() {
         <div className="mt-8 text-center">
           <Badge
             variant="outline"
-            className="px-6 py-3 bg-slate-800/50 backdrop-blur-sm border-slate-700/50 animate-bounce-subtle"
+            className="px-6 py-3 bg-transparent backdrop-blur-sm border-transparent shadow-none animate-bounce-subtle"
           >
             <div className="w-3 h-3 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full mr-3 animate-pulse"></div>
             <span className="text-blue-200 text-sm">

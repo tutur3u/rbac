@@ -55,6 +55,7 @@ export function Navbar() {
           <Image
             src="/logo-main.png"
             alt="Logo"
+            priority
             className="hover:animate-spin hover:duration-2000"
             height={72}
             width={72}

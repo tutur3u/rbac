@@ -2,30 +2,14 @@
 
 import { useParallax } from "@/hooks/use-parallax";
 import { cn } from "@/lib/utils";
-import { useState, useEffect } from "react";
 
 export default function AboutUs() {
   const { elementRef: bgRef, offset: bgOffset } = useParallax(0.3);
   const { elementRef: floatingRef, offset: floatingOffset } = useParallax(0.5);
   const { elementRef: contentRef, offset: contentOffset } = useParallax(0.1);
 
-  const getColorClasses = (color: string) => {
-    const colorMap = {
-      blue: "bg-blue-500/30 border-blue-400/20 from-blue-400 to-purple-400 hover:border-blue-400/50 group-hover:text-blue-300",
-      purple:
-        "bg-purple-500/30 border-purple-400/20 from-purple-400 to-pink-400 hover:border-purple-400/50 group-hover:text-purple-300",
-      cyan: "bg-cyan-500/30 border-cyan-400/20 from-cyan-400 to-blue-400 hover:border-cyan-400/50 group-hover:text-cyan-300",
-      emerald:
-        "bg-emerald-500/30 border-emerald-400/20 from-emerald-400 to-teal-400 hover:border-emerald-400/50 group-hover:text-emerald-300",
-      rose: "bg-rose-500/30 border-rose-400/20 from-rose-400 to-orange-400 hover:border-rose-400/50 group-hover:text-rose-300",
-      indigo:
-        "bg-indigo-500/30 border-indigo-400/20 from-indigo-400 to-violet-400 hover:border-indigo-400/50 group-hover:text-indigo-300",
-    };
-    return colorMap[color as keyof typeof colorMap] || colorMap.blue;
-  };
-
   return (
-    <section className="relative w-full min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 overflow-hidden">
+    <section className="relative w-full min-h-screen bg-gradient-to-br from-primary via-secondary to-muted overflow-hidden">
       <div
         className={cn(
           "absolute inset-0 opacity-40 bg-cover bg-bottom md:bg-center w-full h-full",
@@ -89,7 +73,7 @@ export default function AboutUs() {
           </p>
         </div>
 
-        <div className="w-full max-w-4xl bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 md:p-8 border border-slate-700/50">
+        <div className="w-full max-w-4xl bg-primary/50 backdrop-blur-sm rounded-xl p-6 md:p-8 border border-slate-700/50">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="space-y-6">
               <div>
@@ -188,7 +172,7 @@ export default function AboutUs() {
 
         <div className="w-full max-w-4xl mt-8">
           <h2 className="text-3xl font-bold text-white mb-6">About RBAC</h2>
-          <div className="bg-slate-800/50 backdrop-blur-sm rounded-xl p-6 md:p-8 border border-slate-700/50">
+          <div className="bg-primary/50 backdrop-blur-sm rounded-xl p-6 md:p-8 border border-slate-700/50">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
               <div>
                 <h3 className="text-xl font-semibold text-white mb-3">

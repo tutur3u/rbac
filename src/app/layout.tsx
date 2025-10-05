@@ -55,8 +55,10 @@ export default function RootLayout({
 }
 
 const Footer = () => (
-  <div className="px-5 md:px-10 lg:px-20 py-10 lg:py-20 bg-gradient-to-br from-slate-950 to-muted/10
-  border-t border-secondary">
+  <div
+    className="px-5 md:px-10 lg:px-20 py-10 lg:py-20 bg-gradient-to-br from-slate-950 to-muted/10
+  border-t border-secondary"
+  >
     {/* Contact Section */}
     <section className="mb-20">
       <h2 className="text-3xl font-bold text-white mb-8 text-center">
@@ -70,7 +72,9 @@ const Footer = () => (
               Project Leader
             </h3>
             <p className="text-primary-foreground">Nguyen Thi Phuong Dai</p>
-            <p className="text-primary-foreground">Email: s3914588@rmit.edu.vn</p>
+            <p className="text-primary-foreground">
+              Email: s3914588@rmit.edu.vn
+            </p>
             <p className="text-primary-foreground">Phone: 0914 784 228</p>
           </div>
 
@@ -79,7 +83,9 @@ const Footer = () => (
               External Relations Leader
             </h3>
             <p className="text-primary-foreground">Kieu Hoang Minh Nhat</p>
-            <p className="text-primary-foreground">Email: s4052258@rmit.edu.vn</p>
+            <p className="text-primary-foreground">
+              Email: s4052258@rmit.edu.vn
+            </p>
             <p className="text-primary-foreground">Phone: 0901 875 879</p>
           </div>
         </div>
@@ -90,7 +96,6 @@ const Footer = () => (
           </h3>
           <div className="flex justify-center space-x-6">
             {contactInfo.map((contact) => {
-              const Icon = contact.icon;
               return (
                 <a
                   key={contact.link}
@@ -111,8 +116,10 @@ const Footer = () => (
       </div>
     </section>
 
-    <div className="mb-16 bg-gradient-to-br from-primary via-accent-secondary/10 to-purple-900/50 p-8 rounded-xl 
-    border border-accent-secondary/30 shadow-lg shadow-muted/20">
+    <div
+      className="mb-16 bg-gradient-to-br from-primary via-accent-secondary/10 to-purple-900/50 p-8 rounded-xl 
+    border border-accent-secondary/30 shadow-lg shadow-muted/20"
+    >
       <section className="text-center mb-12">
         <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-accent-secondary to-secondary-foreground mb-8 tracking-widest uppercase">
           Organizers
@@ -147,7 +154,7 @@ const Footer = () => (
             <div className="absolute -inset-1 bg-gradient-to-r from-cyan-600 to-blue-600 rounded-xl blur opacity-20 group-hover:opacity-30 transition duration-500"></div>
             <div className="relative">
               <img
-                src="/logo.png"
+                src="/logo-main.png"
                 alt="RBAC Logo"
                 className="mx-auto max-h-20 max-w-full object-contain filter drop-shadow-[0_0_10px_rgba(6,182,212,0.5)]"
               />
@@ -161,9 +168,11 @@ const Footer = () => (
           Web Sponsor
         </h3>
         <div className="flex justify-center">
-          <div className="group relative bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-red-500/10 
+          <div
+            className="group relative bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-red-500/10 
           rounded-xl p-5 border border-purple-400/30 hover:border-pink-400/50 
-          transition-all duration-500 hover:shadow-pink-500/20 max-w-xs w-full sm:w-1/4">
+          transition-all duration-500 hover:shadow-pink-500/20 max-w-xs w-full sm:w-1/4"
+          >
             <div className="relative">
               <img
                 src="/components/tuturuuu.png"
@@ -188,7 +197,9 @@ const Footer = () => (
               RMIT Analytics Club
             </span>
           </div>
-          <p className="text-primary-foreground mt-2">Organizer of RBAC Season 6</p>
+          <p className="text-primary-foreground mt-2">
+            Organizer of RBAC Season 6
+          </p>
         </div>
 
         <div className="flex space-x-6">

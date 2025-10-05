@@ -89,7 +89,7 @@ export function PartnersSection() {
 
   return (
     <motion.section
-      className="py-20 bg-gradient-to-b from-slate-50 to-blue-50 dark:from-blue-950 dark:to-slate-900 relative overflow-hidden"
+      className="py-20 bg-gradient-to-b from-slate-50 to-blue-50 relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}

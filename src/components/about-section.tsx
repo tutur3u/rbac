@@ -148,7 +148,7 @@ export function AboutSection() {
             transition={{ duration: 0.3 }}
           >
             <span className="bg-gradient-to-r primary-gradient bg-clip-text text-transparent">
-              ABOUT US
+              ABOUT RBAC
             </span>
           </motion.h2>
           <motion.p
