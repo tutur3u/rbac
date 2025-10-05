@@ -35,7 +35,7 @@ export default function FinalistList({
   return (
     <Carousel
       plugins={[plugin.current]}
-      className="mb-12 relative bg-transparent border-transparent shadow-none"
+      className="relative bg-transparent border-transparent shadow-none"
       onMouseEnter={plugin.current.stop}
       onMouseLeave={plugin.current.reset}
     >
@@ -43,7 +43,10 @@ export default function FinalistList({
         {currentSeason.highlightJoiner.map((image, index) => {
           const colorClasses = getColorClasses(index);
           return (
-            <div key={index} className="flex-shrink-0 p-8 relative w-120">
+            <div
+              key={index}
+              className="flex-shrink-0 p-6 lg:p-8 relative w-80 lg:w-120"
+            >
               <div className="relative overflow-hidden h-fit rounded-sm">
                 <Image
                   src={`${rootUrl}/${image.name}` || "/placeholder.svg"}
@@ -51,14 +54,15 @@ export default function FinalistList({
                   width={image.width}
                   height={image.height}
                   className="overflow-hidden select-none 
-                            object-contain transform hover:scale-105 transition-transform duration-500"
+                            object-contain transform hover:scale-105 
+                            transition-transform duration-500"
                 />
               </div>
               <div
                 className={cn(
-                  `absolute top-8 left-5 -translate-y-1/2 rounded-sm 
+                  `absolute top-4 lg:top-8 left-3 lg:left-5 -translate-y-1/2 rounded-sm 
                   flex items-center justify-center
-              backdrop-blur-sm text-white w-12 h-12 text-2xl font-bold`,
+              text-white w-8 h-8 lg:w-12 lg:h-12 text-lg md:text-xl lg:text-2xl font-bold`,
                   colorClasses
                 )}
               >
@@ -69,11 +73,11 @@ export default function FinalistList({
         })}
       </CarouselContent>
       <CarouselPrevious
-        className="w-15 h-15 backdrop-blur-sm left-3
+        className="w-10 h-10 md:w-13 md:h-13 lg:w-15 lg:h-15 backdrop-blur-sm left-3
             bg-gradient-to-bl from-primary/90 to-secondary-foreground/60 border-secondary/30! text-primary-foreground"
       />
       <CarouselNext
-        className="w-15 h-15 backdrop-blur-sm right-3
+        className="w-10 h-10 md:w-13 md:h-13 lg:w-15 lg:h-15 backdrop-blur-sm right-3
             bg-gradient-to-br from-primary/90 to-secondary-foreground/60 border-secondary/30! text-primary-foreground"
       />
     </Carousel>

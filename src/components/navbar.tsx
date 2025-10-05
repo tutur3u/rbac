@@ -21,6 +21,12 @@ import {
 import { Menu, ChevronDown } from "lucide-react";
 import { FORM_LINK, seasons } from "@/lib/nav-constants";
 import Image from "next/image";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -158,16 +164,21 @@ export function Navbar() {
             side="right"
             className="w-80 bg-slate-950/95 backdrop-blur-xl border-l border-blue-500/20 p-4 md:p-6"
           >
-            <SheetHeader>
-              <SheetTitle className="text-left">
-                <div className="flex items-center space-x-2">
-                  <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-purple-600 rounded-lg flex items-center justify-center">
-                    <div className="w-4 h-4 bg-white rounded-sm opacity-90" />
-                  </div>
-                  <span className="font-bold text-xl bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <SheetHeader className="p-0">
+              <SheetTitle className="text-left px-0">
+                <Link href="/" aria-label="Home" className="flex items-center">
+                  <Image
+                    src="/logo-main.png"
+                    alt="Logo"
+                    priority
+                    className="hover:animate-spin hover:duration-2000"
+                    height={72}
+                    width={72}
+                  />
+                  <span className="block md:hidden lg:block font-bold text-xl text-white">
                     RBAC
                   </span>
-                </div>
+                </Link>
               </SheetTitle>
             </SheetHeader>
 
@@ -189,22 +200,32 @@ export function Navbar() {
               </Link>
 
               <div className="space-y-2 px-2">
-                <div className="text-background font-medium py-2 flex items-center">
+                <Accordion type="single" collapsible>
+                  <AccordionItem value="seasons">
+                    <AccordionTrigger className="text-background text-base font-medium py-2 flex items-center">
+                      RBAC Seasons
+                    </AccordionTrigger>
+                    <AccordionContent className="pl-4 space-y-2">
+                      {seasons.map((season) => (
+                        <Link
+                          key={season.name}
+                          href={season.href}
+                          className="block text-sm text-slate-400 hover:text-primary-foreground hover:bg-secondary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60 rounded-md transition-colors py-1 px-2"
+                          onClick={() => setIsOpen(false)}
+                        >
+                          {season.name}
+                        </Link>
+                      ))}
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+                {/* <div className="text-background font-medium py-2 flex items-center">
                   RBAC Seasons
                   <ChevronDown className="ml-2 h-4 w-4" />
-                </div>
-                <div className="pl-4 space-y-2">
-                  {seasons.map((season) => (
-                    <Link
-                      key={season.name}
-                      href={season.href}
-                      className="block text-sm text-slate-400 hover:text-primary-foreground hover:bg-secondary/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60 rounded-md transition-colors py-1 px-2"
-                      onClick={() => setIsOpen(false)}
-                    >
-                      {season.name}
-                    </Link>
-                  ))}
-                </div>
+                </div> */}
+                {/* <div >
+                  
+                </div> */}
               </div>
 
               <Link
@@ -224,7 +245,12 @@ export function Navbar() {
                     Contact Us
                   </Button>
                 </Link>
-                <Link href="/join" onClick={() => setIsOpen(false)}>
+                <Link
+                  href={FORM_LINK}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setIsOpen(false)}
+                >
                   <Button className="w-full bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white font-semibold shadow-lg shadow-blue-500/25 hover:shadow-blue-500/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500/60 transition-all duration-300">
                     Join Now
                   </Button>

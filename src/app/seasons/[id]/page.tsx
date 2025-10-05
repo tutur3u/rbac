@@ -39,10 +39,10 @@ export default function SeasonDetail() {
   const seasonYear = 2021 + seasonId;
 
   return (
-    <section className="relative w-full min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 overflow-hidden">
+    <section className="relative w-full min-h-screen bg-gradient-to-br from-primary via-blue-900 to-secondary overflow-hidden">
       <div
         className={cn(
-          "absolute inset-0 opacity-40 bg-cover bg-bottom md:bg-center w-full h-full",
+          "absolute inset-0 opacity-20 bg-cover bg-bottom md:bg-center w-full h-full",
           `bg-[url('/backgrounds/rbac-hero-mobile.png')] md:bg-[url('/backgrounds/rbac.png')]`
         )}
       />
@@ -51,7 +51,7 @@ export default function SeasonDetail() {
         ref={bgRef}
         className="absolute inset-0 matrix-bg opacity-20 md:opacity-100"
       />
-      <div className="absolute inset-0 tech-grid opacity-30" />
+      <div className="absolute inset-0 tech-grid opacity-50" />
 
       <div
         ref={floatingRef}
@@ -91,7 +91,7 @@ export default function SeasonDetail() {
       <div
         ref={contentRef}
         className="relative z-10 h-full px-4 pt-20 pb-3 md:py-20 
-         flex flex-col items-center justify-center gap-8 sm:gap-12
+         flex flex-col items-center justify-center gap-4 sm:gap-8
          min-h-screen text-center"
       >
         <Image
@@ -101,38 +101,41 @@ export default function SeasonDetail() {
           height={1262}
           className="object-contain w-full rounded-md shadow-lg"
         />
-        <div className="text-5xl md:text-7xl font-bold text-white glow-effect">
-          <h1 className="bg-gradient-to-r primary-gradient bg-clip-text text-transparent">
+        <div className="text-3xl sm:text-5xl md:text-7xl font-bold text-white glow-effect">
+          <h1
+            className="bg-gradient-to-r primary-gradient bg-clip-text text-transparent
+           text-shadow-md text-shadow-primary-foreground/30 drop-shadow-2xl"
+          >
             RBAC {seasonYear}
           </h1>
-          <p className="text-xl md:text-2xl mt-4 text-blue-100">
+          <p className="text-base sm:text-xl md:text-2xl mt-2 sm:mt-4 text-blue-100">
             Season {parseInt(id as string)} - {currentSeason.topic}
           </p>
         </div>
+        <div className="h-0.5 w-full md:w-3/4 lg:w-2/3 bg-primary-foreground/40 rounded-full"></div>
 
         {/* Season Logo */}
-        <Card className="w-full max-w-4xl bg-transparent backdrop-blur-sm border-transparent shadow-none">
+        <Card className="w-full max-w-4xl gap-2 md:gap-3 bg-transparent border-transparent shadow-none">
           <CardHeader>
-            <CardTitle className="text-2xl font-bold text-white">
+            <CardTitle className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
               Season Logo
             </CardTitle>
           </CardHeader>
           <CardContent className="flex flex-col items-center justify-center">
-            <div className="w-48 h-48 relative">
-              <Image
-                src={`${rootUrl}/${currentSeason.logo}` || "/placeholder.svg"}
-                alt={`RBAC Season ${id} Logo`}
-                fill
-                className="object-contain"
-              />
-            </div>
+            <Image
+              src={`${rootUrl}/${currentSeason.logo}` || "/placeholder.svg"}
+              alt={`RBAC Season ${id} Logo`}
+              width={206}
+              height={206}
+              className="object-contain rounded-sm shadow-lg shadow-secondary/30 w-32 md:w-40 lg:w-48"
+            />
           </CardContent>
         </Card>
 
         {/* Partners Section */}
-        <Card className="w-full max-w-4xl bg-transparent border-transparent shadow-none">
+        <Card className="w-full max-w-4xl gap-2 md:gap-3 bg-transparent border-transparent shadow-none">
           <CardHeader>
-            <CardTitle className="text-2xl font-bold text-white">
+            <CardTitle className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
               Partners & Sponsors
             </CardTitle>
           </CardHeader>
@@ -141,7 +144,7 @@ export default function SeasonDetail() {
           backdrop-blur-sm bg-primary/10
           rounded-sm border-2 border-pink-300/50"
           >
-            <div className="flex flex-row flex-wrap gap-4 justify-center items-center justify-items-center">
+            <div className="flex flex-row flex-wrap gap-2 md:gap-4 justify-center items-center justify-items-center">
               {currentSeason.partners.map((partner, index) => {
                 if (currentSeason.logo.includes("ss5"))
                   return (
@@ -161,18 +164,19 @@ export default function SeasonDetail() {
                     alt={`Partner ${index + 1}`}
                     width={partner.width}
                     height={partner.height}
-                    className="object-contain rounded-sm w-50"
+                    className="object-contain rounded-sm w-24 sm:w-32 lg:w-50"
                   />
                 );
               })}
             </div>
           </CardContent>
         </Card>
+        <div className="h-0.5 w-full bg-primary-foreground/40 rounded-full"></div>
 
         {currentSeason.mentors && currentSeason.mentors.length > 0 && (
-          <Card className="bg-transparent backdrop-blur-sm border-transparent shadow-none">
+          <Card className="bg-transparent border-transparent shadow-none">
             <CardHeader>
-              <CardTitle className="text-2xl font-bold text-white">
+              <CardTitle className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
                 Mentors
               </CardTitle>
             </CardHeader>
@@ -205,9 +209,9 @@ export default function SeasonDetail() {
         )}
 
         {currentSeason.judges && currentSeason.judges.length > 0 && (
-          <Card className="bg-transparent backdrop-blur-sm border-transparent shadow-none">
+          <Card className="bg-transparent border-transparent shadow-none">
             <CardHeader>
-              <CardTitle className="text-2xl font-bold text-white">
+              <CardTitle className="text-2xl sm:text-3xl md:text-4xl font-bold text-white">
                 Judges
               </CardTitle>
             </CardHeader>
@@ -244,16 +248,17 @@ export default function SeasonDetail() {
 
         {/* Highlighted Joiners Carousel */}
         <div className="w-full max-w-6xl mt-8">
-          <div className="text-center mb-8">
-            <h2 className="text-5xl font-bold text-white mb-4 glow-effect animate-fade-in">
+          <div className="text-center mb-4 md:mb-6 lg:mb-8">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 glow-effect animate-fade-in">
               <span
-                className="bg-gradient-to-r text-shadow-sm text-shadow-background/20 
+                className="bg-gradient-to-r text-shadow-sm text-shadow-background/10 
               primary-gradient bg-clip-text text-transparent"
               >
                 Top 5 Finalists
               </span>
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-blue-200 to-secondary-foreground mx-auto mt-4 rounded-full animate-pulse"></div>
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-200 to-secondary-foreground mx-auto 
+            mt-2 md:mt-3 lg:mt-4 rounded-full animate-pulse"></div>
           </div>
 
           <FinalistList currentSeason={currentSeason} rootUrl={rootUrl} />

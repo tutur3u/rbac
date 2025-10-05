@@ -226,7 +226,7 @@
   }
   .primary-gradient {
     /* @apply from-background via-indigo-400 to-accent-foreground; */
-    @apply from-blue-400 via-purple-400 to-cyan-400;
+    @apply from-pink-400 via-secondary-foreground to-cyan-400;
   }
 
   .pulse-glow {

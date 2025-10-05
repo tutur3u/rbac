@@ -6,6 +6,10 @@ import { cn } from "@/lib/utils";
 import { motion, AnimatePresence, Variants } from "motion/react";
 import { useRef } from "react";
 import Image from "next/image";
+import RulesRegulations from "@/components/seasons/6/rules-regulations";
+import { prizesSeason6, roundSeason6 } from "@/lib/season6-constants";
+import Season6Sponsors from "@/components/seasons/6/season-6-sponsors";
+import Season6Judges from "@/components/seasons/6/season-6-judges";
 
 // Optimized animation variants with reduced complexity
 const containerVariants: Variants = {
@@ -68,189 +72,19 @@ const slideInRight: Variants = {
   },
 };
 
-// Simple scale animation for reduced CPU usage
-const scaleVariants: Variants = {
-  hidden: { opacity: 0, scale: 0.9 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: { duration: 0.3, ease: "easeOut" },
-  },
-};
-
 export default function RBACCompetitionPage() {
   const { elementRef: bgRef, offset: bgOffset } = useParallax(0.2); // Reduced parallax intensity
   const [activeRound, setActiveRound] = useState("round1");
   const [currentPrizeIndex, setCurrentPrizeIndex] = useState(0);
   const sectionRef = useRef(null);
 
-  const prizes = [
-    {
-      place: "Champion",
-      amount: "888,636,000 VND",
-      position: 1,
-      descs: [
-        "100% scholarship of AI Optimization, Business Case, System Thinking, Reverse Thinking, Digital Performance Management",
-        "Scholarship of ACCA, CFA, CMA, FPAC, FRM, Business Intelligence, Excel, Power BI",
-        "Certificate of recognition and trophies",
-        "Gifts and merchandise from sponsors and RBAC Organizers",
-        "Technology gadgets",
-      ],
-      gradient: "from-yellow-200 to-amber-600",
-      bgGradient: "from-yellow-200/20 to-amber-600/20",
-      glow: "shadow-chart-4/30",
-    },
-    {
-      place: "1st Runner Up",
-      amount: "799,433,200 VND",
-      position: 2,
-      descs: [
-        "Scholarship of AI Optimization, Business Case, System Thinking, Reverse Thinking, Digital Performance Management, ACCA, CFA, CMA, FPAC, Business Intelligence, Excel, Power BI",
-        "Vouchers from esteemed sponsors",
-        "Certificate of recognition and trophies",
-        "Gifts and merchandise from sponsors and RBAC Organizers",
-        "Technology gadgets",
-      ],
-      gradient: "from-gray-400 to-slate-600",
-      bgGradient: "from-gray-400/20 to-slate-600/20",
-      glow: "shadow-slate-500/20",
-    },
-    {
-      place: "2nd Runner Up",
-      amount: "737,118,000 VND",
-      position: 3,
-      descs: [
-        "Scholarship of AI Optimization, Business Case, System Thinking, Reverse Thinking, Digital Performance Management, ACCA, CFA, CMA, FPAC, Business Intelligence, Excel, Power BI",
-        "Vouchers from esteemed sponsors",
-        "Certificate of recognition and trophies",
-        "Gifts and merchandise from sponsors and RBAC Organizers",
-        "Technology gadgets",
-      ],
-      gradient: "from-primary-foreground to-orange-700",
-      bgGradient: "from-primary-foreground/20 to-orange-700/20",
-      glow: "shadow-amber-500/20",
-    },
-    {
-      place: "4TH & 5TH TEAMS",
-      amount: "1,265,117,600 VND",
-      position: 4,
-      descs: [
-        "Scholarship of AI Optimization, Business Case, System Thinking, Reverse Thinking, Digital Performance Management, ACCA, CFA, CMA, FPAC, Business Intelligence, Excel, Power BI",
-        "Vouchers from esteemed sponsors",
-        "Certificate of recognition and trophies",
-        "Gifts and merchandise from sponsors and RBAC Organizers",
-      ],
-      gradient: "from-primary-foreground to-muted",
-      bgGradient: "from-primary-foreground/20 to-muted/20",
-      glow: "shadow-muted/20",
-    },
-    {
-      place: "Top 6 - Top 15",
-      amount: "5,010,792,000 VND",
-      extra: "All Teams",
-      position: 5,
-      descs: [
-        "Scholarship of Digital Performance Management, ACCA, CFA, CMA, FPAC, Business Intelligence, Excel",
-        "Digital Certificates",
-      ],
-      gradient: "from-secondary to-pink-300",
-      bgGradient: "from-secondary/20 to-pink-300/20",
-      glow: "shadow-secondary/20",
-    },
-    {
-      place: "Top 6 - Top 15",
-      amount: "419,188,000 VND",
-      extra: "All Teams",
-      position: 6,
-      descs: [
-        "Scholarship of Digital Performance Management, Business Intelligence, Excel",
-        "Digital Certificates",
-      ],
-      gradient: "from-secondary to-pink-300",
-      bgGradient: "from-secondary/20 to-pink-300/20",
-      glow: "shadow-secondary/20",
-    },
-    {
-      place: "PEOPLE CHOICE AWARDS",
-      amount: "13,000,000 VND",
-      position: 7,
-      descs: [
-        "Gifts and merchandise from sponsors and RBAC Organizers Digital Certificates",
-        "Phu Hung Life: 2 internships with a monthly allowance of 3,000,000 VND and a commitment to work for 2 months",
-      ],
-      gradient: "from-secondary to-pink-300",
-      bgGradient: "from-primary/20 to-pink-300/20",
-      glow: "shadow-secondary/20",
-    },
-    {
-      place: "PARTICIPANTS",
-      amount: "1,739,850,000 VND",
-      position: 8,
-      extra: "All Teams Round 1 Submissions",
-      descs: [
-        "Vouchers for Digital Performance Management, CFA, FRM Digital Certificates",
-      ],
-      gradient: "from-secondary to-pink-300",
-      bgGradient: "from-primary/30 to-pink-300/30",
-      glow: "shadow-secondary/20",
-    },
-  ];
-
-  const rounds = [
-    {
-      id: "open-ceremony",
-      title: "OPENING CEREMONY",
-      date: "10 October 2025",
-      format: "[ONLINE] Kick-off event via Zoom",
-      description:
-        "Introduction to RBAC Season 6, competition rules, and Q&A session",
-      icon: "🎯",
-    },
-    {
-      id: "round1",
-      title: "ROUND 01: PRELIMINARY ROUND",
-      date: "11 October 2025",
-      format: "[ONLINE] Online test on Base.vn platform",
-      description:
-        "Each team (4 members) will have 120 minutes to answer 30 questions and a mini case study regarding numerical, logical, etc., from our academic sponsor's industry to analyze, visualize, and give business insights",
-      icon: "📊",
-    },
-    {
-      id: "round2",
-      title: "ROUND 02: FROM DATA TO INSIGHTS",
-      date: "17-22 October 2025",
-      format: "[ONLINE] Advanced business case with real-world data",
-      description:
-        "The top 30 teams will receive a Case Study package. Each team has to create a slide presentation that analyses, visualizes, and provides business insights, and submit it together with your written analysis.",
-      icon: "🚀",
-    },
-    {
-      id: "round3",
-      title: "FINAL ROUND",
-      date: "29 Oct - 5 Nov 2025",
-      format: "[ONLINE] Advanced case study analysis",
-      description:
-        "The top 5 teams will receive an advanced case study package based on Round 2. Each team will utilize the given dataset to create a storyboard to analyze, visualize, and provide business insights.",
-      icon: "🏆",
-    },
-    {
-      id: "closing-ceremony",
-      title: "GRAND FINALE & CLOSING CEREMONY",
-      date: "12 November 2025",
-      format: "RMIT University Vietnam Saigon South Campus",
-      description:
-        "The Top 5 teams will take the stage with their live pitches and answer questions from our Judges. The event will conclude with the announcement of results and awarding of prizes.",
-      icon: "🎉",
-    },
-  ];
-
   // Optimized interval with cleanup
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentPrizeIndex((prev) => (prev + 1) % prizes.length);
+      setCurrentPrizeIndex((prev) => (prev + 1) % prizesSeason6.length);
     }, 5000); // Increased interval for better performance
     return () => clearInterval(interval);
-  }, [prizes.length]);
+  }, [prizesSeason6.length]);
 
   // Simplified floating orb with reduced animations
   const FloatingOrb = ({
@@ -352,84 +186,11 @@ export default function RBACCompetitionPage() {
         </motion.div>
 
         {/* Rules and Regulations - Simplified */}
-        <motion.section variants={fadeInUp} className="mb-16">
-          <motion.div
-            variants={itemVariants}
-            className="bg-primary/60 backdrop-blur-sm rounded-xl p-6 border border-accent-foreground/50"
-          >
-            <motion.h2
-              variants={itemVariants}
-              className="text-2xl font-bold text-white mb-6 text-center"
-            >
-              Rules and Regulations
-            </motion.h2>
-
-            <motion.div
-              variants={staggerContainer}
-              className="grid grid-cols-1 md:grid-cols-3 gap-4"
-            >
-              {[
-                {
-                  title: "Eligibility",
-                  items: [
-                    "All nationalities accepted",
-                    "Undergraduate students in Vietnam",
-                    "Previous top 5 finalists cannot participate",
-                  ],
-                  color: "blue",
-                },
-                {
-                  title: "Registration",
-                  items: [
-                    "4 members per team",
-                    "One team per contestant",
-                    "Cross-university teams allowed",
-                  ],
-                  color: "purple",
-                },
-                {
-                  title: "Notes",
-                  items: [
-                    "Follow all regulations",
-                    "English sessions & submissions",
-                    "Organizers can disqualify violations",
-                  ],
-                  color: "cyan",
-                },
-              ].map((section, index) => (
-                <motion.div
-                  key={section.title}
-                  variants={itemVariants}
-                  whileHover={{ y: -2 }}
-                  className={cn(
-                    "border rounded-lg p-4 transition-all duration-200",
-                    `bg-${section.color}-900/20 border-${section.color}-500/20 hover:border-${section.color}-400/30`
-                  )}
-                >
-                  <h3 className="text-lg font-semibold text-white mb-3 flex items-center">
-                    <div
-                      className={cn(
-                        "w-2 h-2 rounded-full mr-2",
-                        `bg-${section.color}-400`
-                      )}
-                    />
-                    {section.title}
-                  </h3>
-                  <ul className="space-y-2 text-blue-100 text-sm">
-                    {section.items.map((item, idx) => (
-                      <li key={idx} className="flex items-start">
-                        <span className={cn(`text-${section.color}-400 mr-2`)}>
-                          •
-                        </span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
-        </motion.section>
+        <RulesRegulations
+          fadeInUp={fadeInUp}
+          itemVariants={itemVariants}
+          staggerContainer={staggerContainer}
+        />
 
         {/* Competition Timeline - Optimized */}
         <motion.section variants={fadeInUp} className="mb-16">
@@ -449,7 +210,7 @@ export default function RBACCompetitionPage() {
               variants={staggerContainer}
               className="flex overflow-x-auto pb-4 mb-6 gap-2 scrollbar-hide"
             >
-              {rounds.map((round) => (
+              {roundSeason6.map((round) => (
                 <motion.button
                   key={round.id}
                   variants={itemVariants}
@@ -478,7 +239,7 @@ export default function RBACCompetitionPage() {
                 transition={{ duration: 0.2 }}
                 className="grid grid-cols-1 lg:grid-cols-2 gap-6"
               >
-                {rounds
+                {roundSeason6
                   .filter((round) => round.id === activeRound)
                   .map((round) => (
                     <div key={round.id} className="space-y-4">
@@ -563,28 +324,28 @@ export default function RBACCompetitionPage() {
                 transition={{ duration: 0.3 }}
                 className={cn(
                   "bg-gradient-to-r backdrop-blur-sm rounded-xl p-6 text-center border border-secondary/20",
-                  prizes[currentPrizeIndex].bgGradient
+                  prizesSeason6[currentPrizeIndex].bgGradient
                 )}
               >
                 <div className="flex items-center justify-center flex-col gap-4 mb-4">
                   <div
                     className={cn(
                       "w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl",
-                      `bg-gradient-to-r ${prizes[currentPrizeIndex].gradient}`
+                      `bg-gradient-to-r ${prizesSeason6[currentPrizeIndex].gradient}`
                     )}
                   >
-                    {prizes[currentPrizeIndex].position}
+                    {prizesSeason6[currentPrizeIndex].position}
                   </div>
                   <h3 className="text-2xl font-bold text-white">
-                    {prizes[currentPrizeIndex].place}
+                    {prizesSeason6[currentPrizeIndex].place}
                   </h3>
                   <p
                     className={cn(
                       "text-2xl font-bold bg-gradient-to-tl bg-clip-text text-transparent",
-                      prizes[currentPrizeIndex].gradient
+                      prizesSeason6[currentPrizeIndex].gradient
                     )}
                   >
-                    {prizes[currentPrizeIndex].amount}
+                    {prizesSeason6[currentPrizeIndex].amount}
                   </p>
                 </div>
               </motion.div>
@@ -592,7 +353,7 @@ export default function RBACCompetitionPage() {
 
             {/* Simplified Carousel Dots */}
             <div className="flex justify-center mt-4 space-x-2">
-              {prizes.map((_, index) => (
+              {prizesSeason6.map((_, index) => (
                 <button
                   key={index}
                   className={`w-2 h-2 rounded-full transition-all ${
@@ -611,7 +372,7 @@ export default function RBACCompetitionPage() {
             variants={staggerContainer}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3"
           >
-            {prizes.map((prize, index) => (
+            {prizesSeason6.map((prize, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
@@ -646,7 +407,7 @@ export default function RBACCompetitionPage() {
                   className="mt-4"
                 >
                   <ul className="space-y-2 text-blue-100 text-sm">
-                    {prizes[index].descs.map((desc, index) => (
+                    {prizesSeason6[index].descs.map((desc, index) => (
                       <motion.li
                         key={index}
                         initial={{ opacity: 0, x: -10 }}
@@ -666,79 +427,17 @@ export default function RBACCompetitionPage() {
         </motion.section>
 
         {/* Judges Section - Optimized */}
-        <motion.section variants={fadeInUp} className="mb-16">
-          <motion.h2
-            variants={itemVariants}
-            className="text-2xl font-bold text-white mb-6 text-center"
-          >
-            Our Esteemed Judges
-          </motion.h2>
+        <Season6Judges
+          fadeInUp={fadeInUp}
+          itemVariants={itemVariants}
+          staggerContainer={staggerContainer}
+        />
 
-          <motion.div
-            variants={staggerContainer}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4"
-          >
-            {[
-              {
-                img: "/judges/huu-thai.jpg",
-                name: "Mr. PHAM HUU THAI",
-                company: "FPT Software",
-                role: "Software Project Manager",
-                role2: "CTO at Openspaces",
-              },
-              {
-                img: "/judges/minh-hoang.jpg",
-                name: "Mr. VU MINH HOANG",
-                company: "Viettel Solutions",
-                role: "Data Science/AI Expert",
-                role2: "Lecturer at University of Engineering and Technology",
-              },
-              {
-                img: "/judges/quoc-cuong.jpg",
-                name: "Mr. TANG QUOC CUONG",
-                company: "MiTek",
-                role: "Business Intelligence & Analytics Manager",
-              },
-              {
-                img: "/judges/kim-phuong.jpg",
-                name: "Ms. UNG KIM PHUONG",
-                company: "MiTek",
-                role: "Business Intelligence & Analytics Manager",
-              },
-              {
-                img: "/judges/thien-anh.jpg",
-                name: "Ms. NGUYEN BUI THIEN ANH",
-                company: "SeedSoft (Australia)",
-                role: "Data Analytics Lead",
-              },
-            ].map((judge, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                whileHover={{ y: -2 }}
-                className="bg-primary/60 backdrop-blur-sm rounded-lg px-4 py-5 text-center border border-slate-700/30 hover:border-blue-500/20 transition-all duration-200"
-              >
-                <Image
-                  src={judge.img}
-                  alt={judge.name}
-                  width={2048}
-                  height={2048}
-                  className="w-96 aspect-square rounded-lg mx-auto mb-3 object-cover"
-                />
-
-                <h3 className="text-base font-semibold text-white mb-1">
-                  {judge.name}
-                </h3>
-                <p className="text-primary-foreground text-sm font-medium">
-                  {judge.role} At {judge.company}
-                </p>
-                {judge.role2 && (
-                  <p className="text-blue-200 text-sm mt-1">{judge.role2}</p>
-                )}
-              </motion.div>
-            ))}
-          </motion.div>
-        </motion.section>
+        <Season6Sponsors
+          fadeInUp={fadeInUp}
+          itemVariants={itemVariants}
+          staggerContainer={staggerContainer}
+        />
       </div>
     </motion.div>
   );
