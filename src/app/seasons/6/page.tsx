@@ -5,37 +5,42 @@ import { useParallax } from "@/hooks/use-parallax";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence, Variants } from "motion/react";
 import { useRef } from "react";
+import Image from "next/image";
+import RulesRegulations from "@/components/seasons/6/rules-regulations";
+import { prizesSeason6, roundSeason6 } from "@/lib/season6-constants";
+import Season6Sponsors from "@/components/seasons/6/season-6-sponsors";
+import Season6Judges from "@/components/seasons/6/season-6-judges";
 
-// Animation variants
+// Optimized animation variants with reduced complexity
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
-      duration: 0.8,
+      staggerChildren: 0.15,
+      duration: 0.6,
     },
   },
 };
 
 const itemVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.4,
       ease: "easeOut",
     },
   },
 };
 
 const fadeInUp: Variants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 30 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.8, ease: "easeOut" },
+    transition: { duration: 0.5, ease: "easeOut" },
   },
 };
 
@@ -44,128 +49,44 @@ const staggerContainer: Variants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2,
-      delayChildren: 0.3,
-    },
-  },
-};
-
-const prizeStagger: Variants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.1,
     },
   },
 };
 
 const slideInLeft: Variants = {
-  hidden: { opacity: 0, x: -50 },
+  hidden: { opacity: 0, x: -30 },
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.7, ease: "easeOut" },
+    transition: { duration: 0.5, ease: "easeOut" },
   },
 };
 
 const slideInRight: Variants = {
-  hidden: { opacity: 0, x: 50 },
+  hidden: { opacity: 0, x: 30 },
   visible: {
     opacity: 1,
     x: 0,
-    transition: { duration: 0.7, ease: "easeOut" },
+    transition: { duration: 0.5, ease: "easeOut" },
   },
 };
 
 export default function RBACCompetitionPage() {
-  const { elementRef: bgRef, offset: bgOffset } = useParallax(0.3);
-  const { elementRef: floatingRef, offset: floatingOffset } = useParallax(0.5);
-
+  const { elementRef: bgRef, offset: bgOffset } = useParallax(0.2); // Reduced parallax intensity
   const [activeRound, setActiveRound] = useState("round1");
   const [currentPrizeIndex, setCurrentPrizeIndex] = useState(0);
   const sectionRef = useRef(null);
 
-  const prizes = [
-    {
-      place: "Champion",
-      amount: "30,000,000 VND",
-      position: 1,
-      extras: "Trophy & Certificates",
-      gradient: "from-yellow-400 to-amber-600",
-      glow: "shadow-yellow-500/30",
-    },
-    {
-      place: "1st Runner Up",
-      amount: "15,000,000 VND",
-      position: 2,
-      extras: "Certificates",
-      gradient: "from-gray-400 to-slate-600",
-      glow: "shadow-slate-500/30",
-    },
-    {
-      place: "2nd Runner Up",
-      amount: "10,000,000 VND",
-      position: 3,
-      extras: "Certificates",
-      gradient: "from-amber-500 to-orange-600",
-      glow: "shadow-amber-500/30",
-    },
-    {
-      place: "4th Place",
-      amount: "5,000,000 VND",
-      position: 4,
-      extras: "Certificates",
-      gradient: "from-blue-500 to-purple-600",
-      glow: "shadow-blue-500/30",
-    },
-    {
-      place: "5th Place",
-      amount: "5,000,000 VND",
-      position: 5,
-      extras: "Certificates",
-      gradient: "from-purple-500 to-pink-600",
-      glow: "shadow-purple-500/30",
-    },
-  ];
-
-  const rounds = [
-    {
-      id: "round1",
-      title: "Preliminary Round",
-      date: "15/03/2025 - 30/03/2025",
-      format: "Online qualification challenge with provided dataset",
-      description:
-        "Teams analyze a business case study and submit their solutions online",
-      icon: "📊",
-    },
-    {
-      id: "round2",
-      title: "Semi-Final Round",
-      date: "15/04/2025 - 25/04/2025",
-      format: "Advanced business case with real-world data",
-      description:
-        "Shortlisted teams work on complex analytical problems with mentorship",
-      icon: "🚀",
-    },
-    {
-      id: "round3",
-      title: "Grand Finale",
-      date: "10/05/2025",
-      format: "Live presentation to industry expert judges",
-      description:
-        "Finalists present their solutions to a panel of industry professionals",
-      icon: "🏆",
-    },
-  ];
-
+  // Optimized interval with cleanup
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentPrizeIndex((prev) => (prev + 1) % prizes.length);
-    }, 4000);
+      setCurrentPrizeIndex((prev) => (prev + 1) % prizesSeason6.length);
+    }, 5000); // Increased interval for better performance
     return () => clearInterval(interval);
-  }, []);
+  }, [prizesSeason6.length]);
 
+  // Simplified floating orb with reduced animations
   const FloatingOrb = ({
     delay,
     size,
@@ -178,13 +99,12 @@ export default function RBACCompetitionPage() {
     position: string;
   }) => (
     <motion.div
-      className={`absolute ${position} ${size} ${color} rounded-full blur-2xl`}
+      className={`absolute ${position} ${size} ${color} rounded-full blur-xl opacity-40`}
       animate={{
-        y: [0, -40, 0],
-        scale: [1, 1.2, 1],
+        y: [0, -20, 0],
       }}
       transition={{
-        duration: 6,
+        duration: 8, // Slower animation
         delay,
         repeat: Infinity,
         ease: "easeInOut",
@@ -196,226 +116,115 @@ export default function RBACCompetitionPage() {
     <motion.div
       ref={sectionRef}
       initial="hidden"
-      animate={"visible"}
+      animate="visible"
       variants={containerVariants}
       className="relative w-full min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 overflow-hidden"
     >
-      {/* Background Elements */}
+      {/* Simplified Background */}
       <div
         className={cn(
-          "absolute inset-0 opacity-20 bg-cover bg-bottom md:bg-center w-full h-full",
+          "absolute inset-0 opacity-20 bg-cover bg-center w-full h-full",
           `bg-[url('/backgrounds/rbac-hero-mobile.png')] md:bg-[url('/backgrounds/rbac.png')]`
         )}
       />
 
-      <div
-        ref={bgRef}
-        className="absolute inset-0 matrix-bg opacity-20 md:opacity-100"
-      />
-
-      <div className="absolute inset-0 tech-grid opacity-30" />
-
-      {/* Animated Floating Orbs */}
-      <motion.div
-        ref={floatingRef}
-        className="absolute inset-0 overflow-hidden"
-        style={{ transform: `translateY(${floatingOffset}px)` }}
-      >
+      {/* Reduced number of floating orbs */}
+      <div className="absolute inset-0 overflow-hidden">
         <FloatingOrb
           delay={0}
-          size="w-32 h-32"
-          color="bg-blue-500/20"
-          position="top-20 left-20"
-        />
-        <FloatingOrb
-          delay={2}
           size="w-24 h-24"
-          color="bg-purple-500/20"
-          position="top-40 right-32"
+          color="bg-blue-500/10"
+          position="top-20 left-10"
         />
         <FloatingOrb
           delay={4}
-          size="w-40 h-40"
-          color="bg-cyan-500/20"
-          position="bottom-32 left-1/3"
+          size="w-32 h-32"
+          color="bg-purple-500/10"
+          position="bottom-32 right-20"
         />
-        <FloatingOrb
-          delay={1}
-          size="w-16 h-16"
-          color="bg-pink-500/20"
-          position="top-1/2 right-1/4"
-        />
-      </motion.div>
+      </div>
 
       {/* Main Content */}
-      <div className="relative z-10 container mx-auto px-4 pt-20 pb-3 md:pb-20 md:pt-32">
+      <div className="relative z-10 container mx-auto px-4 pt-20 pb-3 md:pb-16 md:pt-28">
         {/* Hero Section */}
-        <motion.div variants={staggerContainer} className="text-center mb-16">
-          <motion.h1
-            variants={slideInLeft}
-            className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent mb-4"
-          >
-            RMIT Business Analytics Champion
-          </motion.h1>
+        <motion.div variants={staggerContainer} className="text-center mb-12">
+          <div className="flex justify-center flex-col items-center gap-3 mb-6">
+            <Image
+              src="/hero/hero-caption.png"
+              alt="Hero Caption"
+              width={2017}
+              height={198}
+              className="object-contain w-1/2 md:w-1/3 max-w-4xl"
+              priority
+            />
+            <Image
+              src="/hero/hero-title.png"
+              alt="Hero Title"
+              width={2768}
+              height={187}
+              className="object-contain w-full md:w-2/3 max-w-5xl"
+              priority
+            />
+            <Image
+              src="/hero/hero-subtitle.png"
+              alt="Hero Subtitle"
+              width={1222}
+              height={184}
+              className="object-contain w-1/2 md:w-1/3 max-w-4xl"
+              priority
+            />
+          </div>
           <motion.p
             variants={slideInRight}
-            className="text-xl text-blue-100 max-w-3xl mx-auto"
+            className="text-sm md:text-base lg:text-lg text-blue-100 max-w-4xl mx-auto leading-relaxed"
           >
-            Season 6: The premier competition for aspiring data analysts and
-            business strategists
+            Choose Experience - RBAC Season 6 invites students to step beyond
+            the classroom and choose experience. More than just a competition,
+            RBAC is a journey of tackling real business challenges through data
+            analytics, building teamwork, and learning from industry experts.
           </motion.p>
         </motion.div>
 
-        {/* Rules and Regulations */}
-        <motion.section variants={fadeInUp} className="mb-20">
-          <motion.div
-            variants={itemVariants}
-            className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700/50"
-          >
-            <motion.h2
-              variants={itemVariants}
-              className="text-3xl font-bold text-white mb-8 text-center"
-            >
-              Rules and Regulations
-            </motion.h2>
+        {/* Rules and Regulations - Simplified */}
+        <RulesRegulations
+          fadeInUp={fadeInUp}
+          itemVariants={itemVariants}
+          staggerContainer={staggerContainer}
+        />
 
-            <motion.div
-              variants={staggerContainer}
-              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-            >
-              {/* Eligibility */}
-              <motion.div
-                variants={itemVariants}
-                whileHover={{ scale: 1.02, y: -5 }}
-                className="bg-blue-900/30 border border-blue-500/20 rounded-xl p-6 transition-all duration-300 hover:border-blue-400/50"
-              >
-                <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
-                  <motion.div
-                    className="w-3 h-3 bg-blue-400 rounded-full mr-3"
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  />
-                  Eligibility
-                </h3>
-                <ul className="space-y-3 text-blue-100">
-                  {[
-                    "All nationalities are accepted",
-                    "Participants must be undergraduate students currently studying in universities in Vietnam",
-                    "Top 5 finalists of previous RBAC seasons are not allowed to participate",
-                  ].map((item, index) => (
-                    <motion.li
-                      key={index}
-                      className="flex items-start"
-                      whileHover={{ x: 5 }}
-                    >
-                      <span className="text-blue-400 mr-2">•</span>
-                      {item}
-                    </motion.li>
-                  ))}
-                </ul>
-              </motion.div>
-
-              {/* Registration */}
-              <motion.div
-                variants={itemVariants}
-                whileHover={{ scale: 1.02, y: -5 }}
-                className="bg-purple-900/30 border border-purple-500/20 rounded-xl p-6 transition-all duration-300 hover:border-purple-400/50"
-              >
-                <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
-                  <motion.div
-                    className="w-3 h-3 bg-purple-400 rounded-full mr-3"
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 2, repeat: Infinity, delay: 0.5 }}
-                  />
-                  Registration
-                </h3>
-                <ul className="space-y-3 text-blue-100">
-                  {[
-                    "A team must consist of 4 members",
-                    "Each contestant can only join one team",
-                    "Teams may consist of students from different universities",
-                    "Member changes must be requested before registration closes",
-                  ].map((item, index) => (
-                    <motion.li
-                      key={index}
-                      className="flex items-start"
-                      whileHover={{ x: 5 }}
-                    >
-                      <span className="text-purple-400 mr-2">•</span>
-                      {item}
-                    </motion.li>
-                  ))}
-                </ul>
-              </motion.div>
-
-              {/* Notes */}
-              <motion.div
-                variants={itemVariants}
-                whileHover={{ scale: 1.02, y: -5 }}
-                className="bg-cyan-900/30 border border-cyan-500/20 rounded-xl p-6 transition-all duration-300 hover:border-cyan-400/50"
-              >
-                <h3 className="text-xl font-semibold text-white mb-4 flex items-center">
-                  <motion.div
-                    className="w-3 h-3 bg-cyan-400 rounded-full mr-3"
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 2, repeat: Infinity, delay: 1 }}
-                  />
-                  Notes
-                </h3>
-                <ul className="space-y-3 text-blue-100">
-                  {[
-                    "Teams must comply with all regulations and deadlines",
-                    "All sessions and submissions must be in English",
-                    "Organizers reserve the right to disqualify any violating teams",
-                  ].map((item, index) => (
-                    <motion.li
-                      key={index}
-                      className="flex items-start"
-                      whileHover={{ x: 5 }}
-                    >
-                      <span className="text-cyan-400 mr-2">•</span>
-                      {item}
-                    </motion.li>
-                  ))}
-                </ul>
-              </motion.div>
-            </motion.div>
-          </motion.div>
-        </motion.section>
-
-        {/* Round Format */}
-        <motion.section variants={fadeInUp} className="mb-20">
+        {/* Competition Timeline - Optimized */}
+        <motion.section variants={fadeInUp} className="mb-16">
           <motion.h2
             variants={itemVariants}
-            className="text-3xl font-bold text-white mb-8 text-center"
+            className="text-2xl font-bold text-white mb-6 text-center"
           >
             Competition Timeline
           </motion.h2>
 
           <motion.div
             variants={itemVariants}
-            className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700/50"
+            className="bg-slate-800/40 backdrop-blur-sm rounded-xl p-6 border border-slate-700/30"
           >
-            {/* Round Selection */}
+            {/* Simplified Round Selection */}
             <motion.div
               variants={staggerContainer}
-              className="flex flex-wrap justify-center gap-4 mb-8"
+              className="flex overflow-x-auto pb-4 mb-6 gap-2 scrollbar-hide"
             >
-              {rounds.map((round, index) => (
+              {roundSeason6.map((round) => (
                 <motion.button
                   key={round.id}
                   variants={itemVariants}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   onClick={() => setActiveRound(round.id)}
                   className={cn(
-                    "px-6 py-3 rounded-xl transition-all duration-300 border-2 font-semibold",
+                    "px-4 py-2 rounded-lg transition-all duration-200 border flex-shrink-0 text-sm",
                     activeRound === round.id
-                      ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white border-transparent shadow-lg shadow-blue-500/30"
-                      : "bg-slate-700/50 text-blue-200 border-slate-600 hover:bg-slate-700/70"
+                      ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white border-transparent"
+                      : "bg-slate-700/30 text-blue-200 border-slate-600 hover:bg-slate-700/50"
                   )}
                 >
-                  {round.icon} {round.title}
+                  {round.icon} {round.title.split(":")[0]}
                 </motion.button>
               ))}
             </motion.div>
@@ -424,35 +233,36 @@ export default function RBACCompetitionPage() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeRound}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -20 }}
-                transition={{ duration: 0.3 }}
-                className="grid grid-cols-1 lg:grid-cols-2 gap-8"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.2 }}
+                className="grid grid-cols-1 lg:grid-cols-2 gap-6"
               >
-                {rounds
+                {roundSeason6
                   .filter((round) => round.id === activeRound)
                   .map((round) => (
-                    <div key={round.id}>
+                    <div key={round.id} className="space-y-4">
                       <motion.div
-                        className="bg-gradient-to-r from-blue-900/30 to-purple-900/30 border border-blue-500/20 rounded-xl p-6 mb-6"
-                        whileHover={{ scale: 1.02 }}
+                        className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-blue-500/20 rounded-lg p-4"
+                        whileHover={{ y: -1 }}
                       >
-                        <h3 className="text-xl font-semibold text-white mb-3">
-                          📅 Date
+                        <h3 className="text-lg font-semibold text-white mb-2">
+                          📅 {round.title}
                         </h3>
-                        <p className="text-blue-100 text-lg">{round.date}</p>
+                        <p className="text-blue-100">{round.date}</p>
+                        <p className="text-blue-200 text-sm mt-2">
+                          {round.format}
+                        </p>
                       </motion.div>
-
                       <motion.div
-                        className="bg-gradient-to-r from-purple-900/30 to-pink-900/30 border border-purple-500/20 rounded-xl p-6"
-                        whileHover={{ scale: 1.02 }}
+                        className="bg-slate-900/30 border border-slate-600/30 rounded-lg p-4"
+                        whileHover={{ y: -1 }}
                       >
-                        <h3 className="text-xl font-semibold text-white mb-3">
-                          🎯 Format
+                        <h3 className="text-lg font-semibold text-white mb-2">
+                          📝 Description
                         </h3>
-                        <p className="text-blue-100">{round.format}</p>
-                        <p className="text-blue-200 mt-2 text-sm">
+                        <p className="text-blue-100 text-sm">
                           {round.description}
                         </p>
                       </motion.div>
@@ -460,41 +270,24 @@ export default function RBACCompetitionPage() {
                   ))}
 
                 <motion.div
-                  className="bg-gradient-to-br from-slate-900/50 to-blue-900/30 border border-slate-600/50 rounded-xl p-6 h-full"
-                  whileHover={{ scale: 1.02 }}
+                  className="bg-gradient-to-br from-slate-900/30 to-blue-900/20 border border-slate-600/30 rounded-lg p-4"
+                  whileHover={{ y: -1 }}
                 >
-                  <h3 className="text-xl font-semibold text-white mb-4">
-                    🏆 What to Expect
+                  <h3 className="text-lg font-semibold text-white mb-3">
+                    🎯 What to Expect
                   </h3>
-                  <ul className="space-y-3 text-blue-100">
-                    <motion.li
-                      className="flex items-center"
-                      whileHover={{ x: 5 }}
-                    >
-                      <span className="text-green-400 mr-3">✓</span>
-                      Real-world business challenges
-                    </motion.li>
-                    <motion.li
-                      className="flex items-center"
-                      whileHover={{ x: 5 }}
-                    >
-                      <span className="text-green-400 mr-3">✓</span>
-                      Industry expert mentorship
-                    </motion.li>
-                    <motion.li
-                      className="flex items-center"
-                      whileHover={{ x: 5 }}
-                    >
-                      <span className="text-green-400 mr-3">✓</span>
-                      Networking opportunities
-                    </motion.li>
-                    <motion.li
-                      className="flex items-center"
-                      whileHover={{ x: 5 }}
-                    >
-                      <span className="text-green-400 mr-3">✓</span>
-                      Career development workshops
-                    </motion.li>
+                  <ul className="space-y-2 text-blue-100 text-sm">
+                    {[
+                      "Real-world business challenges",
+                      "Industry expert mentorship",
+                      "Networking opportunities",
+                      "Career development",
+                    ].map((item, index) => (
+                      <li key={index} className="flex items-center">
+                        <span className="text-green-400 mr-2">✓</span>
+                        {item}
+                      </li>
+                    ))}
                   </ul>
                 </motion.div>
               </motion.div>
@@ -502,211 +295,149 @@ export default function RBACCompetitionPage() {
           </motion.div>
         </motion.section>
 
-        {/* Prize Structure */}
-        <motion.section variants={fadeInUp} className="mb-20">
+        {/* Prize Structure - Optimized */}
+        <motion.section variants={fadeInUp} className="mb-16">
           <motion.h2
             variants={itemVariants}
-            className="text-3xl font-bold text-white mb-8 text-center"
+            className="text-2xl font-bold text-white mb-2 text-center uppercase"
           >
-            Prize Structure
+            Total Prize value
           </motion.h2>
 
-          {/* Featured Prize Carousel */}
-          <motion.div variants={itemVariants} className="mb-12 relative">
+          <motion.p
+            variants={itemVariants}
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-center font-bold
+            mb-6
+            text-transparent bg-clip-text bg-gradient-to-r from-primary-foreground to-yellow-300"
+          >
+            10.855.334.800VND
+          </motion.p>
+
+          {/* Featured Prize */}
+          <motion.div variants={itemVariants} className="mb-8">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentPrizeIndex}
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 1.1 }}
-                transition={{ duration: 0.5 }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3 }}
                 className={cn(
-                  "bg-gradient-to-r backdrop-blur-sm rounded-2xl p-8 text-center border shadow-2xl",
-                  `from-${
-                    prizes[currentPrizeIndex].gradient.split(" ")[0]
-                  }/20 to-${
-                    prizes[currentPrizeIndex].gradient.split(" ")[2]
-                  }/20`,
-                  `border-${
-                    prizes[currentPrizeIndex].gradient.split(" ")[0]
-                  }/30`,
-                  prizes[currentPrizeIndex].glow
+                  "bg-gradient-to-r backdrop-blur-sm rounded-xl p-6 text-center border border-secondary/20",
+                  prizesSeason6[currentPrizeIndex].bgGradient
                 )}
               >
-                <motion.div
-                  className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-br rounded-full mb-6"
-                  animate={{ rotate: [0, 360] }}
-                  transition={{
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }}
-                  style={{
-                    background: `linear-gradient(45deg, ${prizes[
-                      currentPrizeIndex
-                    ].gradient
-                      .replace("from-", "")
-                      .replace("to-", "")
-                      .replace(" ", ", ")})`,
-                  }}
-                >
-                  <span className="text-3xl font-bold text-white">
-                    {prizes[currentPrizeIndex].position}
-                  </span>
-                </motion.div>
-                <h3 className="text-3xl font-bold text-white mb-4">
-                  {prizes[currentPrizeIndex].place}
-                </h3>
-                <motion.p
-                  className="text-4xl font-bold bg-gradient-to-r bg-clip-text text-transparent mb-4"
-                  style={{
-                    background: `linear-gradient(45deg, ${prizes[
-                      currentPrizeIndex
-                    ].gradient
-                      .replace("from-", "")
-                      .replace("to-", "")
-                      .replace(" ", ", ")})`,
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                  }}
-                >
-                  {prizes[currentPrizeIndex].amount}
-                </motion.p>
-                <p className="text-blue-200 text-lg">
-                  {prizes[currentPrizeIndex].extras}
-                </p>
+                <div className="flex items-center justify-center flex-col gap-4 mb-4">
+                  <div
+                    className={cn(
+                      "w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl",
+                      `bg-gradient-to-r ${prizesSeason6[currentPrizeIndex].gradient}`
+                    )}
+                  >
+                    {prizesSeason6[currentPrizeIndex].position}
+                  </div>
+                  <h3 className="text-2xl font-bold text-white">
+                    {prizesSeason6[currentPrizeIndex].place}
+                  </h3>
+                  <p
+                    className={cn(
+                      "text-2xl font-bold bg-gradient-to-tl bg-clip-text text-transparent",
+                      prizesSeason6[currentPrizeIndex].gradient
+                    )}
+                  >
+                    {prizesSeason6[currentPrizeIndex].amount}
+                  </p>
+                </div>
               </motion.div>
             </AnimatePresence>
 
-            {/* Carousel Dots */}
-            <motion.div
-              variants={itemVariants}
-              className="flex justify-center mt-6 space-x-2"
-            >
-              {prizes.map((_, index) => (
-                <motion.button
+            {/* Simplified Carousel Dots */}
+            <div className="flex justify-center mt-4 space-x-2">
+              {prizesSeason6.map((_, index) => (
+                <button
                   key={index}
-                  whileHover={{ scale: 1.2 }}
-                  whileTap={{ scale: 0.9 }}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                  className={`w-2 h-2 rounded-full transition-all ${
                     index === currentPrizeIndex
                       ? "bg-blue-400 scale-125"
-                      : "bg-slate-600 hover:bg-slate-500"
+                      : "bg-slate-600"
                   }`}
                   onClick={() => setCurrentPrizeIndex(index)}
                 />
               ))}
-            </motion.div>
+            </div>
           </motion.div>
 
           {/* All Prizes Grid */}
           <motion.div
-            variants={prizeStagger}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4"
+            variants={staggerContainer}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3"
           >
-            {prizes.map((prize, index) => (
+            {prizesSeason6.map((prize, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
-                whileHover={{
-                  scale: 1.05,
-                  y: -10,
-                  transition: { duration: 0.3 },
-                }}
+                whileHover={{ y: -2 }}
                 className={cn(
-                  "bg-gradient-to-b backdrop-blur-md rounded-xl p-6 text-center border h-64 flex flex-col items-center justify-center relative overflow-hidden",
-                  `from-${prize.gradient.split(" ")[0]}/20 to-${
-                    prize.gradient.split(" ")[2]
-                  }/30`,
-                  `border-${prize.gradient.split(" ")[0]}/30 hover:${
-                    prize.glow
-                  }`
+                  `bg-gradient-to-b backdrop-blur-sm rounded-lg p-4 border text-center h-full 
+                  flex flex-col justify-start`,
+                  prize.bgGradient,
+                  `border-secondary/30`
                 )}
               >
-                <motion.div
+                <div
                   className={cn(
-                    "inline-flex items-center justify-center w-16 h-16 rounded-full mb-4 text-white font-bold text-xl",
-                    `bg-gradient-to-br ${prize.gradient}`
+                    "w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold",
+                    `bg-gradient-to-br`,
+                    prize.gradient
                   )}
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.5 }}
                 >
                   {prize.position}
-                </motion.div>
-                <h3 className="text-lg font-semibold text-white mb-2">
+                </div>
+                <h4 className="text-sm font-semibold text-white">
                   {prize.place}
-                </h3>
-                <p className="text-xl font-bold text-white mb-2">
-                  {prize.amount}
+                </h4>
+                <p className="text-lg font-bold text-white">{prize.amount}</p>
+                <p className="text-blue-200 text-xs mt-1">
+                  {prize.extra ?? "\u00A0"}
                 </p>
-                <p className="text-blue-200 text-sm">{prize.extras}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </motion.section>
 
-        {/* Judges Section */}
-        <motion.section variants={fadeInUp} className="mb-20">
-          <motion.h2
-            variants={itemVariants}
-            className="text-3xl font-bold text-white mb-8 text-center"
-          >
-            Our Esteemed Judges
-          </motion.h2>
-
-          <motion.div
-            variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
-          >
-            {[
-              {
-                name: "Dr. Sarah Chen",
-                company: "Google",
-                role: "Head of Data Analytics",
-              },
-              {
-                name: "Michael Rodriguez",
-                company: "PwC",
-                role: "Senior Partner",
-              },
-              {
-                name: "Emily Watson",
-                company: "Samsung",
-                role: "Business Intelligence Director",
-              },
-              {
-                name: "David Kim",
-                company: "Microsoft",
-                role: "AI Solutions Architect",
-              },
-            ].map((judge, index) => (
-              <motion.div
-                key={index}
-                variants={itemVariants}
-                whileHover={{ scale: 1.05, y: -5 }}
-                className="bg-slate-800/50 backdrop-blur-md rounded-xl p-6 text-center border border-slate-700/50 hover:border-blue-500/30 transition-all duration-300"
-              >
                 <motion.div
-                  className="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full mx-auto mb-4 flex items-center justify-center"
-                  whileHover={{ scale: 1.1 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  className="mt-4"
                 >
-                  <span className="text-2xl text-white">
-                    {judge.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </span>
+                  <ul className="space-y-2 text-blue-100 text-sm">
+                    {prizesSeason6[index].descs.map((desc, index) => (
+                      <motion.li
+                        key={index}
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                        className="flex items-start text-left"
+                      >
+                        <span className="text-yellow-400 mr-2">•</span>
+                        {desc}
+                      </motion.li>
+                    ))}
+                  </ul>
                 </motion.div>
-                <h3 className="text-xl font-semibold text-white mb-2">
-                  {judge.name}
-                </h3>
-                <p className="text-blue-300 font-medium">{judge.role}</p>
-                <p className="text-blue-200 mt-2">{judge.company}</p>
               </motion.div>
             ))}
           </motion.div>
         </motion.section>
+
+        {/* Judges Section - Optimized */}
+        <Season6Judges
+          fadeInUp={fadeInUp}
+          itemVariants={itemVariants}
+          staggerContainer={staggerContainer}
+        />
+
+        <Season6Sponsors
+          fadeInUp={fadeInUp}
+          itemVariants={itemVariants}
+          staggerContainer={staggerContainer}
+        />
       </div>
     </motion.div>
   );

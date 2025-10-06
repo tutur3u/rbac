@@ -8,10 +8,9 @@ export function ActivitiesSection() {
       caption: "Company Tour to PwC",
     },
     {
-      image:
-        "/activities/2022 - Business Analytics Workshop - Data Exploratory.png",
-      caption:
-        "2022 - Business Analytics Workshop: Data Exploratory - Uncover Insights",
+      caption: "2024 - A warm Tet. A joyful spring.",
+      image: "/activities/2024-tet.png",
+      // isHighlighted: true,
     },
     {
       caption:
@@ -43,8 +42,7 @@ export function ActivitiesSection() {
     {
       image: "/activities/nvivo_training.jpg",
       caption: "2025 - NVivo Training Workshop",
-
-      isHighlighted: true,
+      // isHighlighted: true,
     },
     {
       image: "/activities/photography_workshop_1.jpg",
@@ -59,25 +57,13 @@ export function ActivitiesSection() {
       caption:
         "With RMIT Careers, Alumni & Industry Relations, organize a series of Career Development seminars",
     },
-    {
-      image:
-        "/activities/SHOPEE x ANALYTICS - FROM DATA TO DECISIONS - YOUR CAREER PATH IN ANALYTICS.jpg",
-      caption: "Listening to insights shared by professionals from Shopee.",
-    },
-    {
-      caption: "2024 - A warm Tet. A joyful spring.",
-      image: "/activities/2024-tet.png",
-      isHighlighted: true,
-    },
   ];
 
   // Separate highlighted and regular activities
-  const highlightedActivities = activities.filter(
-    (activity) => activity.isHighlighted
-  );
-  const regularActivities = activities.filter(
-    (activity) => !activity.isHighlighted
-  );
+  // const highlightedActivities = activities.filter(
+  //   (activity) => activity.isHighlighted
+  // );
+  const regularActivities = activities;
 
   return (
     <section className="relative py-20 bg-gradient-to-b from-slate-950 via-blue-950 to-slate-900 overflow-hidden">
@@ -99,11 +85,13 @@ export function ActivitiesSection() {
         </div>
 
         <div className="mb-20 relative">
-          <div className="absolute -top-12 md:-top-10 left-1/2 transform -translate-x-1/2 
+          <div
+            className="absolute -top-12 md:-top-10 left-1/2 transform -translate-x-1/2 
           w-24 h-24 md:w-32 md:h-32 
           bg-gradient-to-tl from-yellow-400 via-amber-500  to-amber-700
           rounded-full 
-          flex items-center justify-center shadow-lg shadow-yellow-500/30 z-20">
+          flex items-center justify-center shadow-lg shadow-yellow-500/30 z-20"
+          >
             <svg
               className="w-16 h-16 text-primary-foreground"
               fill="currentColor"
@@ -196,55 +184,11 @@ export function ActivitiesSection() {
           <div className="absolute -bottom-4 -right-4 w-16 h-16 bg-amber-500 rounded-full blur-xl opacity-30 animate-pulse delay-1000"></div>
         </div>
 
-        {/* Featured Activities Section */}
-        {highlightedActivities.length > 0 && (
-          <div className="mb-20">
-            <div className="text-center mb-12">
-              <h3 className="text-3xl font-bold mb-2 bg-gradient-to-r from-yellow-300 via-orange-300 to-yellow-200 bg-clip-text text-transparent">
-                Featured Activities
-              </h3>
-              <p className="text-blue-300">Highlighted events and workshops</p>
-            </div>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-              {highlightedActivities.map((activity, index) => (
-                <div key={`highlighted-${index + 1}`} className="group">
-                  <div className="relative bg-gradient-to-br from-amber-900/20 via-orange-900/20 to-purple-900/20 backdrop-blur-sm rounded-2xl overflow-hidden border border-amber-500/30 hover:border-amber-400/60 transition-all duration-500 hover:shadow-2xl hover:shadow-amber-500/30">
-                    <div className="absolute inset-0 bg-gradient-to-br from-amber-600/10 via-orange-600/10 to-purple-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                    <div className="relative aspect-video overflow-hidden">
-                      <Image
-                        src={
-                          activity.image ||
-                          "/placeholder.svg?height=400&width=600&query=featured activity"
-                        }
-                        alt={`Featured Activity: ${activity.caption}`}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-                        height={400}
-                        width={600}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-blue-900/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                      <div className="absolute top-4 right-4 bg-amber-500 text-slate-900 text-xs font-bold px-3 py-1 rounded-full">
-                        Featured
-                      </div>
-                    </div>
-
-                    <div className="relative p-6">
-                      <p className="text-amber-100 leading-relaxed text-sm group-hover:text-white transition-colors duration-300">
-                        {activity.caption}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
 
         {/* Regular Activities Section */}
         <div>
           <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold mb-2 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+            <h3 className="text-3xl font-bold mb-2 bg-gradient-to-r from-yellow-300 via-orange-300 to-yellow-200 bg-clip-text text-transparent">
               Our Activities
             </h3>
             <p className="text-blue-300">

@@ -3,7 +3,7 @@
 import FlipCountdown from "@/components/flip/FlipCountdown";
 import { Button } from "@/components/ui/button";
 import { useParallax } from "@/hooks/use-parallax";
-import { FORM_LINK } from "@/lib/nav-constants";
+import { BOOKLET_LINK, FORM_LINK } from "@/lib/nav-constants";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
@@ -57,9 +57,6 @@ const buttonVariants = {
     scale: 0.95,
   },
 } as Variants;
-
-
-
 
 export function HeroBanner() {
   const { elementRef: floatingRef, offset: floatingOffset } = useParallax(0.5);
@@ -215,35 +212,37 @@ export function HeroBanner() {
             </motion.div>
           </Link>
 
-          <motion.div
-            variants={buttonVariants}
-            whileHover="hover"
-            whileTap="tap"
-          >
-            <Button
-              size="lg"
-              className="text-lg px-10 w-full md:w-auto py-4.5 md:py-6 rounded-sm 
+          <Link href={BOOKLET_LINK} target="_blank" rel="noopener noreferrer">
+            <motion.div
+              variants={buttonVariants}
+              whileHover="hover"
+              whileTap="tap"
+            >
+              <Button
+                size="lg"
+                className="text-lg px-10 w-full md:w-auto py-4.5 md:py-6 rounded-sm 
               border-2 border-background/60
               hover:bg-primary/40
                text-background backdrop-blur-sm bg-background/40 hover:text-card
                glow-effect relative overflow-hidden"
-            >
-              {/* Subtle pulse effect */}
-              <motion.div
-                className="absolute inset-0 border-2 border-white/30 rounded-sm"
-                animate={{
-                  scale: [1, 1.05, 1],
-                  opacity: [0, 0.5, 0],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-              <span className="relative z-10">EXPLORE COMPETITION</span>
-            </Button>
-          </motion.div>
+              >
+                {/* Subtle pulse effect */}
+                <motion.div
+                  className="absolute inset-0 border-2 border-white/30 rounded-sm"
+                  animate={{
+                    scale: [1, 1.05, 1],
+                    opacity: [0, 0.5, 0],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+                <span className="relative z-10">EXPLORE COMPETITION</span>
+              </Button>
+            </motion.div>
+          </Link>
         </motion.div>
 
         {/* Countdown */}

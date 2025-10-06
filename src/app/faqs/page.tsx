@@ -32,19 +32,20 @@ export default function FAQPage() {
       title: "General Information",
       questions: [
         {
-          question: "What is RBAC?",
+          question: "Does RBAC support team formation?",
           answer:
-            "RBAC (RMIT Business Analytics Competition) is a national competition for students established in 2020. It provides an experiential playground where students can challenge themselves, practice analytical thinking, and accumulate experience in Business Analytics.",
+            "Currently, RBAC does not provide an official form or process to support team formation for individual participants. However, we encourage you to actively connect with potential teammates through the RMIT Business Analytics Champion Community.",
         },
         {
-          question: "Who can participate in RBAC?",
+          question: "Can a team change its members after registration?",
           answer:
-            "RBAC is open to all undergraduate and graduate students currently enrolled in any Vietnamese university. Participants can join as individuals or in teams of up to 3 members.",
+            "Scenario 1: If a member withdraws before Round 1 registration closes, the team must send an email to the RBAC Organizers with confirmation from the withdrawing member. The team must complete their lineup (4 members) before Round 1 begins. Scenario 2: If a member withdraws after Round 1 registration is completed, the team can continue with at least 3 remaining members.",
         },
         {
-          question: "When does the competition take place?",
+          question:
+            "I'm concerned about the lack of experience and how realistic our insights will be in the later rounds. Will there be any support for teams?",
           answer:
-            "RBAC typically runs from September to November each year. The exact dates are announced on our website and social media channels in August.",
+            "RBAC provides comprehensive support to all participants. Each team will receive a detailed guidebook to help navigate the competition. In the final round, teams will also be paired with experienced mentors who bring practical industry knowledge to guide and refine your work. These resources are designed to help every team strengthen their analysis and deliver realistic, impactful insights.",
         },
         {
           question: "Is there a registration fee?",
@@ -89,19 +90,13 @@ export default function FAQPage() {
         {
           question: "What is the registration deadline?",
           answer:
-            "The registration deadline is usually in mid-September. Exact dates are announced on our website and social media channels.",
-        },
-        {
-          question:
-            "Can I register as an individual and then join a team later?",
-          answer:
-            "Yes, individual registrants can form teams before the qualification round begins. Details about team formation will be communicated after registration.",
+            "The registration deadline for Season 6 is 5:00 PM on 9 October 2025. Follow the RBAC fanpage to stay updated on more key dates and important announcements!",
         },
         {
           question:
             "What should I do if I encounter problems during registration?",
           answer:
-            "If you experience any issues with registration, please contact our support team at support@rbac.com or through our Facebook page. Please include screenshots of any error messages you encounter.",
+            "If you experience any issues with registration, please contact our support team at rbachampion.06@gmail.com or through our Facebook page. Please include screenshots of any error messages you encounter.",
         },
       ],
     },
@@ -119,11 +114,6 @@ export default function FAQPage() {
             "Submissions are generally required in PDF format for reports and PPTX for presentations. Data files should be in CSV or XLSX format unless otherwise specified.",
         },
         {
-          question: "Can I use AI tools in the competition?",
-          answer:
-            "The use of AI tools is permitted for idea generation and preliminary analysis, but final submissions must be your original work. All AI assistance must be properly cited in your submission.",
-        },
-        {
           question: "What if I have technical issues during the competition?",
           answer:
             "We have a technical support team available throughout the competition. Contact details are provided to all participants at the beginning of each round.",
@@ -136,7 +126,7 @@ export default function FAQPage() {
         {
           question: "How can my company become a sponsor?",
           answer:
-            "We welcome corporate sponsorships. Please contact our partnership team at partners@rbac.com for more information about sponsorship packages and benefits.",
+            "We welcome corporate sponsorships. Please contact our partnership team at rbachampion.06@gmail.com for more information about sponsorship packages and benefits.",
         },
         {
           question: "What are the benefits of sponsoring RBAC?",
@@ -147,12 +137,7 @@ export default function FAQPage() {
           question:
             "Can academics or industry professionals get involved as mentors?",
           answer:
-            "Yes, we are always looking for experienced professionals to mentor participants. Please reach out to us at mentors@rbac.com with your background and areas of expertise.",
-        },
-        {
-          question: "How can universities partner with RBAC?",
-          answer:
-            "Universities can become academic partners by promoting RBAC to their students, hosting events, or providing venues. Contact us at universities@rbac.com for more information.",
+            "Yes, we are always looking for experienced professionals to mentor participants. Please reach out to us at rbachampion.06@gmail.com with your background and areas of expertise.",
         },
       ],
     },

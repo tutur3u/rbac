@@ -1,6 +1,6 @@
 "use client";
 
-import { useParallax, useIntersectionObserver } from "@/hooks/use-parallax";
+import { useParallax } from "@/hooks/use-parallax";
 import Image from "next/image";
 import { motion, Variants } from "motion/react";
 
@@ -13,9 +13,9 @@ const partners = [
   { name: "/com-partners/Grant-Thornton.png", width: 1627, height: 595 },
   { name: "/com-partners/Ipsos.png", width: 1200, height: 1106 },
   { name: "/com-partners/KPMG.png", width: 1638, height: 1210 },
-  { name: "/com-partners/masan.png", width: 1200, height: 1200 },
+  { name: "/com-partners/masan.png", width: 2400, height: 2400 },
   { name: "/com-partners/Mastering-Data.png", width: 2048, height: 2048 },
-  { name: "/com-partners/Mazar.png", width: 960, height: 195 },
+  { name: "/com-partners/mazars.jpg", width: 960, height: 195 },
   { name: "/com-partners/Pepsi.png", width: 960, height: 959 },
   { name: "/com-partners/Pizzahut.png", width: 2176, height: 2049 },
   { name: "/com-partners/PMAX.png", width: 2222, height: 975 },
@@ -89,7 +89,7 @@ export function PartnersSection() {
 
   return (
     <motion.section
-      className="py-20 bg-gradient-to-b from-slate-50 to-blue-50 dark:from-blue-950 dark:to-slate-900 relative overflow-hidden"
+      className="py-20 bg-gradient-to-b from-primary via-muted/20 to-primary/20 relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
@@ -159,11 +159,11 @@ export function PartnersSection() {
               <div
                 className="bg-background/20 backdrop-blur-sm rounded-xl
                p-4 border border-white/10 hover:bg-white/10 transition-all duration-300 
-               w-full max-w-[200px] h-32 flex items-center justify-center"
+               w-full max-w-[200px] h-32 flex items-center justify-center overflow-hidden"
               >
                 <Image
                   src={partner.name}
-                  className="object-contain w-full h-full"
+                  className="object-contain w-full"
                   alt={`Partner ${index + 1}`}
                   width={partner.width}
                   height={partner.height}
