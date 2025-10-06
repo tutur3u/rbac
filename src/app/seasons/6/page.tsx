@@ -1,15 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useParallax } from "@/hooks/use-parallax";
-import { cn } from "@/lib/utils";
-import { motion, AnimatePresence, Variants } from "motion/react";
-import { useRef } from "react";
-import Image from "next/image";
 import RulesRegulations from "@/components/seasons/6/rules-regulations";
-import { prizesSeason6, roundSeason6 } from "@/lib/season6-constants";
-import Season6Sponsors from "@/components/seasons/6/season-6-sponsors";
 import Season6Judges from "@/components/seasons/6/season-6-judges";
+import Season6Sponsors from "@/components/seasons/6/season-6-sponsors";
+import { prizesSeason6, roundSeason6 } from "@/lib/season6-constants";
+import { cn } from "@/lib/utils";
+import { AnimatePresence, motion, type Variants } from "motion/react";
+import Image from "next/image";
+import { useEffect, useRef, useState } from "react";
 
 // Optimized animation variants with reduced complexity
 const containerVariants: Variants = {
@@ -54,14 +52,7 @@ const staggerContainer: Variants = {
   },
 };
 
-const slideInLeft: Variants = {
-  hidden: { opacity: 0, x: -30 },
-  visible: {
-    opacity: 1,
-    x: 0,
-    transition: { duration: 0.5, ease: "easeOut" },
-  },
-};
+
 
 const slideInRight: Variants = {
   hidden: { opacity: 0, x: 30 },
@@ -73,7 +64,6 @@ const slideInRight: Variants = {
 };
 
 export default function RBACCompetitionPage() {
-  const { elementRef: bgRef, offset: bgOffset } = useParallax(0.2); // Reduced parallax intensity
   const [activeRound, setActiveRound] = useState("round1");
   const [currentPrizeIndex, setCurrentPrizeIndex] = useState(0);
   const sectionRef = useRef(null);
@@ -84,7 +74,7 @@ export default function RBACCompetitionPage() {
       setCurrentPrizeIndex((prev) => (prev + 1) % prizesSeason6.length);
     }, 5000); // Increased interval for better performance
     return () => clearInterval(interval);
-  }, [prizesSeason6.length]);
+  }, []);
 
   // Simplified floating orb with reduced animations
   const FloatingOrb = ({
@@ -331,7 +321,7 @@ export default function RBACCompetitionPage() {
                   <div
                     className={cn(
                       "w-16 h-16 rounded-full flex items-center justify-center text-white font-bold text-xl",
-                      `bg-gradient-to-r ${prizesSeason6[currentPrizeIndex].gradient}`
+                      prizesSeason6[currentPrizeIndex].gradientR
                     )}
                   >
                     {prizesSeason6[currentPrizeIndex].position}
@@ -341,8 +331,8 @@ export default function RBACCompetitionPage() {
                   </h3>
                   <p
                     className={cn(
-                      "text-2xl font-bold bg-gradient-to-tl bg-clip-text text-transparent",
-                      prizesSeason6[currentPrizeIndex].gradient
+                      "text-2xl font-bold bg-clip-text text-transparent",
+                      prizesSeason6[currentPrizeIndex].gradientTL
                     )}
                   >
                     {prizesSeason6[currentPrizeIndex].amount}
@@ -378,17 +368,15 @@ export default function RBACCompetitionPage() {
                 variants={itemVariants}
                 whileHover={{ y: -2 }}
                 className={cn(
-                  `bg-gradient-to-b backdrop-blur-sm rounded-lg p-4 border text-center h-full 
-                  flex flex-col justify-start`,
+                  "bg-gradient-to-b backdrop-blur-sm rounded-lg p-4 border text-center h-full flex flex-col justify-start",
                   prize.bgGradient,
-                  `border-secondary/30`
+                  "border-secondary/30"
                 )}
               >
                 <div
                   className={cn(
                     "w-8 h-8 rounded-full flex items-center justify-center text-white text-sm font-bold",
-                    `bg-gradient-to-br`,
-                    prize.gradient
+                    prize.gradientBR
                   )}
                 >
                   {prize.position}
