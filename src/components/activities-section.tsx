@@ -199,7 +199,7 @@ export function ActivitiesSection() {
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {regularActivities.map((activity, index) => (
               <div key={`activity-${index + 1}`} className="group">
-                <div className="relative bg-gradient-to-br from-blue-900/20 to-purple-900/20 backdrop-blur-sm rounded-xl overflow-hidden border border-blue-500/20 hover:border-blue-400/50 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20">
+                <div className="relative h-full bg-gradient-to-br from-blue-900/20 to-purple-900/20 backdrop-blur-sm rounded-xl overflow-hidden border border-blue-500/20 hover:border-blue-400/50 transition-all duration-500 hover:shadow-2xl hover:shadow-blue-500/20">
                   <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-purple-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                   <div className="relative aspect-video overflow-hidden">

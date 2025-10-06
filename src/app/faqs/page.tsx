@@ -1,8 +1,5 @@
 "use client";
 
-import { useParallax } from "@/hooks/use-parallax";
-import { cn } from "@/lib/utils";
-import { useState } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -12,18 +9,19 @@ import {
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
-  CardTitle,
+  CardTitle
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Search, MessageCircle, Mail } from "lucide-react";
+import { useParallax } from "@/hooks/use-parallax";
+import { cn } from "@/lib/utils";
+import { Search } from "lucide-react";
+import { useState } from "react";
 
 export default function FAQPage() {
-  const { elementRef: bgRef, offset: bgOffset } = useParallax(0.3);
+  const { elementRef: bgRef,  } = useParallax(0.3);
   const { elementRef: floatingRef, offset: floatingOffset } = useParallax(0.5);
-  const { elementRef: contentRef, offset: contentOffset } = useParallax(0.1);
+  const { elementRef: contentRef,  } = useParallax(0.1);
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -236,7 +234,7 @@ export default function FAQPage() {
         </Card>
 
         {/* FAQ Accordion */}
-        <div className="w-full max-w-4xl space-y-6">
+        <div className="w-full max-w-4xl space-y-6 text-left">
           {filteredCategories.length > 0 ? (
             filteredCategories.map((category, index) => (
               <Card
