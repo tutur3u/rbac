@@ -1,11 +1,12 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import { Analytics } from "@vercel/analytics/next";
 import { Navbar } from "@/components/navbar";
-import "./globals.css";
-import { Facebook, Linkedin } from "lucide-react";
 import { contactInfo } from "@/lib/display-constants";
 import { cn } from "@/lib/utils";
+import { Analytics } from "@vercel/analytics/next";
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import Image from "next/image";
+import Link from "next/link";
+import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -168,22 +169,25 @@ const Footer = () => (
           Web Sponsor
         </h3>
         <div className="flex justify-center">
-          <div
-            className="group relative bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-red-500/10 
-          rounded-xl p-5 border border-purple-400/30 hover:border-pink-400/50 
-          transition-all duration-500 hover:shadow-pink-500/20 max-w-xs w-full sm:w-1/4"
+          <Link
+            href="https://tuturuuu.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group relative bg-gradient-to-br from-purple-500/10 via-pink-500/10 to-red-500/10 rounded-xl p-8 border border-purple-400/30 hover:border-pink-400/50 transition-all duration-500 hover:shadow-pink-500/20 max-w-md w-full sm:w-1/4 block"
           >
             <div className="relative">
-              <img
+              <Image
+                width={200}
+                height={200}
                 src="/components/tuturuuu.png"
                 alt="Sponsor Logo"
-                className="max-h-16 max-w-full object-contain mx-auto filter drop-shadow-[0_0_15px_rgba(192,38,211,0.7)]"
+                className="max-h-32 max-w-full object-contain mx-auto filter drop-shadow-[0_0_15px_rgba(192,38,211,0.7)]"
               />
-              <p className="text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-pink-300 mt-4 font-bold text-lg tracking-wide">
+              <p className="text-transparent bg-clip-text bg-gradient-to-r from-purple-300 to-pink-300 mt-4 font-bold text-4xl tracking-wide">
                 Tuturuuu
               </p>
             </div>
-          </div>
+          </Link>
         </div>
       </section>
     </div>
@@ -204,13 +208,13 @@ const Footer = () => (
 
         <div className="flex space-x-6">
           <a
-            href="#"
+            href="https://tuturuuu.com/privacy"
             className="text-primary-foreground hover:text-white transition-colors"
           >
             Privacy Policy
           </a>
           <a
-            href="#"
+            href="https://tuturuuu.com/terms"
             className="text-primary-foreground hover:text-white transition-colors"
           >
             Terms & Conditions
