@@ -14,7 +14,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 import { motion, Variants } from "motion/react";
 
-// Animation variants
+// Animation variant
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -305,7 +305,7 @@ export function EligibilitySection() {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <motion.div className="text-center mb-16" variants={itemVariants}>
+        <motion.div className="text-center mb-4 md:mb-8 lg:mb-16" variants={itemVariants}>
           <motion.h2
             className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
             whileHover={{ scale: 1.05 }}
@@ -335,16 +335,6 @@ export function EligibilitySection() {
             </motion.span>
           </motion.h2>
 
-          <motion.p
-            className="text-xl text-slate-300 max-w-3xl mx-auto text-pretty leading-relaxed mb-4"
-            whileHover={{ scale: 1.02 }}
-            transition={{ duration: 0.3 }}
-          >
-            Meet these criteria to participate in our{" "}
-            <span className="text-accent-foreground font-semibold">
-              innovative tech challenge
-            </span>
-          </motion.p>
 
           {/* Decorative line */}
           <motion.div
@@ -368,7 +358,7 @@ export function EligibilitySection() {
         {/* Cards Layout - Updated for 4 cards */}
         {isMobile ? (
           <Carousel className="w-full relative px-10">
-            <CarouselPrevious className="absolute left-0 z-10 text-background w-12 h-12" />
+            <CarouselPrevious className="absolute left-0 z-10 text-primary w-12 h-12" />
             <CarouselContent>
               {criteria.map((criterion, index) => (
                 <CarouselItem key={index}>
@@ -376,7 +366,7 @@ export function EligibilitySection() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselNext className="absolute right-0 z-10 text-background w-12 h-12" />
+            <CarouselNext className="absolute right-0 z-10 text-primary w-12 h-12" />
           </Carousel>
         ) : (
           <motion.div

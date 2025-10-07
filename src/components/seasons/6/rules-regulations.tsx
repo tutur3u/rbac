@@ -12,7 +12,7 @@ export default function RulesRegulations({
   staggerContainer: Variants;
 }) {
   return (
-    <motion.section variants={fadeInUp} className="mb-16">
+    <motion.section variants={fadeInUp} className="mb-4 md:mb-8 lg:mb-16">
       <motion.div
         variants={itemVariants}
         className="bg-primary/60 backdrop-blur-sm rounded-xl p-6 border border-accent-foreground/50"

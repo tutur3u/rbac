@@ -8,7 +8,6 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useParallax, useIntersectionObserver } from "@/hooks/use-parallax";
 import { achievements } from "@/lib/display-constants";
 import { floatAnimation } from "@/lib/motion-variants";
 import { cn } from "@/lib/utils";
@@ -78,13 +77,12 @@ const iconVariants = {
   },
 } as Variants;
 
-
 export function AchievementsSection() {
   const isMobile = useIsMobile();
 
   return (
     <motion.section
-      className="py-20 bg-gradient-to-b from-slate-900 to-blue-950 relative overflow-hidden"
+      className="py-20 bg-gradient-to-b from-primary to-blue-950 relative overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
@@ -100,9 +98,7 @@ export function AchievementsSection() {
       <div className="absolute inset-0 tech-grid opacity-50"></div>
 
       {/* Animated floating shapes */}
-      <motion.div
-        className="absolute inset-0 overflow-hidden pointer-events-none z-1 transition-transform duration-100"
-      >
+      <motion.div className="absolute inset-0 overflow-hidden pointer-events-none z-1 transition-transform duration-100">
         <motion.div
           className="absolute top-20 left-10 w-16 h-16 border border-blue-400/40 rotate-45"
           variants={floatAnimation}
@@ -127,7 +123,7 @@ export function AchievementsSection() {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <motion.div className="text-center mb-16" variants={itemVariants}>
+        <motion.div className="text-center mb-4 md:mb-8 lg:mb-16" variants={itemVariants}>
           <h2 className="text-5xl md:text-6xl font-bold mb-6 glow-effect">
             <motion.span
               className="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent"
@@ -150,7 +146,7 @@ export function AchievementsSection() {
         {/* Achievements Grid/Carousel */}
         {isMobile ? (
           <Carousel className="w-full relative px-10">
-            <CarouselPrevious className="absolute left-0 z-10 text-background w-12 h-12" />
+            <CarouselPrevious className="absolute left-0 z-10 text-primary w-12 h-12" />
             <CarouselContent className="w-full px-2 py-5">
               {achievements.map((achievement, index) => (
                 <CarouselItem key={index}>
@@ -160,7 +156,7 @@ export function AchievementsSection() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselNext className="absolute right-0 z-10 text-background w-12 h-12" />
+            <CarouselNext className="absolute right-0 z-10 text-primary w-12 h-12" />
           </Carousel>
         ) : (
           <motion.div

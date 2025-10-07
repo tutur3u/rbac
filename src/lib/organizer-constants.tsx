@@ -9,9 +9,9 @@ export const organizerStats = [
   },
   {
     icon: MapPin,
-    label: "Headquarters",
+    label: "Headquarter",
     value: "RMIT Vietnam",
-    description: "Global Tech Hub",
+    description: "RMIT University Vietnam",
     color: "from-secondary-foreground/60 to-pink-300",
   },
   {
@@ -25,14 +25,7 @@ export const organizerStats = [
     icon: Users,
     label: "Team Size",
     value: "200+",
-    description: "Tech Experts",
+    description: "Enthusiast Students",
     color: "from-secondary-foreground to-accent-secondary",
   },
-];
-
-export const organizerAchievements = [
-  { number: "17+", label: "Years Experience", icon: Award },
-  { number: "10K+", label: "Careers Launched", icon: Users },
-  { number: "500+", label: "Competitions Hosted", icon: Globe },
-  { number: "100+", label: "Industry Partners", icon: Building2 },
 ];

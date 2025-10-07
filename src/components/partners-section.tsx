@@ -124,7 +124,7 @@ export function PartnersSection() {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <motion.div className="text-center mb-16" variants={itemVariants}>
+        <motion.div className="text-center mb-4 md:mb-8 lg:mb-16" variants={itemVariants}>
           <motion.h2
             className="text-5xl md:text-6xl font-bold mb-6"
             whileHover={{ scale: 1.05 }}

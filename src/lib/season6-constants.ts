@@ -138,8 +138,8 @@ export const roundSeason6 = [
   {
     id: "open-ceremony",
     title: "OPENING CEREMONY",
-    date: "10 October 2025",
-    format: "[ONLINE] Kick-off event via Zoom",
+    date: "7:00 PM - 9:00 PM, Friday, 10 October 2025",
+    format: " [ONLINE] Livestream on RBAC Fanpage and Youtube",
     description:
       "Introduction to RBAC Season 6, competition rules, and Q&A session",
     icon: "🎯",

@@ -16,10 +16,18 @@ export default function Season6Sponsors({
     <motion.section variants={fadeInUp} className="mb-16">
       <motion.h2
         variants={itemVariants}
-        className="text-2xl font-bold text-white mb-6 text-center"
+        className="text-2xl font-bold text-white mb-1 text-center"
       >
         Our Esteemed Sponsors
       </motion.h2>
+      <motion.p
+        variants={itemVariants}
+        className="text-lg text-slate-300 
+        max-w-3xl mx-auto text-pretty
+        leading-relaxed mb-10 text-center uppercase"
+      >
+        To be updated
+      </motion.p>
 
       <motion.div
         variants={staggerContainer}
