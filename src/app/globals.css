@@ -183,6 +183,11 @@
   .page--sheet.turn::before {
     @apply opacity-55;
   }
+  .sponsor-image {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: high-quality;
+  }
 }
 @layer utilities {
   .glow-effect {

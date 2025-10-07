@@ -5,26 +5,26 @@ import Image from "next/image";
 import { motion, Variants } from "motion/react";
 
 const partners = [
-  { name: "/com-partners/BAC.png", width: 405, height: 259 },
-  { name: "/com-partners/BaseVN.png", width: 772, height: 240 },
-  { name: "/com-partners/chotot.png", width: 900, height: 900 },
-  { name: "/com-partners/Deloitte.png", width: 1612, height: 845 },
-  { name: "/com-partners/enviet.png", width: 1556, height: 1128 },
+  { name: "/com-partners/masan.png", width: 2400, height: 2400 },
   { name: "/com-partners/Grant-Thornton.png", width: 1627, height: 595 },
   { name: "/com-partners/Ipsos.png", width: 1200, height: 1106 },
   { name: "/com-partners/KPMG.png", width: 1638, height: 1210 },
-  { name: "/com-partners/masan.png", width: 2400, height: 2400 },
-  { name: "/com-partners/Mastering-Data.png", width: 2048, height: 2048 },
+  { name: "/com-partners/chotot.png", width: 900, height: 900 },
   { name: "/com-partners/mazars.jpg", width: 960, height: 195 },
   { name: "/com-partners/Pepsi.png", width: 960, height: 959 },
   { name: "/com-partners/Pizzahut.png", width: 2176, height: 2049 },
-  { name: "/com-partners/PMAX.png", width: 2222, height: 975 },
-  { name: "/com-partners/SAPP.png", width: 408, height: 220 },
   { name: "/com-partners/SHBFC.png", width: 3635, height: 775 },
   { name: "/com-partners/Shopee.png", width: 3606, height: 1396 },
-  { name: "/com-partners/TM.png", width: 6480, height: 1488 },
-  { name: "/com-partners/UNITRAIN.png", width: 4416, height: 2543 },
   { name: "/com-partners/Yahon.png", width: 2391, height: 1900 },
+  { name: "/com-partners/Deloitte.png", width: 1612, height: 845 },
+  { name: "/com-partners/TM.png", width: 6480, height: 1488 },
+  { name: "/com-partners/BaseVN.png", width: 772, height: 240 },
+  { name: "/com-partners/UNITRAIN.png", width: 4416, height: 2543 },
+  { name: "/com-partners/SAPP.png", width: 408, height: 220 },
+  { name: "/com-partners/Mastering-Data.png", width: 2048, height: 2048 },
+  { name: "/com-partners/PMAX.png", width: 2222, height: 975 },
+  { name: "/com-partners/enviet.png", width: 1556, height: 1128 },
+  { name: "/com-partners/BAC.png", width: 405, height: 259 },
 ];
 
 // Animation variants
