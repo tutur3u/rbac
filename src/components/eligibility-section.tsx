@@ -1,8 +1,5 @@
 "use client";
-import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { CheckCircle } from "lucide-react";
-import { criteria } from "@/lib/display-constants";
 import {
   Carousel,
   CarouselContent,
@@ -11,8 +8,11 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { criteria } from "@/lib/display-constants";
 import { cn } from "@/lib/utils";
+import { CheckCircle } from "lucide-react";
 import { motion, Variants } from "motion/react";
+import { useState } from "react";
 
 // Animation variant
 const containerVariants = {
@@ -337,22 +337,22 @@ export function EligibilitySection() {
 
 
           {/* Decorative line */}
-          <motion.div
+          {/* <motion.div
             className="mt-8 flex justify-center"
             whileHover={{ scaleX: 1.2 }}
             transition={{ duration: 0.3 }}
           >
             <div className="w-24 h-1 bg-gradient-to-r from-transparent via-secondary-foreground to-transparent rounded-full" />
-          </motion.div>
+          </motion.div> */}
 
-          <motion.p
+          {/* <motion.p
             className="text-xl text-slate-300 max-w-3xl mx-auto text-pretty leading-relaxed mt-4"
             whileHover={{ scale: 1.02 }}
             transition={{ duration: 0.3 }}
           >
             Hover the cards to see the{" "}
             <span className="text-accent-foreground font-semibold">magic</span>
-          </motion.p>
+          </motion.p> */}
         </motion.div>
 
         {/* Cards Layout - Updated for 4 cards */}

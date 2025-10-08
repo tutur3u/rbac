@@ -1,11 +1,11 @@
 "use client";
-import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Building2, Sparkles } from "lucide-react";
 import { organizerStats } from "@/lib/organizer-constants";
-import Image from "next/image";
+import { Building2, Sparkles } from "lucide-react";
 import { motion, Variants } from "motion/react";
+import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 
 // Animation variants
 const containerVariants = {
@@ -329,7 +329,7 @@ export function OrganizerSection() {
                       <p className="text-lg text-slate-300 leading-relaxed">
                         RMIT Vietnam Analytics Club is a leading global
                         organization dedicated to fostering technological
-                        advancement and innovation. With over 15 years of
+                        advancement and innovation. With over 17 years of
                         experience in organizing world-class competitions, we
                         have successfully launched careers of thousands of tech
                         professionals and facilitated the creation of

@@ -64,7 +64,6 @@ const slideInRight: Variants = {
 };
 
 export default function RBACCompetitionPage() {
-  const [activeRound, setActiveRound] = useState("round1");
   const [currentPrizeIndex, setCurrentPrizeIndex] = useState(0);
   const sectionRef = useRef(null);
 
@@ -182,106 +181,133 @@ export default function RBACCompetitionPage() {
           staggerContainer={staggerContainer}
         />
 
-        {/* Competition Timeline - Optimized */}
+        {/* Competition Timeline - Enhanced Vertical Design */}
         <motion.section variants={fadeInUp} className="mb-16">
           <motion.h2
             variants={itemVariants}
-            className="text-2xl font-bold text-white mb-6 text-center"
+            className="text-3xl md:text-4xl font-bold text-white mb-3 text-center"
           >
             Competition Timeline
           </motion.h2>
+          <motion.p
+            variants={itemVariants}
+            className="text-blue-200 text-center mb-10 max-w-2xl mx-auto"
+          >
+            Journey through RBAC Season 6 - From registration to grand finale
+          </motion.p>
 
           <motion.div
-            variants={itemVariants}
-            className="bg-slate-800/40 backdrop-blur-sm rounded-xl p-6 border border-slate-700/30"
+            variants={staggerContainer}
+            className="max-w-5xl mx-auto relative"
           >
-            {/* Simplified Round Selection */}
-            <motion.div
-              variants={staggerContainer}
-              className="flex overflow-x-auto pb-4 mb-6 gap-2 scrollbar-hide"
-            >
-              {roundSeason6.map((round) => (
-                <motion.button
+            {/* Vertical Timeline Line */}
+            <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-purple-500 to-pink-500 opacity-30 hidden md:block" />
+
+            {/* Timeline Items */}
+            <div className="space-y-8 md:space-y-12">
+              {roundSeason6.map((round, index) => (
+                <motion.div
                   key={round.id}
                   variants={itemVariants}
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  onClick={() => setActiveRound(round.id)}
                   className={cn(
-                    "px-4 py-2 rounded-lg transition-all duration-200 border flex-shrink-0 text-sm",
-                    activeRound === round.id
-                      ? "bg-gradient-to-r from-blue-600 to-purple-600 text-white border-transparent"
-                      : "bg-slate-700/30 text-blue-200 border-slate-600 hover:bg-slate-700/50"
+                    "relative grid md:grid-cols-2 gap-8 items-center",
+                    index % 2 === 0 ? "md:text-right" : "md:flex-row-reverse"
                   )}
                 >
-                  {round.icon} {round.title.split(":")[0]}
-                </motion.button>
-              ))}
-            </motion.div>
+                  {/* Timeline Dot */}
+                  <div className="absolute left-8 md:left-1/2 w-4 h-4 -ml-2 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg shadow-blue-500/50 z-10 hidden md:block">
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 animate-ping opacity-20" />
+                  </div>
 
-            {/* Round Details */}
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeRound}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-                className="grid grid-cols-1 lg:grid-cols-2 gap-6"
-              >
-                {roundSeason6
-                  .filter((round) => round.id === activeRound)
-                  .map((round) => (
-                    <div key={round.id} className="space-y-4">
-                      <motion.div
-                        className="bg-gradient-to-r from-blue-900/20 to-purple-900/20 border border-blue-500/20 rounded-lg p-4"
-                        whileHover={{ y: -1 }}
-                      >
-                        <h3 className="text-lg font-semibold text-white mb-2">
-                          📅 {round.title}
-                        </h3>
-                        <p className="text-blue-100">{round.date}</p>
-                        <p className="text-blue-200 text-sm mt-2">
-                          {round.format}
-                        </p>
-                      </motion.div>
-                      <motion.div
-                        className="bg-slate-900/30 border border-slate-600/30 rounded-lg p-4"
-                        whileHover={{ y: -1 }}
-                      >
-                        <h3 className="text-lg font-semibold text-white mb-2">
-                          📝 Description
-                        </h3>
-                        <p className="text-blue-100 text-sm">
+                  {/* Content Card */}
+                  <motion.div
+                    className={cn(
+                      "relative",
+                      index % 2 === 0 ? "md:col-start-1" : "md:col-start-2"
+                    )}
+                    whileHover={{ scale: 1.02, y: -4 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <div className="bg-gradient-to-br from-slate-800/60 to-slate-900/40 backdrop-blur-md rounded-2xl p-6 border border-slate-700/50 hover:border-blue-500/50 transition-all duration-300 shadow-xl hover:shadow-blue-500/20">
+                      {/* Icon & Title */}
+                      <div className="flex items-center gap-3 mb-4">
+                        <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-purple-600 flex items-center justify-center text-2xl shadow-lg">
+                          {round.icon}
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-xl font-bold text-white leading-tight">
+                            {round.title}
+                          </h3>
+                        </div>
+                      </div>
+
+                      {/* Date & Format */}
+                      <div className="space-y-3 mb-4">
+                        <div className="flex items-start gap-2">
+                          <span className="text-blue-400 text-lg mt-0.5">📅</span>
+                          <p className="text-blue-100 font-medium flex-1">
+                            {round.date}
+                          </p>
+                        </div>
+                        <div className="flex items-start gap-2">
+                          <span className="text-purple-400 text-lg mt-0.5">📍</span>
+                          <p className="text-purple-200 text-sm flex-1">
+                            {round.format}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Description */}
+                      <div className="pt-4 border-t border-slate-700/50">
+                        <p className="text-blue-100/90 text-sm leading-relaxed">
                           {round.description}
                         </p>
-                      </motion.div>
-                    </div>
-                  ))}
+                      </div>
 
-                <motion.div
-                  className="bg-gradient-to-br from-slate-900/30 to-blue-900/20 border border-slate-600/30 rounded-lg p-4"
-                  whileHover={{ y: -1 }}
-                >
-                  <h3 className="text-lg font-semibold text-white mb-3">
-                    🎯 What to Expect
-                  </h3>
-                  <ul className="space-y-2 text-blue-100 text-sm">
-                    {[
-                      "Real-world business challenges",
-                      "Industry expert mentorship",
-                      "Networking opportunities",
-                      "Career development",
-                    ].map((item, index) => (
-                      <li key={index} className="flex items-center">
-                        <span className="text-green-400 mr-2">✓</span>
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
+                      {/* Round Number Badge */}
+                      <div className="absolute top-6 right-6 w-8 h-8 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-blue-400/30 flex items-center justify-center">
+                        <span className="text-xs font-bold text-blue-300">
+                          {index + 1}
+                        </span>
+                      </div>
+                    </div>
+                  </motion.div>
+
+                  {/* Empty space for alternating layout */}
+                  <div className={cn(
+                    "hidden md:block",
+                    index % 2 === 0 ? "md:col-start-2" : "md:col-start-1"
+                  )} />
                 </motion.div>
-              </motion.div>
-            </AnimatePresence>
+              ))}
+            </div>
+
+            {/* What to Expect Section */}
+            <motion.div
+              variants={itemVariants}
+              className="mt-12 bg-gradient-to-br from-blue-900/30 to-purple-900/30 backdrop-blur-md rounded-2xl p-8 border border-blue-500/30"
+            >
+              <h3 className="text-2xl font-bold text-white mb-6 text-center">
+                🎯 What to Expect
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {[
+                  { id: "challenges", icon: "💼", text: "Real-world business challenges" },
+                  { id: "mentorship", icon: "👨‍🏫", text: "Industry expert mentorship" },
+                  { id: "networking", icon: "🤝", text: "Networking opportunities" },
+                  { id: "career", icon: "🚀", text: "Career development" },
+                ].map((item) => (
+                  <motion.div
+                    key={item.id}
+                    className="flex items-center gap-3 p-4 bg-slate-800/40 rounded-xl border border-slate-700/30 hover:border-blue-500/50 transition-all duration-200"
+                    whileHover={{ x: 4 }}
+                  >
+                    <span className="text-2xl">{item.icon}</span>
+                    <span className="text-blue-100 font-medium">{item.text}</span>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
           </motion.div>
         </motion.section>
 
@@ -345,13 +371,15 @@ export default function RBACCompetitionPage() {
             <div className="flex justify-center mt-4 space-x-2">
               {prizesSeason6.map((_, index) => (
                 <button
+                  type="button"
                   key={index}
-                  className={`w-2 h-2 rounded-full transition-all ${
+                  className={`w-2 h-2 rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400/50 focus:ring-offset-2 focus:ring-offset-slate-900 ${
                     index === currentPrizeIndex
-                      ? "bg-blue-400 scale-125"
-                      : "bg-slate-600"
+                      ? "bg-blue-400 scale-125 shadow-lg shadow-blue-400/50"
+                      : "bg-slate-600 hover:bg-slate-500 hover:scale-110"
                   }`}
                   onClick={() => setCurrentPrizeIndex(index)}
+                  aria-label={`View prize ${index + 1}`}
                 />
               ))}
             </div>

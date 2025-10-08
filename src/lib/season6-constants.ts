@@ -253,7 +253,7 @@ export const sponsorSeason6 = [
         type: "silver",
       },
       {
-        name: "/sponsors/3 SILVER Sponsor/UniTrain.png",
+        name: "/sponsors/3 SILVER Sponsor/UNI-TRAIN.png",
         width: 2309,
         height: 320,
         type: "silver",

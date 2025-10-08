@@ -23,9 +23,9 @@ export default function Season6Sponsors({
       </motion.h2>
       <motion.p
         variants={itemVariants}
-        className="text-lg text-slate-300 
-        max-w-3xl mx-auto text-pretty
-        leading-relaxed mb-10 text-center uppercase"
+        className="text-sm text-slate-400 
+        max-w-3xl mx-auto text-pretty italic
+        leading-relaxed mb-10 text-center"
       >
         To be updated
       </motion.p>
