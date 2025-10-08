@@ -1,31 +1,28 @@
 "use client";
 
-import { useParallax } from "@/hooks/use-parallax";
-import { cn } from "@/lib/utils";
-import { useState, useEffect, useRef } from "react";
-import { useParams } from "next/navigation";
-import Image from "next/image";
-import Autoplay from "embla-carousel-autoplay";
+import FinalistList from "@/components/seasons/finalist-list";
+import { Badge } from "@/components/ui/badge";
 import {
   Card,
   CardContent,
-  CardDescription,
   CardHeader,
-  CardTitle,
+  CardTitle
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { useParallax } from "@/hooks/use-parallax";
 import { seasonList } from "@/lib/season-constants";
-import FinalistList from "@/components/seasons/finalist-list";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
+import { useParams } from "next/navigation";
 
 export default function SeasonDetail() {
   const { id } = useParams();
   const rootUrl = `/seasons/ss${id}`;
-  const { elementRef: bgRef, offset: bgOffset } = useParallax(0.3);
+  const { elementRef: bgRef,  } = useParallax(0.3);
   const { elementRef: floatingRef, offset: floatingOffset } = useParallax(0.5);
-  const { elementRef: contentRef, offset: contentOffset } = useParallax(0.1);
+  const { elementRef: contentRef,  } = useParallax(0.1);
 
   // Get the current season based on the id parameter
-  const seasonId = parseInt(id as string) - 1;
+  const seasonId = parseInt(id as string, 10) - 1;
   const currentSeason = seasonList[seasonId] || seasonList[0];
 
   // Generate year based on season id (assuming season 1 was 2021)
@@ -102,7 +99,7 @@ export default function SeasonDetail() {
             RBAC {seasonYear}
           </h1>
           <p className="text-base sm:text-xl md:text-2xl mt-2 sm:mt-4 text-blue-100">
-            Season {parseInt(id as string)} - {currentSeason.topic}
+            Season {parseInt(id as string, 10)} - {currentSeason.topic}
           </p>
         </div>
         <div className="h-0.5 w-full md:w-3/4 lg:w-2/3 bg-primary-foreground/40 rounded-full"></div>
@@ -147,7 +144,7 @@ export default function SeasonDetail() {
                       width={partner.width}
                       height={partner.height}
                       alt={`Partner ${index + 1}`}
-                      className="object-contain rounded-sm absolute scale-110"
+                      className="object-contain rounded-sm bg-white absolute scale-110"
                     />
                   );
                 return (
@@ -157,7 +154,7 @@ export default function SeasonDetail() {
                     alt={`Partner ${index + 1}`}
                     width={partner.width}
                     height={partner.height}
-                    className="object-contain rounded-sm w-24 sm:w-32 lg:w-50"
+                    className="object-contain rounded-sm bg-white w-24 sm:w-32 lg:w-50"
                   />
                 );
               })}
@@ -177,7 +174,7 @@ export default function SeasonDetail() {
               {currentSeason.mentors.map((mentor, index) => (
                 <div
                   key={index}
-                  className="flex flex-col items-center p-4 bg-primary/60 rounded-lg"
+                  className="flex flex-col items-center p-4 rounded-lg"
                 >
                   <div className="w-32 h-32 relative mb-4 rounded-full overflow-hidden">
                     <Image
@@ -208,13 +205,13 @@ export default function SeasonDetail() {
                 Judges
               </CardTitle>
             </CardHeader>
-            <CardContent>
+            <CardContent className="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
               {/* Handle different data structures for judges */}
               {currentSeason.judges.map((judge, index) => {
                 return (
                   <div
                     key={index}
-                    className="flex flex-col items-center p-4 bg-slate-700/30 rounded-lg"
+                    className="flex flex-col items-center p-4 rounded-lg"
                   >
                     <div className="w-32 h-32 relative mb-4 rounded-full overflow-hidden">
                       <Image

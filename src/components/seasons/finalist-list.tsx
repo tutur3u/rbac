@@ -6,9 +6,8 @@ import {
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 import Autoplay from "embla-carousel-autoplay";
-import { Badge } from "lucide-react";
 import Image from "next/image";
-import React, { useRef } from "react";
+import { useRef } from "react";
 
 export default function FinalistList({
   currentSeason,
