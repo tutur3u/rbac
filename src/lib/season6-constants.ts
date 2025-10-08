@@ -297,12 +297,6 @@ export const sponsorSeason6 = [
         type: "academic",
       },
       {
-        name: "/sponsors/5. ACEDEMIC Sponsor/IEP.png",
-        width: 1579,
-        height: 503,
-        type: "academic",
-      },
-      {
         name: "/sponsors/5. ACEDEMIC Sponsor/Mastering Data Analysis.png",
         width: 2048,
         height: 2048,
@@ -318,6 +312,12 @@ export const sponsorSeason6 = [
         name: "/sponsors/5. ACEDEMIC Sponsor/TechCamp.jpg",
         width: 900,
         height: 900,
+        type: "academic",
+      },
+      {
+        name: "/sponsors/5. ACEDEMIC Sponsor/IEP.png",
+        width: 1579,
+        height: 503,
         type: "academic",
       },
     ],
@@ -403,8 +403,8 @@ export const sponsorSeason6 = [
       },
       {
         name: "/sponsors/8. COMPANION Sponsor/Logitech_logo.png",
-        width: 431,
-        height: 136,
+        width: 3000,
+        height: 400,
         type: "companion",
       },
     ],
@@ -415,9 +415,9 @@ export const sponsorSeason6 = [
     level: "Reward Sponsor",
     sponsors: [
       {
-        name: "/sponsors/9. REWARD Sponsor/Bitis Hunter .png",
-        width: 1780,
-        height: 358,
+        name: "/sponsors/9. REWARD Sponsor/Bitis Hunter.png",
+        width: 1000,
+        height: 300,
         type: "reward",
       },
       {
@@ -441,14 +441,14 @@ export const sponsorSeason6 = [
     sponsors: [
       {
         name: "/sponsors/10. F&B Sponsor/FARO INSPIRATION.png",
-        width: 4500,
-        height: 4500,
+        width: 2048,
+        height: 320,
         type: "f&b",
       },
       {
         name: "/sponsors/10. F&B Sponsor/FARO ROASTERY.png",
-        width: 1080,
-        height: 1080,
+        width: 2048,
+        height: 320,
         type: "f&b",
       },
       {
