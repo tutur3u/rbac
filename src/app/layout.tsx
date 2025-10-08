@@ -64,7 +64,7 @@ const Footer = () => (
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
     </div>
 
-    <div className="relative z-10 px-5 md:px-10 lg:px-20 py-10 lg:py-20">
+    <div className="relative z-10 px-5 md:px-10 lg:px-20 pt-10 lg:pt-20 pb-6">
       {/* Contact Section */}
       <section className="mb-16">
         <h2 className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 mb-10 text-center tracking-tight">
