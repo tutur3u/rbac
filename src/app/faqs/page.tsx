@@ -27,7 +27,7 @@ export default function FAQPage() {
         {
           question: "What is RBAC?",
           answer:
-            "RBAC is open to all undergraduate students currently enrolled in universities across Vietnam. Participants must register in teams of four.",
+            "RBAC (RMIT Business Analytics Champion) is a nationwide, student-led competition where talented participants solve real-world business cases, a stage awaiting those who want to show everyone just how good they are with data!",
         },
         {
           question: "Who can participate in RBAC?",
