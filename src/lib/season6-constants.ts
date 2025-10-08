@@ -415,7 +415,7 @@ export const sponsorSeason6 = [
     level: "Reward Sponsor",
     sponsors: [
       {
-        name: "/sponsors/9. REWARD Sponsor/Bitis Hunter.png",
+        name: "/sponsors/9. REWARD Sponsor/bitis.png",
         width: 1000,
         height: 300,
         type: "reward",

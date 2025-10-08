@@ -70,13 +70,12 @@ export default function Season6Sponsors({
               )}
             >
               {sponsorLevel.sponsors.map((sponsor) => {
-                // Smart aspect ratio calculation only for Platform Sponsor
-                if (sponsorLevel.level === "Platform Sponsor") {
+                // Smart aspect ratio calculation for Platform and F&B Sponsors
+                if (sponsorLevel.level === "Platform Sponsor" || sponsorLevel.level === "F&B Sponsor") {
                   const aspectRatio = sponsor.width / sponsor.height;
                   const isSquare = aspectRatio >= 0.8 && aspectRatio <= 1.2;
                   const isWide = aspectRatio > 2.5;
                   const isMediumWide = aspectRatio > 1.2 && aspectRatio <= 2.5;
-                  const sponsorCount = sponsorLevel.sponsors.length;
 
                   return (
                     <motion.div
@@ -84,16 +83,15 @@ export default function Season6Sponsors({
                       variants={itemVariants}
                       className={cn(
                         "bg-white rounded-md p-2 flex items-center justify-center",
+                        // All logos have the same height for uniform appearance
+                        "h-24",
                         {
-                          // Square logos (1:1 ratio)
-                          "w-28 h-28": isSquare && sponsorCount >= 4,
-                          "w-32 h-32": isSquare && sponsorCount < 4,
-                          // Wide logos (>2.5:1 ratio)
-                          "w-full max-w-md h-auto": isWide && sponsorCount === 1,
-                          "w-72 h-auto": isWide && sponsorCount >= 2,
-                          // Medium-wide logos (1.2-2.5:1 ratio)
-                          "w-48 h-auto": isMediumWide && sponsorCount >= 3,
-                          "w-56 h-auto": isMediumWide && sponsorCount < 3,
+                          // Square logos (1:1 ratio) - width matches height
+                          "w-24": isSquare,
+                          // Wide logos (>2.5:1 ratio) - extra wide to maintain aspect ratio
+                          "w-80": isWide,
+                          // Medium-wide logos (1.2-2.5:1 ratio) - medium width
+                          "w-44": isMediumWide,
                         }
                       )}
                     >
@@ -117,8 +115,10 @@ export default function Season6Sponsors({
                       className={cn(
                         "sponsor-image bg-white p-2 object-cover rounded-md",
                         {
+                          // Shorter height for Bitis Hunter (wide logo)
+                          "w-full h-auto max-h-20": sponsor.name.includes("Bitis Hunter"),
                           "w-full h-auto max-h-32":
-                            sponsor.width / sponsor.height >= 1.6,
+                            !sponsor.name.includes("Bitis Hunter") && sponsor.width / sponsor.height >= 1.6,
                           "w-32 aspect-square":
                             sponsor.width / sponsor.height < 2,
                         }
