@@ -34,14 +34,16 @@ export default function Season6Sponsors({
         variants={staggerContainer}
         className="grid grid-cols-1 md:grid-cols-2 gap-4"
       >
-        {/* Sponsor Levels */}
-        {sponsorSeason6.map((sponsorLevel, levelIndex) => (
+        {/* Sponsor Levels - Dynamically rendered with staggered animation */}
+        {sponsorSeason6.map((sponsorLevel) => (
           <motion.div
             key={sponsorLevel.level}
             variants={itemVariants}
             className={cn(
               "bg-gradient-to-br from-primary/40 to-secondary/30 backdrop-blur-sm rounded-xl p-6 border",
-              sponsorLevel.borderColor
+              sponsorLevel.borderColor,
+              // Full width for Case Sponsor
+              sponsorLevel.level === "Case Sponsor" && "md:col-span-2"
             )}
           >
             {/* Level Header */}
@@ -57,25 +59,33 @@ export default function Season6Sponsors({
               </h3>
             </motion.div>
 
-            {/* Sponsors Grid */}
+            {/* Sponsors Grid - Staggered based on sponsor count */}
             <motion.div
               variants={staggerContainer}
-              className="flex items-center justify-center h-10/12 flex-wrap gap-2"
+              className={cn(
+                "flex items-center justify-center flex-wrap gap-2",
+                // Adjust grid based on number of sponsors
+                sponsorLevel.sponsors.length === 1 && "gap-0",
+                sponsorLevel.sponsors.length >= 4 && "gap-3"
+              )}
             >
-              {sponsorLevel.sponsors.map((sponsor, sponsorIndex) => (
-                <Image
-                  src={sponsor.name}
-                  alt={`${sponsorLevel.level} Logo`}
-                  className={cn(
-                    "sponsor-image object-cover rounded-md",
-                    {
-                      "w-full h-auto max-h-32": sponsor.width / sponsor.height >= 1.6,
-                      "w-32 aspect-square": sponsor.width / sponsor.height < 2,
-                    }
-                  )}
-                  width={sponsor.width}
-                  height={sponsor.height}
-                />
+              {sponsorLevel.sponsors.map((sponsor) => (
+                <motion.div key={sponsor.name} variants={itemVariants}>
+                  <Image
+                    src={sponsor.name}
+                    alt={`${sponsorLevel.level} Logo`}
+                    className={cn(
+                      "sponsor-image bg-white p-2 object-cover rounded-md",
+                      {
+                        "w-full h-auto max-h-32":
+                          sponsor.width / sponsor.height >= 1.6,
+                        "w-32 aspect-square": sponsor.width / sponsor.height < 2,
+                      }
+                    )}
+                    width={sponsor.width}
+                    height={sponsor.height}
+                  />
+                </motion.div>
               ))}
             </motion.div>
           </motion.div>
