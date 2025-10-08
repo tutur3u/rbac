@@ -14,14 +14,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { seasonList } from "@/lib/season-constants";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import FinalistList from "@/components/seasons/finalist-list";
 
 export default function SeasonDetail() {
@@ -36,7 +29,7 @@ export default function SeasonDetail() {
   const currentSeason = seasonList[seasonId] || seasonList[0];
 
   // Generate year based on season id (assuming season 1 was 2021)
-  const seasonYear = 2021 + seasonId;
+  const seasonYear = 2020 + seasonId;
 
   return (
     <section className="relative w-full min-h-screen bg-gradient-to-br from-primary via-blue-900 to-secondary overflow-hidden">

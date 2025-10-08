@@ -74,7 +74,7 @@ export function ActivitiesSection() {
       </div>
 
       <div className="relative z-10 container mx-auto px-4">
-        <div className="text-center mb-16">
+        <div className="text-center mb-4 md:mb-8 lg:mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-blue-400 via-purple-400 to-blue-300 bg-clip-text text-transparent">
             Our Previous Activities
           </h2>

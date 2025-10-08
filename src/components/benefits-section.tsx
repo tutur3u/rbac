@@ -419,7 +419,7 @@ export function BenefitsSection() {
         {/* Benefits Grid */}
         {isMobile ? (
           <Carousel className="w-full relative flex gap-2 px-5 sm:px-10">
-            <CarouselPrevious className="absolute left-0 z-10 text-background w-12 h-12" />
+            <CarouselPrevious className="absolute left-0 z-10 text-primary w-12 h-12" />
             <CarouselContent className="w-full px-2 py-5">
               {benefits.map((benefit, index) => (
                 <CarouselItem key={index} className="w-full">
@@ -427,7 +427,7 @@ export function BenefitsSection() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselNext className="absolute right-0 z-10 text-background w-12 h-12" />
+            <CarouselNext className="absolute right-0 z-10 text-primary w-12 h-12" />
           </Carousel>
         ) : (
           <motion.div

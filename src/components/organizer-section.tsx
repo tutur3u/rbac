@@ -2,10 +2,7 @@
 import { useState } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Building2, Sparkles } from "lucide-react";
-import {
-  organizerAchievements,
-  organizerStats,
-} from "@/lib/organizer-constants";
+import { organizerStats } from "@/lib/organizer-constants";
 import Image from "next/image";
 import { motion, Variants } from "motion/react";
 import Link from "next/link";
@@ -185,11 +182,7 @@ export function OrganizerSection() {
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <motion.div className="text-center mb-20" variants={itemVariants}>
-          <Link
-            href="/about"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
+          <Link href="/about" target="_blank" rel="noopener noreferrer">
             <motion.div
               className="inline-block relative"
               whileHover={{ scale: 1.02 }}
@@ -403,40 +396,6 @@ export function OrganizerSection() {
               </div>
             </CardContent>
           </Card>
-        </motion.div>
-
-        {/* Achievement Stats */}
-        <motion.div className="mt-20" variants={containerVariants}>
-          <motion.div
-            className="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-6 max-w-5xl mx-auto"
-            variants={containerVariants}
-          >
-            {organizerAchievements.map((achievement, index) => {
-              const IconComponent = achievement.icon;
-              return (
-                <motion.div
-                  key={`achievement-${index + 1}`}
-                  variants={achievementVariants}
-                  whileHover="hover"
-                  className="group bg-gradient-to-br from-muted/20 to-primary/90 border border-secondary/50 rounded-2xl p-4 md:p-6 text-center cursor-pointer"
-                >
-                  <motion.div
-                    className="w-12 h-12 bg-gradient-to-r from-secondary to-accent-secondary rounded-xl flex items-center justify-center mx-auto mb-4"
-                    whileHover={{ scale: 1.1, rotate: 12 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <IconComponent className="w-6 h-6 text-background" />
-                  </motion.div>
-                  <div className="text-3xl font-bold mb-2 bg-gradient-to-r from-cyan-400 to-secondary bg-clip-text text-transparent">
-                    {achievement.number}
-                  </div>
-                  <div className="text-sm text-background group-hover:text-primary-foreground transition-colors duration-300">
-                    {achievement.label}
-                  </div>
-                </motion.div>
-              );
-            })}
-          </motion.div>
         </motion.div>
       </div>
     </motion.section>

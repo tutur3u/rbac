@@ -10,7 +10,7 @@ import Link from "next/link";
 import { motion, Variants } from "motion/react";
 import { floatAnimation, pulseGlow } from "@/lib/motion-variants";
 
-const TEMP_DATE = new Date("2025-11-30T23:59:59");
+const TEMP_DATE = new Date("2025-10-09T05:00:00");
 
 // Animation variants
 const containerVariants = {

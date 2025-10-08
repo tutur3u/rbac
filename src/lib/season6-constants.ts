@@ -138,8 +138,8 @@ export const roundSeason6 = [
   {
     id: "open-ceremony",
     title: "OPENING CEREMONY",
-    date: "10 October 2025",
-    format: "[ONLINE] Kick-off event via Zoom",
+    date: "7:00 PM - 9:00 PM, Friday, 10 October 2025",
+    format: " [ONLINE] Livestream on RBAC Fanpage and Youtube",
     description:
       "Introduction to RBAC Season 6, competition rules, and Q&A session",
     icon: "🎯",
@@ -220,5 +220,249 @@ export const rulesSeason6 = [
     hoverBorderColor: "hover:border-cyan-400/30",
     dotColor: "bg-cyan-400",
     textColor: "text-cyan-400",
+  },
+]
+  
+export const sponsorSeason6 = [
+  {
+    level: "Case Sponsor",
+    sponsors: [
+       {
+        "name": "/sponsors/1. CASE sponsor/Colgate-Pamolive.png",
+        "width": 1600,
+        "height": 500,
+        "type": "case"
+    },
+    ],
+    gradient: "from-yellow-300/40 to-amber-500/40",
+    borderColor: "border-yellow-500/40",
+  },
+  {
+    level: "Silver Sponsor",
+    sponsors: [
+      {
+        "name": "/sponsors/3 SILVER Sponsor/amiCoach.jpg",
+        "width": 1417,
+        "height": 851,
+        "type": "silver"
+    },
+    {
+        "name": "/sponsors/3 SILVER Sponsor/MCI.png",
+        "width": 2063,
+        "height": 875,
+        "type": "silver"
+    },
+    {
+        "name": "/sponsors/3 SILVER Sponsor/UniTrain.png",
+        "width": 2309,
+        "height": 1284,
+        "type": "silver"
+    },
+    {
+        "name": "/sponsors/3 SILVER Sponsor/LTPEDTECH.jpg",
+        "width": 1276,
+        "height": 1280,
+        "type": "silver"
+    },
+    ],
+    gradient: "from-gray-400/40 to-slate-600/40",
+    borderColor: "border-gray-500/40",
+  },
+  {
+    level: "Bronze Sponsor",
+    sponsors: [
+     {
+        "name": "/sponsors/4. BRONZE Sponsor/Student Council.jpeg",
+        "width": 2048,
+        "height": 1121,
+        "type": "bronze"
+    },
+    {
+        "name": "/sponsors/4. BRONZE Sponsor/Smart Train.jpg",
+        "width": 2048,
+        "height": 2048,
+        "type": "bronze"
+    },
+    ],
+    gradient: "from-amber-700/40 to-amber-900/40",
+    borderColor: "border-amber-600/40",
+  },
+  {
+    level: "Academic Sponsor",
+    sponsors: [
+      
+       {
+        "name": "/sponsors/5. ACEDEMIC Sponsor/WiDS.jpg",
+        "width": 6438,
+        "height": 1750,
+        "type": "academic"
+    },
+    {
+        "name": "/sponsors/5. ACEDEMIC Sponsor/IEP.png",
+        "width": 1579,
+        "height": 503,
+        "type": "academic"
+    },
+    {
+        "name": "/sponsors/5. ACEDEMIC Sponsor/Mastering Data Analysis.png",
+        "width": 2048,
+        "height": 2048,
+        "type": "academic"
+    },
+    {
+        "name": "/sponsors/5. ACEDEMIC Sponsor/TymeX.jpg",
+        "width": 900,
+        "height": 900,
+        "type": "academic"
+    },
+    {
+        "name": "/sponsors/5. ACEDEMIC Sponsor/TechCamp.jpg",
+        "width": 900,
+        "height": 900,
+        "type": "academic"
+    },
+    ],
+    gradient: "from-blue-400/40 to-blue-700/40",
+    borderColor: "border-blue-500/40",
+  },
+  {
+    level: "Scholarship Sponsor",
+    sponsors: [
+      
+      {
+        "name": "/sponsors/6. SCHOLARSHIP Sponsor/Tomorrow Marketers.jpg",
+        "width": 898,
+        "height": 300,
+        "type": "scholarship"
+    },
+    {
+        "name": "/sponsors/6. SCHOLARSHIP Sponsor/VTI Academy  .jpg",
+        "width": 1024,
+        "height": 1024,
+        "type": "scholarship"
+    },
+    {
+        "name": "/sponsors/6. SCHOLARSHIP Sponsor/PMAX Academy.jpg",
+        "width": 1024,
+        "height": 1024,
+        "type": "scholarship"
+    },
+    {
+        "name": "/sponsors/6. SCHOLARSHIP Sponsor/SAPP logo mới-01.png",
+        "width": 408,
+        "height": 220,
+        "type": "scholarship"
+    },
+    ],
+    gradient: "from-green-400/40 to-green-700/40",
+    borderColor: "border-green-500/40",
+  },
+  {
+    level: "Platform Sponsor",
+    sponsors: [
+      
+     {
+        "name": "/sponsors/7. PLATFORM Sponsor/Base VN.jpeg",
+        "width": 772,
+        "height": 240,
+        "type": "platform"
+    },
+    {
+        "name": "/sponsors/7. PLATFORM Sponsor/Tuturuuu .png",
+        "width": 320,
+        "height": 320,
+        "type": "platform"
+    },
+    {
+        "name": "/sponsors/7. PLATFORM Sponsor/TuongTac.TV.png",
+        "width": 2554,
+        "height": 606,
+        "type": "platform"
+    },
+    ],
+    gradient: "from-purple-400/40 to-purple-700/40",
+    borderColor: "border-purple-500/40",
+  },
+  {
+    level: "Companion Sponsor",
+    sponsors: [
+     {
+        "name": "/sponsors/8. COMPANION Sponsor/Jósie Flowers.jpg",
+        "width": 2560,
+        "height": 2560,
+        "type": "companion"
+    },
+    {
+        "name": "/sponsors/8. COMPANION Sponsor/PT.png",
+        "width": 885,
+        "height": 699,
+        "type": "companion"
+    },
+    {
+        "name": "/sponsors/8. COMPANION Sponsor/CANIFA.png",
+        "width": 2048,
+        "height": 2048,
+        "type": "companion"
+    },
+    {
+        "name": "/sponsors/8. COMPANION Sponsor/Logitech_logo.png",
+        "width": 431,
+        "height": 136,
+        "type": "companion"
+    },
+    ],
+    gradient: "from-pink-400/40 to-pink-700/40",
+    borderColor: "border-pink-500/40",
+  },
+  {
+    level: "Reward Sponsor",
+    sponsors: [
+       {
+        "name": "/sponsors/9. REWARD Sponsor/Bitis Hunter .png",
+        "width": 1780,
+        "height": 358,
+        "type": "reward"
+    },
+    {
+        "name": "/sponsors/9. REWARD Sponsor/Phú Hưng Life (VIET).png",
+        "width": 1790,
+        "height": 1080,
+        "type": "reward"
+    },
+    {
+        "name": "/sponsors/9. REWARD Sponsor/Cake.jpg",
+        "width": 1200,
+        "height": 1200,
+        "type": "reward"
+    },
+    ],
+    gradient: "from-red-400/40 to-red-700/40",
+    borderColor: "border-red-500/40",
+  },
+  {
+    level: "F&B Sponsor",
+    sponsors: [
+      
+      {
+          "name": "/sponsors/10. F&B Sponsor/FARO INSPIRATION.png",
+          "width": 4500,
+          "height": 4500,
+          "type": "f&b"
+      },
+      {
+          "name": "/sponsors/10. F&B Sponsor/FARO ROASTERY.png",
+          "width": 1080,
+          "height": 1080,
+          "type": "f&b"
+      },
+      {
+        "name": "/sponsors/10. F&B Sponsor/Samy Street.png",
+        "width": 2802,
+        "height": 1506,
+        "type": "f&b"
+    },
+    ],
+    gradient: "from-orange-400/40 to-orange-700/40",
+    borderColor: "border-orange-500/40",
   },
 ];

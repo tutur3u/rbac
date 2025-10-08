@@ -2,7 +2,7 @@
 @import "tw-animate-css";
 @import "./font.css";
 
-/* @custom-variant dark (&:is(.dark *)); */
+@custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --color-background: var(--background);
@@ -97,66 +97,61 @@
     @apply text-primary text-center;
     @apply overflow-hidden relative;
     @apply border-0 border-transparent;
-    @apply bg-background/85 backdrop-blur-lg;
+    @apply bg-blue-100/85 backdrop-blur-lg rounded-sm;
   }
   .flip-card-content-border-top {
     @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full;
-    @apply border border-primary pointer-events-none z-10;
-    @apply rounded-b-xs rounded-t-md sm:rounded-b-sm sm:rounded-t-xl;
+    @apply pointer-events-none z-10;
+    @apply rounded-b-xs rounded-t-md sm:rounded-b-sm;
   }
   .flip-card-content-border-bottom {
     @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full;
-    @apply border border-primary pointer-events-none z-10;
-    @apply rounded-t-xs rounded-b-md sm:rounded-t-sm sm:rounded-b-xl;
+    @apply pointer-events-none z-10;
+    @apply rounded-t-xs rounded-b-md sm:rounded-t-sm;
   }
 
   .flip-card-content-top {
     @apply items-start;
-    @apply rounded-b-xs rounded-t-md sm:rounded-b-sm sm:rounded-t-xl;
+    @apply rounded-b-xs rounded-t-md sm:rounded-b-sm;
   }
   .flip-card-content-bottom {
     @apply items-end;
-    @apply rounded-t-xs rounded-b-md sm:rounded-t-sm sm:rounded-b-xl;
-  }
-  .flip-card-content-top p {
-    /* @apply translate-y-[-10%]; */
-  }
-  .flip-card-content-bottom p {
-    /* @apply translate-y-[-10%]; */
+    @apply rounded-t-xs rounded-b-md sm:rounded-t-sm;
   }
   .flip-card-content p {
     @apply h-[200%] flex items-center tracking-tight;
+    /* Cross-browser tabular numbers */
     font-variant-numeric: tabular-nums;
     font-feature-settings: "tnum";
+    -webkit-font-feature-settings: "tnum";
+    -moz-font-feature-settings: "tnum";
+    /* Fallback for older browsers */
+    font-family: 
+        system-ui, 
+        -apple-system, 
+        "Segoe UI", 
+        Roboto, 
+        "Helvetica Neue", 
+        Arial, 
+        sans-serif;
+    letter-spacing: -0.01em; /* Alternative to tracking-tight */
   }
 
   .flip-card-content-top::before {
     @apply content-[''];
     @apply absolute inset-0 pointer-events-none;
-    @apply bg-gradient-to-b from-background/20 via-background/20 to-background/15;
+    @apply bg-gradient-to-b from-secondary-foreground/40 via-white/20 to-white/15;
   }
   .flip-card-content-bottom::before {
     @apply content-[''];
     @apply absolute inset-0 pointer-events-none;
-    @apply bg-gradient-to-t from-background/20 via-background/20 to-background/15;
+    @apply bg-gradient-to-t from-secondary/35 via-white/20 to-white/30;
   }
 
   /* Very light paper grain/lines overlay */
   .flip-card-content::after {
     @apply content-[''];
     @apply absolute inset-0 pointer-events-none;
-    /* faint cross grain */
-    background:
-      radial-gradient(
-        100% 100% at 30% 10%,
-        rgba(0, 0, 0, 0.02),
-        transparent 60%
-      ), /* ultralight horizontal lines (ruled paper hint) */
-      repeating-linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0.025) 0 2px,
-        transparent 2px 6px
-      );
     @apply opacity-65;
     @apply mix-blend-multiply;
   }
@@ -183,39 +178,15 @@
   .flip-book {
     @apply relative isolate perspective-[1800px];
   }
-  .flip-book::before {
-    @apply content-[''] pointer-events-none z-0;
-    @apply absolute left-0 right-0 top-1/2 -translate-y-1/2;
-    @apply h-[1px];
-    background: linear-gradient(
-      90deg,
-      transparent,
-      rgba(0, 0, 0, 0.25),
-      transparent
-    );
-    z-index: 0;
-  }
 
-  .page--sheet::before {
-    @apply content-[''];
-    @apply absolute inset-0 pointer-events-none;
-    @apply opacity-35 transition-opacity;
-    background:
-      linear-gradient(
-        180deg,
-        rgba(255, 255, 255, 0.35),
-        rgba(255, 255, 255, 0) 45%
-      ),
-      radial-gradient(
-        120% 120% at 50% -10%,
-        rgba(255, 255, 255, 0.4),
-        transparent 60%
-      );
-    mix-blend-mode: screen;
-  }
 
   .page--sheet.turn::before {
     @apply opacity-55;
+  }
+  .sponsor-image {
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: high-quality;
   }
 }
 @layer utilities {
