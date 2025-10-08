@@ -321,7 +321,7 @@ export const sponsorSeason6 = [
         type: "academic",
       },
       {
-        name: "/sponsors/5. ACEDEMIC Sponsor/IEP.png",
+        name: "/sponsors/5. ACEDEMIC Sponsor/ISE.png",
         width: 1579,
         height: 503,
         type: "academic",
@@ -408,7 +408,7 @@ export const sponsorSeason6 = [
         type: "companion",
       },
       {
-        name: "/sponsors/8. COMPANION Sponsor/Logitech_logo.png",
+        name: "/sponsors/8. COMPANION Sponsor/logitech.png",
         width: 3000,
         height: 400,
         type: "companion",
