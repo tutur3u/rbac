@@ -3,14 +3,20 @@
 import FlipCountdown from "@/components/flip/FlipCountdown";
 import { Button } from "@/components/ui/button";
 import { useParallax } from "@/hooks/use-parallax";
+import { floatAnimation, pulseGlow } from "@/lib/motion-variants";
 import { BOOKLET_LINK, FORM_LINK } from "@/lib/nav-constants";
 import { cn } from "@/lib/utils";
+import dayjs from "dayjs";
+import timezone from "dayjs/plugin/timezone";
+import utc from "dayjs/plugin/utc";
+import { motion, Variants } from "motion/react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, Variants } from "motion/react";
-import { floatAnimation, pulseGlow } from "@/lib/motion-variants";
 
-const TEMP_DATE = new Date("2025-10-09T05:00:00");
+dayjs.extend(utc);
+dayjs.extend(timezone);
+
+const TEMP_DATE = dayjs.tz("2025-10-09 17:00:00", "Asia/Ho_Chi_Minh").toDate();
 
 // Animation variants
 const containerVariants = {
