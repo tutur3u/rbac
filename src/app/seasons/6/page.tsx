@@ -263,13 +263,6 @@ export default function RBACCompetitionPage() {
                           {round.description}
                         </p>
                       </div>
-
-                      {/* Round Number Badge */}
-                      <div className="absolute top-6 right-6 w-8 h-8 rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 border border-blue-400/30 flex items-center justify-center">
-                        <span className="text-xs font-bold text-blue-300">
-                          {index + 1}
-                        </span>
-                      </div>
                     </div>
                   </motion.div>
 
