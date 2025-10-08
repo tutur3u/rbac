@@ -6,12 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useParallax } from "@/hooks/use-parallax";
 import { cn } from "@/lib/utils";
@@ -19,9 +14,9 @@ import { Search } from "lucide-react";
 import { useState } from "react";
 
 export default function FAQPage() {
-  const { elementRef: bgRef,  } = useParallax(0.3);
+  const { elementRef: bgRef } = useParallax(0.3);
   const { elementRef: floatingRef, offset: floatingOffset } = useParallax(0.5);
-  const { elementRef: contentRef,  } = useParallax(0.1);
+  const { elementRef: contentRef } = useParallax(0.1);
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -31,6 +26,11 @@ export default function FAQPage() {
       questions: [
         {
           question: "What is RBAC?",
+          answer:
+            "RBAC is open to all undergraduate students currently enrolled in universities across Vietnam. Participants must register in teams of four.",
+        },
+        {
+          question: "Who can participate in RBAC?",
           answer:
             "RBAC is open to all undergraduate students currently enrolled in universities across Vietnam. Participants must register in teams of four.",
         },
@@ -153,7 +153,7 @@ export default function FAQPage() {
       questions: category.questions.filter(
         (q) =>
           q.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          q.answer.toLowerCase().includes(searchQuery.toLowerCase())
+          q.answer.toLowerCase().includes(searchQuery.toLowerCase()),
       ),
     }))
     .filter((category) => category.questions.length > 0);
@@ -163,7 +163,7 @@ export default function FAQPage() {
       <div
         className={cn(
           "absolute inset-0 opacity-40 bg-cover bg-bottom md:bg-center w-full h-full",
-          `bg-[url('/backgrounds/rbac-hero-mobile.png')] md:bg-[url('/backgrounds/rbac.png')]`
+          `bg-[url('/backgrounds/rbac-hero-mobile.png')] md:bg-[url('/backgrounds/rbac.png')]`,
         )}
       />
 
