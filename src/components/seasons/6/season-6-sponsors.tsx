@@ -69,24 +69,66 @@ export default function Season6Sponsors({
                 sponsorLevel.sponsors.length >= 4 && "gap-3"
               )}
             >
-              {sponsorLevel.sponsors.map((sponsor) => (
-                <motion.div key={sponsor.name} variants={itemVariants}>
-                  <Image
-                    src={sponsor.name}
-                    alt={`${sponsorLevel.level} Logo`}
-                    className={cn(
-                      "sponsor-image bg-white p-2 object-cover rounded-md",
-                      {
-                        "w-full h-auto max-h-32":
-                          sponsor.width / sponsor.height >= 1.6,
-                        "w-32 aspect-square": sponsor.width / sponsor.height < 2,
-                      }
-                    )}
-                    width={sponsor.width}
-                    height={sponsor.height}
-                  />
-                </motion.div>
-              ))}
+              {sponsorLevel.sponsors.map((sponsor) => {
+                // Smart aspect ratio calculation only for Platform Sponsor
+                if (sponsorLevel.level === "Platform Sponsor") {
+                  const aspectRatio = sponsor.width / sponsor.height;
+                  const isSquare = aspectRatio >= 0.8 && aspectRatio <= 1.2;
+                  const isWide = aspectRatio > 2.5;
+                  const isMediumWide = aspectRatio > 1.2 && aspectRatio <= 2.5;
+                  const sponsorCount = sponsorLevel.sponsors.length;
+
+                  return (
+                    <motion.div
+                      key={sponsor.name}
+                      variants={itemVariants}
+                      className={cn(
+                        "bg-white rounded-md p-2 flex items-center justify-center",
+                        {
+                          // Square logos (1:1 ratio)
+                          "w-28 h-28": isSquare && sponsorCount >= 4,
+                          "w-32 h-32": isSquare && sponsorCount < 4,
+                          // Wide logos (>2.5:1 ratio)
+                          "w-full max-w-md h-auto": isWide && sponsorCount === 1,
+                          "w-72 h-auto": isWide && sponsorCount >= 2,
+                          // Medium-wide logos (1.2-2.5:1 ratio)
+                          "w-48 h-auto": isMediumWide && sponsorCount >= 3,
+                          "w-56 h-auto": isMediumWide && sponsorCount < 3,
+                        }
+                      )}
+                    >
+                      <Image
+                        src={sponsor.name}
+                        alt={`${sponsorLevel.level} Logo`}
+                        className="w-full h-full object-contain"
+                        width={sponsor.width}
+                        height={sponsor.height}
+                      />
+                    </motion.div>
+                  );
+                }
+
+                // Original styling for all other sponsors
+                return (
+                  <motion.div key={sponsor.name} variants={itemVariants}>
+                    <Image
+                      src={sponsor.name}
+                      alt={`${sponsorLevel.level} Logo`}
+                      className={cn(
+                        "sponsor-image bg-white p-2 object-cover rounded-md",
+                        {
+                          "w-full h-auto max-h-32":
+                            sponsor.width / sponsor.height >= 1.6,
+                          "w-32 aspect-square":
+                            sponsor.width / sponsor.height < 2,
+                        }
+                      )}
+                      width={sponsor.width}
+                      height={sponsor.height}
+                    />
+                  </motion.div>
+                );
+              })}
             </motion.div>
           </motion.div>
         ))}

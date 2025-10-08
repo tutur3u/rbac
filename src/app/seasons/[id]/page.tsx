@@ -1,6 +1,7 @@
 "use client";
 
 import FinalistList from "@/components/seasons/finalist-list";
+import ImageLightbox from "@/components/seasons/image-lightbox";
 import { Badge } from "@/components/ui/badge";
 import {
   Card,
@@ -130,7 +131,7 @@ export default function SeasonDetail() {
             </CardTitle>
           </CardHeader>
           <CardContent
-            className="px-2 py-4 md:py-8 
+            className="px-2 py-4 md:py-8
           backdrop-blur-sm bg-primary/10
           rounded-sm border-2 border-pink-300/50"
           >
@@ -147,15 +148,38 @@ export default function SeasonDetail() {
                       className="object-contain rounded-sm bg-white absolute scale-110"
                     />
                   );
+
+                // Smart aspect ratio calculation for uniform height
+                const aspectRatio = partner.width / partner.height;
+                const isSquare = aspectRatio >= 0.8 && aspectRatio <= 1.2;
+                const isWide = aspectRatio > 2.5;
+                const isMediumWide = aspectRatio > 1.2 && aspectRatio <= 2.5;
+
                 return (
-                  <Image
+                  <div
                     key={index}
-                    src={`/seasons/logos/${partner.name}` || "/placeholder.svg"}
-                    alt={`Partner ${index + 1}`}
-                    width={partner.width}
-                    height={partner.height}
-                    className="object-contain rounded-sm bg-white w-24 sm:w-32 lg:w-50"
-                  />
+                    className={cn(
+                      "bg-white rounded-sm p-2 flex items-center justify-center",
+                      // All logos have the same height for uniform appearance
+                      "h-24 sm:h-28 lg:h-32",
+                      {
+                        // Square logos (1:1 ratio) - width matches height
+                        "w-24 sm:w-28 lg:w-32": isSquare,
+                        // Wide logos (>2.5:1 ratio) - wider to maintain aspect ratio
+                        "w-40 sm:w-48 lg:w-56": isWide,
+                        // Medium-wide logos (1.2-2.5:1 ratio) - medium width
+                        "w-32 sm:w-40 lg:w-48": isMediumWide,
+                      }
+                    )}
+                  >
+                    <Image
+                      src={`/seasons/logos/${partner.name}` || "/placeholder.svg"}
+                      alt={`Partner ${index + 1}`}
+                      width={partner.width}
+                      height={partner.height}
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
                 );
               })}
             </div>
@@ -253,6 +277,33 @@ export default function SeasonDetail() {
 
           <FinalistList currentSeason={currentSeason} rootUrl={rootUrl} />
         </div>
+
+        {/* Event Highlights Section - Skip for Season 2 */}
+        {id !== '2' && (
+          <div className="w-full max-w-6xl mt-8">
+            <div className="text-center mb-4 md:mb-6 lg:mb-8">
+              <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 glow-effect animate-fade-in">
+                <span
+                  className="bg-gradient-to-r text-shadow-sm text-shadow-background/10
+                primary-gradient bg-clip-text text-transparent"
+                >
+                  Event Highlights
+                </span>
+              </h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-blue-200 to-secondary-foreground mx-auto
+              mt-2 md:mt-3 lg:mt-4 rounded-full animate-pulse"></div>
+            </div>
+
+            <ImageLightbox
+              images={Array.from({ length: id === '1' || id === '3' ? 10 : id === '4' ? 7 : 9 }).map((_, index) => {
+                const imageExt = id === '5' ? 'png' : 'jpg';
+                const imageNum = index + 1;
+                return `/highlights/season-${id}/${imageNum}.${imageExt}`;
+              })}
+              alt="Event Highlight"
+            />
+          </div>
+        )}
 
         <div className="mt-8 text-center">
           <Badge

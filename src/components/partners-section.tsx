@@ -11,7 +11,7 @@ const partners = [
   { name: "/com-partners/KPMG.png", width: 1638, height: 1210 },
   { name: "/com-partners/chotot.png", width: 900, height: 900 },
   { name: "/com-partners/mazars.jpg", width: 960, height: 195 },
-  { name: "/com-partners/Pepsi.png", width: 960, height: 959 },
+  { name: "/com-partners/suntory-pepsico.jpeg", width: 960, height: 959 },
   { name: "/com-partners/Pizzahut.png", width: 2176, height: 2049 },
   { name: "/com-partners/SHBFC.png", width: 3635, height: 775 },
   { name: "/com-partners/Shopee.png", width: 3606, height: 1396 },
