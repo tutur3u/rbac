@@ -396,9 +396,9 @@ export const sponsorSeason6 = [
         type: "companion",
       },
       {
-        name: "/sponsors/8. COMPANION Sponsor/CANIFA.png",
+        name: "/sponsors/8. COMPANION Sponsor/CANIFA new.png",
         width: 2048,
-        height: 2048,
+        height: 320,
         type: "companion",
       },
       {
