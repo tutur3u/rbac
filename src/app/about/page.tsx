@@ -69,7 +69,7 @@ export default function AboutUs() {
             ABOUT US
           </h1>
           <p className="text-xl md:text-2xl mt-4 text-blue-100">
-            RMIT Vietnam Analytics Club SGS
+            RMIT Vietnam Analytics Club
           </p>
         </div>
 
@@ -79,7 +79,7 @@ export default function AboutUs() {
               <div>
                 <h2 className="text-2xl font-bold text-white mb-4">Overview</h2>
                 <p className="text-blue-100 text-left">
-                  Established in 2008, RMIT Vietnam Analytics Club SGS is
+                  Established in 2008, RMIT Vietnam Analytics Club (SGS) is
                   dedicated to creating a learning environment for young
                   enthusiasts passionate about data and business analytics.
                 </p>
