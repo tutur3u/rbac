@@ -124,13 +124,17 @@ export function PartnersSection() {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
-        <motion.div className="text-center mb-4 md:mb-8 lg:mb-16" variants={itemVariants}>
+        <motion.div
+          className="text-center mb-4 md:mb-8 lg:mb-16"
+          variants={itemVariants}
+        >
+          {/* Header */}
           <motion.h2
-            className="text-5xl md:text-6xl font-bold mb-6"
+            className="text-4xl md:text-6xl font-bold mb-6 leading-tight"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
-            <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-cyan-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-cyan-400 bg-clip-text text-transparent">
               OUR PARTNERS
             </span>
           </motion.h2>

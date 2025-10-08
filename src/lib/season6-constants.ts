@@ -303,6 +303,12 @@ export const sponsorSeason6 = [
         type: "academic",
       },
       {
+        name: "/sponsors/5. ACEDEMIC Sponsor/OKRB.png",
+        width: 2048,
+        height: 320,
+        type: "academic",
+      },
+      {
         name: "/sponsors/5. ACEDEMIC Sponsor/TymeX.jpg",
         width: 900,
         height: 900,
