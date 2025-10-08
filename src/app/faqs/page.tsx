@@ -30,6 +30,11 @@ export default function FAQPage() {
       title: "General Information",
       questions: [
         {
+          question: "What is RBAC?",
+          answer:
+            "RBAC is open to all undergraduate students currently enrolled in universities across Vietnam. Participants must register in teams of four.",
+        },
+        {
           question: "Does RBAC support team formation?",
           answer:
             "Currently, RBAC does not provide an official form or process to support team formation for individual participants. However, we encourage you to actively connect with potential teammates through the RMIT Business Analytics Champion Community.",

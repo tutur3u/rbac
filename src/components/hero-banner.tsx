@@ -137,7 +137,7 @@ export function HeroBanner() {
       {/* Content with Framer Motion animations */}
       <motion.div
         className="relative z-10 h-full
-         px-4 pt-20 pb-3 md:py-20 
+         px-4 lg:px-8 xl:px-16 2xl:px-32 pt-20 pb-3 md:py-20 
          flex flex-col items-center md:items-start justify-center gap-4 sm:gap-8
          min-h-screen text-center"
         variants={containerVariants}
