@@ -152,7 +152,7 @@ export const seasonList = [
         height: 190,
       },
     ],
-    logo: "ss5-logo.png",
+    logo: "ss5-logo.jpg",
     judges: [
       {
         name: "NGUYEN TRUONG GIANG",
