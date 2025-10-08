@@ -1,8 +1,8 @@
 "use client";
 
 import { useParallax } from "@/hooks/use-parallax";
-import Image from "next/image";
 import { motion, Variants } from "motion/react";
+import Image from "next/image";
 
 const partners = [
   { name: "/com-partners/masan.png", width: 2400, height: 2400 },
@@ -157,8 +157,8 @@ export function PartnersSection() {
               className="flex justify-center"
             >
               <div
-                className="bg-background/20 backdrop-blur-sm rounded-xl
-               p-4 border border-white/10 hover:bg-white/10 transition-all duration-300 
+                className="bg-white backdrop-blur-sm rounded-xl
+               p-4 border border-white/10 hover:bg-white transition-all duration-300 
                w-full max-w-[200px] h-32 flex items-center justify-center overflow-hidden"
               >
                 <Image
