@@ -68,7 +68,7 @@ export function HeroBanner() {
   const { elementRef: floatingRef, offset: floatingOffset } = useParallax(0.5);
 
   return (
-    <section className="relative w-full h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 overflow-hidden">
+    <section className="relative w-full min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-purple-900 overflow-hidden">
       {/* Background elements */}
       <div
         className={cn(

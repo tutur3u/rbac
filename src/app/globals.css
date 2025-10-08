@@ -93,11 +93,14 @@
   .flip-card-content {
     @apply h-full w-full relative;
     @apply flex justify-center;
-    @apply text-3xl sm:text-4xl md:text-5xl;
     @apply text-primary text-center;
-    @apply overflow-hidden relative;
-    @apply border-0 border-transparent;
-    @apply bg-blue-100/85 backdrop-blur-lg rounded-sm;
+    @apply overflow-hidden;
+    @apply border border-blue-200/50;
+    @apply bg-gradient-to-br from-blue-50/95 to-indigo-50/95 backdrop-blur-lg;
+    @apply shadow-sm;
+    border-radius: 0.375rem;
+    font-size: clamp(1.125rem, 4vh, 3rem);
+    will-change: transform;
   }
   .flip-card-content-border-top {
     @apply absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full;
@@ -112,55 +115,58 @@
 
   .flip-card-content-top {
     @apply items-start;
-    @apply rounded-b-xs rounded-t-md sm:rounded-b-sm;
+    border-radius: 0.375rem 0.375rem 0.125rem 0.125rem;
   }
   .flip-card-content-bottom {
     @apply items-end;
-    @apply rounded-t-xs rounded-b-md sm:rounded-t-sm;
+    border-radius: 0.125rem 0.125rem 0.375rem 0.375rem;
   }
   .flip-card-content p {
-    @apply h-[200%] flex items-center tracking-tight;
+    @apply h-[200%] flex items-center tracking-tight font-bold;
     /* Cross-browser tabular numbers */
     font-variant-numeric: tabular-nums;
     font-feature-settings: "tnum";
     -webkit-font-feature-settings: "tnum";
     -moz-font-feature-settings: "tnum";
     /* Fallback for older browsers */
-    font-family: 
-        system-ui, 
-        -apple-system, 
-        "Segoe UI", 
-        Roboto, 
-        "Helvetica Neue", 
-        Arial, 
+    font-family:
+        system-ui,
+        -apple-system,
+        "Segoe UI",
+        Roboto,
+        "Helvetica Neue",
+        Arial,
         sans-serif;
-    letter-spacing: -0.01em; /* Alternative to tracking-tight */
+    letter-spacing: -0.01em;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   }
 
   .flip-card-content-top::before {
     @apply content-[''];
     @apply absolute inset-0 pointer-events-none;
-    @apply bg-gradient-to-b from-secondary-foreground/40 via-white/20 to-white/15;
+    @apply bg-gradient-to-b from-white/40 via-white/10 to-transparent;
+    border-radius: 0.375rem 0.375rem 0.125rem 0.125rem;
   }
   .flip-card-content-bottom::before {
     @apply content-[''];
     @apply absolute inset-0 pointer-events-none;
-    @apply bg-gradient-to-t from-secondary/35 via-white/20 to-white/30;
+    @apply bg-gradient-to-t from-blue-900/10 via-transparent to-white/5;
+    border-radius: 0.125rem 0.125rem 0.375rem 0.375rem;
   }
 
-  /* Very light paper grain/lines overlay */
-  .flip-card-content::after {
+  /* Subtle highlight line between cards */
+  .flip-card-content-top::after {
     @apply content-[''];
-    @apply absolute inset-0 pointer-events-none;
-    @apply opacity-65;
-    @apply mix-blend-multiply;
+    @apply absolute bottom-0 left-0 right-0 pointer-events-none;
+    @apply h-px bg-gradient-to-r from-transparent via-blue-300/60 to-transparent;
   }
   .page {
     @apply absolute w-full origin-bottom;
-    @apply cursor-pointer;
     @apply transform-3d;
-    @apply rotate-x-0 will-change-transform;
+    @apply rotate-x-0;
     @apply transition-transform;
+    will-change: transform;
+    transform: translateZ(0); /* Force GPU acceleration */
   }
   .page.turn {
     @apply -rotate-x-180;
@@ -171,17 +177,15 @@
     @apply absolute inset-0;
     @apply backface-hidden;
     @apply transform-3d;
+    transform: translateZ(0); /* Force GPU acceleration */
   }
   .back {
     @apply transform -rotate-x-180;
   }
   .flip-book {
     @apply relative isolate perspective-[1800px];
-  }
-
-
-  .page--sheet.turn::before {
-    @apply opacity-55;
+    transform: translateZ(0);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
   }
   .sponsor-image {
     image-rendering: -webkit-optimize-contrast;
